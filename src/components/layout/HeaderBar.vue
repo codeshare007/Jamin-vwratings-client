@@ -2,7 +2,7 @@
   <b-navbar toggleable="lg" class="header-bar" variant="">
     <b-container class="">
       <b-navbar-brand :to="{ name: 'ratings.home' }">
-        <img src="../../assets/images/logo.png" alt />
+        <img src="../../assets/images/logo.png" alt/>
       </b-navbar-brand>
       <b-navbar-toggle
           class="bg-transparent p-0"
@@ -14,18 +14,17 @@
           <b-navbar-brand class="ml-3" :to="{ name: 'ratings.home' }">
             VW Ratings
           </b-navbar-brand>
-          <button>
-            <b-icon-x
-                @click="toggleMobileMenu"
-                variant="light"
-                height="3rem"
-                width="3rem"
-            />
-          </button>
+          <b-icon-x
+              @click="toggleMobileMenu"
+              variant="light"
+              class="mr-2"
+              height="3rem"
+              width="3rem"
+          />
         </div>
 
         <div>
-          <header-profile v-if="loggedIn" />
+          <header-profile v-if="loggedIn"/>
         </div>
 
         <b-navbar-nav class="ml-auto" v-if="!loading">
@@ -34,11 +33,12 @@
               :to="item.path"
               :key="key"
               @click="isMobileMenu = !isMobileMenu"
-          >{{ item.name }}</b-nav-item>
+          >{{ item.name }}
+          </b-nav-item>
         </b-navbar-nav>
       </div>
       <b-collapse id="nav-collapse" is-nav>
-       <div v-if="loading" class="d-flex justify-content-end w-100">
+        <div v-if="loading" class="d-flex justify-content-end w-100">
           <b-skeleton
               class="mt-3 mr-3"
               v-for="i in 3"
@@ -47,15 +47,15 @@
               height="30px"
               width="140px"
           />
-        </div>  
+        </div>
         <b-navbar-nav class="ml-auto" v-else>
           <li v-for="(item, key) in menu" :key="key" class="nav-item">
             <a class="nav-link" :href="item.href" v-if="item.href" v-text="item.name"/>
             <router-link class="nav-link" :to="item.path" v-if="item.path" v-text="item.name"/>
           </li>
-         <!--  <li class="nav-item" v-if="!loggedIn">
-            <router-link class="nav-link" :to="{ name: 'auth.signin'}">Login/Join</router-link>
-          </li> -->
+          <!--  <li class="nav-item" v-if="!loggedIn">
+             <router-link class="nav-link" :to="{ name: 'auth.signin'}">Login/Join</router-link>
+           </li> -->
         </b-navbar-nav>
         <header-profile v-if="loggedIn"/>
       </b-collapse>
@@ -96,8 +96,10 @@ export default {
 <style lang="scss">
 .header-bar {
 
-  .container {
-    padding: 20px 150px;
+  @media screen and (min-width: 1024px) {
+    .container {
+      padding: 0px 150px;
+    }
   }
 
   .navbar-brand {
@@ -108,7 +110,13 @@ export default {
     color: white;
 
     img {
-      width: 150px;
+      width: 120px;
+    }
+
+    @media screen and (min-width: 1024px) {
+      img {
+        width: 150px;
+      }
     }
 
     &:focus,
@@ -120,9 +128,10 @@ export default {
   @media screen and (max-width: 994px) {
     height: 54px;
 
+    /*
     .navbar-brand img {
       width: 25px;
-    }
+    }*/
 
     .navbar-toggler-icon {
       background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 255' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")
@@ -167,7 +176,7 @@ export default {
     margin: 0 10px;
   }
 
-  .nav-mobile button{
+  .nav-mobile button {
     background-color: #676767;
   }
 }
