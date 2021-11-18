@@ -1,76 +1,69 @@
 <template>
-  <div class="page-container text-center">
-    <div class="container-fluid tm-content-container">
-      <div class="position-relative page-width-1 page-right">
-        <div class="tm-bg-dark content-pad">
-          <h3 class="mb-4">
-            Welcome to vwRatings<br><span style="font-size:20px">Behaviour ratings of vw players to highlight the awesome and expose the rotten.</span></h3>
+  <div class="homePage">
 
-          <div class="content">
-            <div class="row row-deck">
-              <div class="col-md-6 col-xl-4">
-                <div class="block block-rounded">
-                  <div class="block-content fs-sm texting">
-                    <p>
-                      1000s of player names
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6 col-xl-4">
-                <div class="block block-rounded">
-                  <div class="block-content fs-sm texting">
-                    <p>
-                      1000s of comments & pics
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6 offset-md-3 offset-xl-0 col-xl-4">
-                <div class="block block-rounded">
-                  <div class="block-content fs-sm texting">
-                    <p>
-                      1000s of ratings
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <p class="mb-0">
-            Rate and comment about other vw players that you think are exceptional or just plain
-            trouble.<br> Everything is anonymous....</p>
-          <div class="d-flex justify-content-center">
-            <div class="homePage__gallery">
-              <viewer>
-                <img class="homePage__image" alt="Image 1" src="img/home/home-img-4.png"/>
-                <img class="homePage__image" alt="Image 2" src="img/home/home-img-3.jpeg"/>
-                <img class="homePage__image" alt="Image 3" src="img/home/home-img-2.jiff"/>
-                <img class="homePage__image" alt="Image 4" src="img/home/home-img-1.jpeg"/>
-              </viewer>
-            </div>
-          </div>
+    <div class="homePage__container">
+      <h1 class="text-center">Welcome to vwRatings</h1>
+      <h2 class="text-center">Behaviour ratings of vw players to highlight the awesome and expose the rotten.</h2>
+
+      <div class="d-flex flex-column flex-lg-row justify-content-between mt-4">
+        <div class="infoCard">1000s of player names</div>
+        <div class="infoCard">1000s of comments & pics</div>
+        <div class="infoCard">1000s of ratings</div>
+      </div>
+
+      <div class="mt-4">
+        <p class="text-center m-0">Rate and comment about other vw players that you think are exceptional or just plain trouble.</p>
+        <p class="text-center">Everything is anonymous....</p>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <div class="homePage__gallery">
+          <viewer>
+            <img class="homePage__image" alt="Image 1" src="../assets/images/home/1.png" />
+            <img class="homePage__image" alt="Image 2" src="../assets/images/home/2.jpeg" />
+            <img class="homePage__image" alt="Image 3" src="../assets/images/home/3.jpg" />
+            <img class="homePage__image" alt="Image 4" src="../assets/images/home/4.jpeg" />
+          </viewer>
         </div>
       </div>
     </div>
   </div>
 </template>
 <style lang="scss">
-
-.page-container {
-  background: black;
-}
-
-.texting {
-  background: #1c4a1d;
-}
-
-.viewer-backdrop {
-  background-color: rgba(0, 0, 0, 1);
-}
-
 .homePage {
 
+
+  &__container {
+    background-color: rgba(0,0,0,.7);
+    padding: 20px;
+    margin: 20px;
+
+    @media screen and (min-width: 1024px) {
+      margin: 0 140px;
+      padding: 40px 30px;
+    }
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  .infoCard {
+    background: #1c4a1d;
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 10px;
+
+    @media screen and (min-width: 1024px) {
+      max-width: 32%;
+      flex: 0 0 32%;
+      margin-bottom: 0;
+    }
+  }
 
   &__gallery {
     width: 345px;

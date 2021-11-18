@@ -1,6 +1,17 @@
 .fade-enter-active, .fade-leave-active {
-    transition: opacity .3s;
+  transition: opacity .3s;
 }
+
 .fade-enter, .fade-leave-to {
-    opacity: 0;
+  opacity: 0;
+}
+
+.blackContainer {
+  background-color: rgba(0, 0, 0, .7);
+  padding: 40px 30px;
+  margin: 20px;
+
+  @media screen and (min-width: 1024px) {
+    margin: 0 150px;
+  }
 }
