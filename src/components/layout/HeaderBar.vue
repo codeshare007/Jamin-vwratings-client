@@ -1,8 +1,8 @@
 <template>
   <b-navbar toggleable="lg" class="header-bar" variant="">
-    <b-container class="p-0">
+    <b-container class="">
       <b-navbar-brand :to="{ name: 'ratings.home' }">
-        VW Ratings
+        <img src="../../assets/images/logo.png" alt />
       </b-navbar-brand>
       <b-navbar-toggle
           class="bg-transparent p-0"
@@ -48,7 +48,7 @@
               width="140px"
           />
         </div>  
-        <b-navbar-nav class="ml-auto"v-else>
+        <b-navbar-nav class="ml-auto" v-else>
           <li v-for="(item, key) in menu" :key="key" class="nav-item">
             <a class="nav-link" :href="item.href" v-if="item.href" v-text="item.name"/>
             <router-link class="nav-link" :to="item.path" v-if="item.path" v-text="item.name"/>
@@ -96,12 +96,20 @@ export default {
 <style lang="scss">
 .header-bar {
 
+  .container {
+    padding: 20px 150px;
+  }
+
   .navbar-brand {
     font-family: 'Futura PT', sans-serif;
     text-transform: uppercase;
     font-weight: bold;
     font-size: 25px;
     color: white;
+
+    img {
+      width: 150px;
+    }
 
     &:focus,
     &:hover {
