@@ -9,31 +9,54 @@
             dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
             ea commodo consequat.</p>
 
-          <b-form>
+          <div v-if="!loading" class="mb-3">
+            <b-form v-if="Object.keys(claimed_avis).length === 0">
+              <b-row class="justify-content-start mt-4">
+                <b-col cols="6">
+                  <b-form-input
+                    placeholder="name of avi"
+                    class="bg-dark text-white border-dark"
+                    :state="validateState('aviName')"
+                    v-model="$v.aviName.$model"
+                  />
+                </b-col>
+
+                <b-col cols="3" class="d-flex">
+                  <b-button variant="success" type="submit" @click="e => claim(e,'avi')">Submit</b-button>
+                </b-col>
+
+                <span
+                  class="ml-3 mt-3 d-block text-danger"
+                  v-for="(item, key) in errors"
+                  :key="key"
+                >{{ item }}</span>
+              </b-row>
+            </b-form>
+
+            <b-table v-if="Object.keys(claimed_avis).length !== 0" table-variant="dark" :items="claimed_avis"
+                     :fields="[{key: 'avi.name', label: 'name'}, {key: 'claimed_until', label: 'claimed until'}, 'actions']">
+              <template #cell(claimed_until)="row">
+                {{ row.item.claimed_until | countdown }}
+              </template>
+              <template #cell(actions)="row">
+                <b-button variant="primary" @click="stayClaimed(row.item.id)">Stay Claimed</b-button>
+              </template>
+            </b-table>
+          </div>
+
+          <b-form v-if="Object.keys(claimed_parties).length === 0" class="mb-3">
             <b-row class="justify-content-start mt-4">
-
-              <b-col cols="3">
-                <b-form-radio-group
-                  id="btn-radios-1"
-                  v-model="$v.form.type.$model"
-                  :options="{avi: 'Avi', party: 'Party'}"
-                  :state="validateState('type')"
-                  name="radios-btn-default"
-                  buttons
-                />
-              </b-col>
-
               <b-col cols="6">
                 <b-form-input
-                  placeholder="Name of avi or party"
+                  placeholder="name of party"
                   class="bg-dark text-white border-dark"
-                  :state="validateState('name')"
-                  v-model="$v.form.name.$model"
+                  :state="validateState('partyName')"
+                  v-model="$v.partyName.$model"
                 />
               </b-col>
 
               <b-col cols="3" class="d-flex">
-                <b-button variant="success" type="submit" @click="claim">Submit</b-button>
+                <b-button variant="success" type="submit" @click="e => claim(e, 'party')">Submit</b-button>
               </b-col>
 
               <span
@@ -42,28 +65,18 @@
                 :key="key"
               >{{ item }}</span>
             </b-row>
-
-
-            <div class="mt-3">
-              <b-table v-if="claimed_avis" table-variant="dark" :items="claimed_avis" :fields="claimFields">
-                <template #cell(claimed_until)="row">
-                  {{ row.item.claimed_until | countdown }}
-                </template>
-                <template #cell(actions)="row">
-                  <b-button variant="primary" @click="stayClaimed(row.item.id)">Stay Claimed</b-button>
-                </template>
-              </b-table>
-              <b-table v-if="claimed_parties" table-variant="dark" :items="claimed_parties" :fields="claimFields">
-                <template #cell(claimed_until)="row">
-                  {{ row.item.claimed_until | countdown }}
-                </template>
-                <template #cell(actions)="row">
-                  <b-button variant="primary" @click="stayClaimed(row.item.id)">Stay Claimed</b-button>
-                </template>
-              </b-table>
-            </div>
-
           </b-form>
+
+          <b-table v-if="Object.keys(claimed_parties).length !== 0" table-variant="dark" :items="claimed_parties"
+                   :fields="[{key: 'party.name', label: 'name'}, {key: 'claimed_until', label: 'claimed until'}, 'actions']">
+            <template #cell(claimed_until)="row">
+              {{ row.item.claimed_until | countdown }}
+            </template>
+            <template #cell(actions)="row">
+              <b-button variant="primary" @click="stayClaimed(row.item.id)">Stay Claimed</b-button>
+            </template>
+          </b-table>
+
         </div>
       </b-col>
       <b-col cols="12" lg="4">
@@ -88,6 +101,7 @@
 <script>
 
 import CommentItem from "../components/entities/entity/comments/CommentItem";
+import {mapActions} from "vuex";
 
 const {required} = require('vuelidate/lib/validators');
 
@@ -99,24 +113,22 @@ export default {
       loading: true,
       claimed_avis: [],
       claimed_parties: [],
-      claimFields: [
-        {key: 'avi.name', label: 'name'},
-        {key: 'claimed_until', label: 'claimed until'},
-        {key: 'actions', label: 'actions'}
-      ],
       errors: [],
-      form: {
-        name: null,
-        type: 1
+      aviName: null,
+      partyName: null,
+      profile: {
+        username: null
       }
     }
   },
 
   filters: {
+
     role(data) {
       const roles = {1: 'Admin', 2: 'User'};
       return roles[data]
     },
+
     countdown(date) {
       let t = Date.parse(new Date(date)) - Date.parse(new Date());
       if (t >= 0) {
@@ -133,24 +145,35 @@ export default {
   },
 
   validations: {
-    form: {
-      name: {required},
-      type: {required}
+    partyName: {
+      required(v) {
+        return this.aviName.length || required(v)
+      }
+    },
+    aviName: {
+      required(v) {
+        return this.partyName.length || required(v)
+      }
     }
   },
 
   computed: {
-    profile() {
+    fetchProfile() {
       return this.$store.getters['auth/profile']
     }
   },
 
   mounted() {
-    this.fetchComments();
+    this.profile = this.fetchProfile;
     this.fetchClaimed();
+    this.fetchComments();
   },
 
   methods: {
+
+    ...mapActions({
+      logout: 'auth/LOGOUT'
+    }),
 
     emitLogout() {
       this.logout().then(() => {
@@ -159,18 +182,21 @@ export default {
     },
 
     validateState(name) {
-      const {$dirty, $error} = this.$v.form[name];
+      const {$dirty, $error} = this.$v[name];
       return $dirty ? !$error : null;
     },
 
     fetchClaimed() {
+      this.loading = true;
       this.$api.profile.claimed().then(response => {
         this.claimed_avis = response.data.data.avis;
         this.claimed_parties = response.data.data.parties;
+        this.loading = false;
       })
     },
 
     fetchComments() {
+      this.loading = true;
       this.$api.profile.comments().then(response => {
         this.comments = response.data;
         this.loading = false;
@@ -185,13 +211,24 @@ export default {
       })
     },
 
-    claim(e) {
+    claim(e, type) {
       e.preventDefault();
 
-      this.$v.form.$touch();
-      if (this.$v.form.$error) return;
+      if (type === 'avi') {
+        this.$v.aviName.$touch();
+        if (this.$v.aviName.$error) return;
+      }
 
-      const payload = this.form;
+      if (type === 'party') {
+        this.$v.partyName.$touch();
+        if (this.$v.partyName.$error) return;
+      }
+
+      let payload;
+
+      if (type === 'avi') payload = {name: this.aviName, type: type};
+      if (type === 'party') payload = {name: this.partyName, type: type};
+
       this.$api.profile.claim(payload).then(response => {
         if (response.data.status === 'success') {
           window.location.href = '/promo';

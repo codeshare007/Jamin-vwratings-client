@@ -49,7 +49,7 @@
           <b-nav-item :to="{name: 'ratings.avis.list'}">Players</b-nav-item>
           <b-nav-item :to="{name: 'ratings.parties.list'}">Parties</b-nav-item>
           <b-nav-item :to="{name: 'ratings.buttons'}">Buttons</b-nav-item>
-          <b-nav-item v-if="!loggedIn" :to="{name: 'ratings.signp'}">Login/Join</b-nav-item>
+          <b-nav-item v-if="!loggedIn" :to="{name: 'auth.signin'}">Login/Join</b-nav-item>
         </b-navbar-nav>
         <header-profile v-if="loggedIn"/>
       </b-collapse>
