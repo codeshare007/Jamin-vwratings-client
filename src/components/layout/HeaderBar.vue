@@ -98,7 +98,7 @@ export default {
 
   @media screen and (min-width: 1024px) {
     .container {
-      padding: 0px 150px;
+      padding: 0 150px;
     }
   }
 

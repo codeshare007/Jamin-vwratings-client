@@ -5,14 +5,6 @@ import apiAuth from './methods/auth';
 import apiProfile from './methods/profile';
 import apiAvis from './methods/avis';
 import apiParties from './methods/parties'
-// admin methods
-import apiAdminDashboard from './methods/adminDashboard'
-import apiAdminAvis from './methods/adminAvis'
-import apiAdminComments from './methods/adminCommments'
-import apiAdminMessages from './methods/adminMessages'
-import apiAdminRatings from './methods/adminRatings';
-import apiAdminUsers from './methods/adminUsers';
-import apiAdminAdsCampaigns from './methods/adminAdsCampaigns';
 
 export default {
   removeJWT() {
@@ -111,14 +103,7 @@ export default {
       auth: apiAuth(this.apiInstance),
       profile: apiProfile(this.apiInstance),
       avis: apiAvis(this.apiInstance),
-      parties: apiParties(this.apiInstance),
-      adminDashboard: apiAdminDashboard(this.apiInstance),
-      adminAvis: apiAdminAvis(this.apiInstance),
-      adminComments: apiAdminComments(this.apiInstance),
-      adminMessages: apiAdminMessages(this.apiInstance),
-      adminRatings: apiAdminRatings(this.apiInstance),
-      adminUsers: apiAdminUsers(this.apiInstance),
-      adminAdsCampaigns: apiAdminAdsCampaigns(this.apiInstance)
+      parties: apiParties(this.apiInstance)
     };
 
     Vue.prototype.$api = repositories;

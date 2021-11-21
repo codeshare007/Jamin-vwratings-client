@@ -61,7 +61,7 @@ export default {
   props: {
     id: {},
     name: String,
-    comments: Array,
+    comments: {},
     method: String
   },
 
@@ -118,7 +118,7 @@ export default {
         const that = this;
 
         this.previews = [];
-        reader.addEventListener('load', (e) => {
+        reader.addEventListener('load', () => {
           that.previews.push(reader.result);
         }, false);
 

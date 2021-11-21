@@ -1,11 +1,9 @@
 <template>
   <transition name="fade">
-    <div class="entityView" v-if="screenLoaded">
-
+    <div class="entityView" v-if="screenLoaded" :class="{ 'entityView--claimed': item.claim }">
       <EntityInfo
-        :average-rating="item.average_rating"
         :screen="screenBack"
-        :name="item.name"
+        :item="item"
       />
 
       <EntityRate
@@ -39,7 +37,6 @@ import EntityInfo from "./entity/EntityInfo";
 import EntityRate from './entity/EntityRate';
 import CommentForm from './entity/comments/CommentForm';
 import CommentList from './entity/comments/CommentList';
-import CommentItem from "./entity/comments/CommentItem";
 
 export default {
   props: {
@@ -59,7 +56,6 @@ export default {
 
   components: {
     EntityInfo,
-    CommentItem,
     EntityRate,
     CommentForm,
     CommentList
@@ -97,6 +93,14 @@ export default {
 .entityView {
   background: black;
   padding: 40px 30px;
+
+  &--claimed {
+    background: #ffffff;
+
+    p, div, span, .commentList__sortBlock button {
+      color: black;
+    }
+  }
 }
 
 .entityView {

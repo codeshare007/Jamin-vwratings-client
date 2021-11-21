@@ -9,11 +9,11 @@
     </div>
     <div class="commentList__items">
       <CommentItem
-        v-for="(comment, key) in this.sorted"
+        v-for="(comment, key) in sorted"
         :comment="comment"
         :key="key"
       />
-      <div v-if="!Object.keys(this.sorted).length">No comments</div>
+      <div v-if="!Object.keys(sorted).length">No comments</div>
     </div>
   </div>
 </template>
@@ -22,7 +22,7 @@ import CommentItem from "./CommentItem";
 
 export default {
   props: {
-    comments: Array
+    comments: {}
   },
 
   components: {
@@ -44,14 +44,16 @@ export default {
     sorted() {
       switch (this.sort) {
         case('asc'):
-          return this.comments.sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+          return [].slice.call(this.comments).sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
         case('desc'):
-          return this.comments.sort((a, b) => new Date(a.created_at) - new Date(b.created_at))
+          return [].slice.call(this.comments).sort((a, b) => new Date(a.created_at) - new Date(b.created_at))
         case('pics'):
-          return this.comments.filter(item => {
+          return [].slice.call(this.comments).filter(item => {
             if (Object.keys(item.attachments).length) return item;
           })
       }
+
+      return [];
     }
   },
 
