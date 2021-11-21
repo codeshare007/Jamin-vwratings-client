@@ -5,9 +5,9 @@
         <img src="../../assets/images/logo.png" alt/>
       </b-navbar-brand>
       <b-navbar-toggle
-          class="bg-transparent p-0"
-          target="nav-mobile"
-          @click="toggleMobileMenu"
+        class="bg-transparent p-0"
+        target="nav-mobile"
+        @click="toggleMobileMenu"
       />
       <div id="nav-mobile" class="nav-mobile" :class="{'d-none': !isMobileMenu }">
         <div class="d-flex justify-content-between mt-2">
@@ -15,11 +15,11 @@
             VW Ratings
           </b-navbar-brand>
           <b-icon-x
-              @click="toggleMobileMenu"
-              variant="light"
-              class="mr-2"
-              height="3rem"
-              width="3rem"
+            @click="toggleMobileMenu"
+            variant="light"
+            class="mr-2"
+            height="3rem"
+            width="3rem"
           />
         </div>
 
@@ -28,34 +28,28 @@
         </div>
 
         <b-navbar-nav class="ml-auto" v-if="!loading">
-          <b-nav-item
-              v-for="(item, key) in menu"
-              :to="item.path"
-              :key="key"
-              @click="isMobileMenu = !isMobileMenu"
-          >{{ item.name }}
-          </b-nav-item>
+          <b-nav-item :to="{name: 'ratings.avis.list'}">Players</b-nav-item>
+          <b-nav-item :to="{name: 'ratings.parties.list'}">Parties</b-nav-item>
+          <b-nav-item :to="{name: 'ratings.buttons'}">Buttons</b-nav-item>
+          <b-nav-item v-if="!loggedIn" :to="{name: 'ratings.signp'}">Login/Join</b-nav-item>
         </b-navbar-nav>
       </div>
       <b-collapse id="nav-collapse" is-nav>
         <div v-if="loading" class="d-flex justify-content-end w-100">
           <b-skeleton
-              class="mt-3 mr-3"
-              v-for="i in 3"
-              :key="i"
-              animation="wave"
-              height="30px"
-              width="140px"
+            class="mt-3 mr-3"
+            v-for="i in 3"
+            :key="i"
+            animation="wave"
+            height="30px"
+            width="140px"
           />
         </div>
         <b-navbar-nav class="ml-auto" v-else>
-          <li v-for="(item, key) in menu" :key="key" class="nav-item">
-            <a class="nav-link" :href="item.href" v-if="item.href" v-text="item.name"/>
-            <router-link class="nav-link" :to="item.path" v-if="item.path" v-text="item.name"/>
-          </li>
-          <!--  <li class="nav-item" v-if="!loggedIn">
-             <router-link class="nav-link" :to="{ name: 'auth.signin'}">Login/Join</router-link>
-           </li> -->
+          <b-nav-item :to="{name: 'ratings.avis.list'}">Players</b-nav-item>
+          <b-nav-item :to="{name: 'ratings.parties.list'}">Parties</b-nav-item>
+          <b-nav-item :to="{name: 'ratings.buttons'}">Buttons</b-nav-item>
+          <b-nav-item v-if="!loggedIn" :to="{name: 'ratings.signp'}">Login/Join</b-nav-item>
         </b-navbar-nav>
         <header-profile v-if="loggedIn"/>
       </b-collapse>
@@ -69,12 +63,6 @@ export default {
   components: {HeaderProfile},
   data() {
     return {
-      menu: [
-        {name: 'Players', path: {name: 'ratings.avis.list'}},
-        {name: 'Parties', path: {name: 'ratings.parties.list'}},
-        {name: 'Buttons', path: {name: 'ratings.buttons'}},
-        {name: 'Login/Join', path: {name: 'auth.signin'}}
-      ],
       isMobileMenu: false,
       loading: false,
     }

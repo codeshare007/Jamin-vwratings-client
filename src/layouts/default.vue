@@ -7,7 +7,7 @@
   </div>
 </template>
 <script>
-import HeaderBar from '../components/layout/HeaderBar';
+import HeaderBar from '@/components/layout/HeaderBar';
 export default {
   components: {
     HeaderBar,
