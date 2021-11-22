@@ -44,21 +44,23 @@ export default {
 
   methods: {
     countdown() {
-      let t = Date.parse(new Date(this.item.claim.claimed_until)) - Date.parse(new Date());
+      if (this.item.claim) {
+        let t = Date.parse(new Date(this.item.claim.claimed_until)) - Date.parse(new Date());
 
-      if (t > 0) {
-        setTimeout(() => {
-          let timeLeft = '';
-          timeLeft += Math.floor(t / (1000 * 60 * 60)) + ':';
-          timeLeft += Math.floor(t / 1000 / 60 % 60) + ':';
-          timeLeft += Math.floor(t / 1000 % 60) + '';
-          this.timeleft = timeLeft;
-          this.countdown();
-        }, 1000);
+        if (t > 0) {
+          setTimeout(() => {
+            let timeLeft = '';
+            timeLeft += Math.floor(t / (1000 * 60 * 60)) + ':';
+            timeLeft += Math.floor(t / 1000 / 60 % 60) + ':';
+            timeLeft += Math.floor(t / 1000 % 60) + '';
+            this.timeleft = timeLeft;
+            this.countdown();
+          }, 1000);
 
-        this.$forceUpdate();
-      } else {
-        this.timeleft = 0;
+          this.$forceUpdate();
+        } else {
+          this.timeleft = 0;
+        }
       }
     }
   }
