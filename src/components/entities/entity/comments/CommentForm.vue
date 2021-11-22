@@ -1,13 +1,15 @@
 <template>
   <div class="commentForm">
     <p>Choose your opinion about {{ name }} before you can post</p>
-    <b-form class="d-flex flex-column" ref="commentForm">
+    <b-form v-if="!loading" class="d-flex flex-column" ref="commentForm">
       <b-row class="justify-content-between align-items-center">
         <b-col />
         <b-col class="d-flex justify-content-center">
           <b-form-group class="m-0">
             <b-form-radio-group
-              :class="{ 'form-group__error': !errorRefreshed && $v.form.opinion.$error, 'form-group__selected': $v.form.opinion.$model !== null }"
+              :class="{
+              'form-group__error': !errorRefreshed && $v.form.opinion.$error,
+              'form-group__selected': $v.form.opinion.$model !== null }"
               v-model="$v.form.opinion.$model"
               :state="validateState('opinion')"
               :options="[{text: 'Positive', value: 1}, {text: 'Negative', value: 2}]"
@@ -52,6 +54,9 @@
         <b-button @click="send">Send</b-button>
       </div>
     </b-form>
+    <div class="d-flex w-100 justify-content-center" v-else>
+      <b-spinner />
+    </div>
   </div>
 </template>
 <script>
@@ -72,6 +77,7 @@ export default {
         comment: '',
         files: []
       },
+      loading: false,
       errorRefreshed: false,
       previews: [],
     }
@@ -147,14 +153,17 @@ export default {
         }
       }
 
+      this.loading = true;
+
       this.$api[this.method].comment(this.id, formData).then(() => {
+        this.loading = false;
+        this.previews = [];
         this.$emit('send');
         this.$v.form.comment.$model = '';
         this.$v.form.opinion.$model = null;
         this.$v.form.files.$model = [];
         this.errorRefreshed = true;
         this.$refs['commentForm'].reset();
-        this.previews = [];
 
         this.$bvToast.toast('Success', {
           autoHideDelay: 500,
@@ -177,8 +186,9 @@ export default {
     width: 100px;
     height: 100px;
     object-fit: cover;
-    margin-right: 20px;
+    margin-left: 20px;
     border-radius: 10px;
+    margin-bottom: 10px;
   }
 
   @media screen and (min-width: 1024px) {
