@@ -13,19 +13,14 @@
           </b-col>
 
           <b-col cols="3" class="d-flex">
-            <b-button
-              variant="success"
-              type="submit"
-              @click="claimItem"
-            >Submit
+            <b-button variant="success" type="submit" @click="claimItem">
+              Submit
             </b-button>
           </b-col>
 
-          <span
-            class="ml-3 mt-3 d-block text-danger"
-            v-for="(item, key) in errors"
-            :key="key"
-          >{{ item }}</span>
+          <span class="ml-3 mt-3 d-block text-danger" v-for="(item, key) in errors" :key="key">
+            {{ item }}
+          </span>
         </b-row>
       </b-form>
 
@@ -33,8 +28,12 @@
         v-if="Object.keys(items).length !== 0"
         table-variant="dark"
         :items="items"
-        :fields="[{key: itemName, label: 'name'}, {key: 'claimed_until', label: 'claimed until'}, 'actions']"
-      >
+        :fields="[
+          {key: this.entity + '.name', label: 'name'},
+          {key: 'claimed_until', label: 'claimed until'},
+          {key: 'actions', name: 'actions'}
+         ]">
+
         <template #cell(claimed_until)="row">
           {{ items[row.index]['claimed_until_formatted'] }}
         </template>
@@ -124,7 +123,7 @@ export default {
       let id;
       if (this.entity === 'avi') id = item.avis_id;
       if (this.entity === 'party') id = item.party_id;
-      this.$router.push({ name: `ratings.${this.entities}.list`, params: {id: id}})
+      this.$router.push({name: `ratings.${this.entities}.view`, params: {id: id}})
     },
 
     countDownTimer() {
