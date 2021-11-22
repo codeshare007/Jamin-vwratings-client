@@ -2,9 +2,9 @@
   <transition name="fade">
     <div class="claimPage" v-if="loading">
       <div class="blackContainer">
-        <h2 class="mb-4">
-          COMING SOON
-        </h2>
+        <h3 class="mb-4">
+          Claim a Name
+        </h3>
         <p class="mb-4">
           Claiming your avatar gives you a clean slate. Or keeps your slate clean.<br>Picture proof is required with
           negative comments on claimed avis which stops people from making things up.<br>Negative comments without
@@ -12,11 +12,11 @@
         </p>
         <p class="mb-4">
           Claiming is simple... In your dashboard, you will see a Claim Avi area. Submit the name you want to claim. A
-          timer will start counting down from 7 days. You can restart the timer any time in that 7 days but if you
+          timer will start counting down from 127 hours. You can restart the timer at any time but if you
           don't, your avi will unclaim and any negative comments will show again
         </p>
         <p class="mb-4">
-          Log in... Head over to your dashboard... Claim your avi !!
+          Log in... Head over to your profile... Claim your avi or your party !!
         </p>
       </div>
     </div>

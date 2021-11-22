@@ -95,7 +95,7 @@ export default {
   padding: 40px 30px;
 
   &--claimed {
-    background: #ffffff;
+    background: #77a19d;
 
     p, div, span, .commentList__sortBlock button {
       color: black;
