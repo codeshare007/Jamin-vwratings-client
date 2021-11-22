@@ -17,7 +17,7 @@
       </div>
 
       <div class="d-flex justify-content-center">
-        <div class="homePage__gallery">
+        <div align="center" class="homePage__gallery">
           <viewer>
             <img class="homePage__image" alt="Image 1" src="../assets/images/home/1.png" />
             <img class="homePage__image" alt="Image 2" src="../assets/images/home/2.jpeg" />
