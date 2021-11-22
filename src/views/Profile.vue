@@ -3,11 +3,9 @@
     <b-row>
       <b-col cols="12" lg="8">
         <div class="profileContainer">
-          <h2>Claim Avi</h2>
+          <h2>Claim Avi Name</h2>
 
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-            ea commodo consequat.</p>
+          <p>Simply add a player name or party name and don't let the timer run out.</p>
 
           <div v-if="!loading">
             <Claim :items="claimed_avis" entity="avi" entities="avis"/>
@@ -157,5 +155,17 @@ export default {
   padding: 296px 30px;
   margin-bottom: 30px;
   margin-top: 30px;
+}
+
+.table thead th {
+    display: none;
+}
+
+.btn:not(:disabled):not(.disabled) {
+    float: right;
+}
+
+.table td, .table th {
+    width: 33%;
 }
 </style>

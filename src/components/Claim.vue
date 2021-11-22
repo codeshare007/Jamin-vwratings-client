@@ -5,7 +5,7 @@
         <b-row class="justify-content-start mt-4">
           <b-col cols="6">
             <b-form-input
-              :placeholder="'name of ' + this.entity"
+              :placeholder="'Name of ' + this.entity"
               class="bg-dark text-white border-dark"
               :state="validateState('name')"
               v-model="$v.form.name.$model"
@@ -14,7 +14,7 @@
 
           <b-col cols="3" class="d-flex">
             <b-button variant="success" type="submit" @click="claimItem">
-              Submit
+              Claim
             </b-button>
           </b-col>
 
