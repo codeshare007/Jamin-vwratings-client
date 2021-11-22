@@ -6,8 +6,8 @@
       </b-col>
       <b-col cols="4">
         <p class="entityInfo__name">{{ item.name }}</p>
-        <p class="entityInfo__claim" v-if="item.claim && item.claim.user_id">
-          Claimed Until: {{ timeleft }}
+        <p class="entityInfo__claim" style="background: #27ff00;" v-if="item.claim && item.claim.user_id">
+          Claimed for: {{ timeleft }}
         </p>
       </b-col>
       <b-col cols="4">
