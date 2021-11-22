@@ -7,7 +7,7 @@
       <b-col cols="4">
         <p class="entityInfo__name">{{ item.name }}</p>
         <p class="entityInfo__claim" v-if="item.claim && item.claim.user_id">
-          Claimed Until: {{ item.claim.claimed_until | countdown }}
+          Claimed Until: {{ timeleft }}
         </p>
       </b-col>
       <b-col cols="4">
@@ -32,18 +32,33 @@ export default {
     item: {}
   },
 
-  filters: {
-    countdown(date) {
-      let t = Date.parse(new Date(date)) - Date.parse(new Date());
-      if (t >= 0) {
-        let left;
-        left = Math.floor(t / (1000 * 60 * 60 * 24)) + ' d ';
-        left += Math.floor(t / (1000 * 60 * 60) % 24) + ' h ';
-        left += Math.floor(t / 1000 / 60 % 60) + ' m ';
-        left += Math.floor(t / 1000 % 60) + ' s ';
-        return left;
+  data() {
+    return {
+      timeleft: '00:00:00'
+    }
+  },
+
+  mounted() {
+    this.countdown();
+  },
+
+  methods: {
+    countdown() {
+      let t = Date.parse(new Date(this.item.claim.claimed_until)) - Date.parse(new Date());
+
+      if (t > 0) {
+        setTimeout(() => {
+          let timeLeft = '';
+          timeLeft += Math.floor(t / (1000 * 60 * 60)) + ':';
+          timeLeft += Math.floor(t / 1000 / 60 % 60) + ':';
+          timeLeft += Math.floor(t / 1000 % 60) + '';
+          this.timeleft = timeLeft;
+          this.countdown();
+        }, 1000);
+
+        this.$forceUpdate();
       } else {
-        return 0;
+        this.timeleft = 0;
       }
     }
   }

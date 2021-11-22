@@ -35,12 +35,12 @@
          ]">
 
         <template #cell(claimed_until)="row">
-          {{ items[row.index]['claimed_until_formatted'] }}
+          {{ items[row.index]['claimed_until_formatted'] || '00:00:00' }}
         </template>
 
         <template #cell(actions)="row">
-          <b-button variant="success" @click="stayClaimed(row.item.id)">Stay Claimed</b-button>
-          <b-button variant="primary" @click="redirectToItem(row.item)" class="ml-2">
+          <b-button variant="success" size="sm" @click="stayClaimed(row.item.id)">Stay Claimed</b-button>
+          <b-button variant="primary" size="sm" @click="redirectToItem(row.item)" class="ml-2">
             <b-icon-eye/>
           </b-button>
         </template>
@@ -128,23 +128,21 @@ export default {
 
     countDownTimer() {
       for (let i in this.items) {
-        let t = Date.parse(new Date(this.items[i]['claimed_until'])) - Date.parse(new Date());
+        let t = Date.parse(new Date(this.items[i].claimed_until)) - Date.parse(new Date());
 
         if (t > 0) {
           setTimeout(() => {
-            let timeleft = '';
-            timeleft += Math.floor(t / (1000 * 60 * 60 * 24)) + ' d ';
-            timeleft += Math.floor(t / (1000 * 60 * 60) % 24) + ' h ';
-            timeleft += Math.floor(t / 1000 / 60 % 60) + ' m ';
-            timeleft += Math.floor(t / 1000 % 60) + ' s ';
-            this.items[i]['claimed_until_formatted'] = timeleft;
+            let timeLeft = '';
+            timeLeft += Math.floor(t / (1000 * 60 * 60)) + ':';
+            timeLeft += Math.floor(t / 1000 / 60 % 60) + ':';
+            timeLeft += Math.floor(t / 1000 % 60) + '';
+            this.items[i].claimed_until_formatted = timeLeft;
             this.countDownTimer();
           }, 1000);
 
-          // fix this;
           this.$forceUpdate();
         } else {
-          this.items[i]['claimed_until_formatted'] = 0;
+          this.items[i].claimed_until_formatted = 0;
         }
       }
     },
