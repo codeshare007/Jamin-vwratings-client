@@ -7,9 +7,7 @@
     <transition name="fade">
       <div class="headerProfile__menu" v-if="!hidden">
         <button @click="$router.push({ name: 'ratings.profile' }).catch(err => {}); hidden = true">profile</button>
-        <button v-if="isAdmin" @click="$router.push({ name: 'admin.dashboard' }).catch(err => {}); hidden = true">
-          admin
-        </button>
+        <a v-if="isAdmin" href="/admin">admin</a>
         <button @click="emitLogout">logout</button>
       </div>
     </transition>
@@ -52,11 +50,7 @@ export default {
   position: relative;
   margin-left: 30px;
 
-  button {
-    background: unset;
-    border: 0;
-  }
-
+  a,
   &__button {
     cursor: pointer;
     border-radius: 5px;
@@ -80,7 +74,10 @@ export default {
     margin-left: 15px;
   }
 
+  a,
   button {
+    background: unset;
+    border: 0;
     font-size: 24px;
     font-weight: 300;
     width: 100%;
@@ -94,6 +91,10 @@ export default {
       background: white;
       color: black;
     }
+  }
+
+  a:hover {
+    text-decoration: unset;
   }
 
   &__menu {

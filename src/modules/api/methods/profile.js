@@ -14,8 +14,8 @@ export default axios => ({
   claim(payload) {
     return axios.post('claim', payload);
   },
-  stayClaimed(id) {
-    return axios.post('stay-claimed', {id: id})
+  stayClaimed(payload) {
+    return axios.post('stay-claimed', payload)
   },
   changeAvatar(payload) {
     return axios.post('profile/change-avatar', payload, {

@@ -1,6 +1,6 @@
 <template>
   <transition name="fade">
-    <div class="entityView" v-if="screenLoaded" :class="{ 'entityView--claimed': item.claim }">
+    <div class="entityView" v-if="screenLoaded" :class="{ 'entityView--claimed': item.claim && item.claim.user_id }">
       <EntityInfo
         :screen="screenBack"
         :item="item"

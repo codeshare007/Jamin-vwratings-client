@@ -6,7 +6,7 @@
       </b-col>
       <b-col cols="4">
         <p class="entityInfo__name">{{ item.name }}</p>
-        <p class="entityInfo__claim" v-if="item.claim">
+        <p class="entityInfo__claim" v-if="item.claim && item.claim.user_id">
           Claimed Until: {{ item.claim.claimed_until | countdown }}
         </p>
       </b-col>
