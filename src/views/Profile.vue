@@ -3,12 +3,15 @@
     <b-row>
       <b-col cols="12" lg="8">
         <div class="profileContainer">
-          <h2>Claim Avi Name</h2>
+          <h3>Claim Avi Name</h3>
 
-          <p>Simply add a player name or party name and don't let the timer run out.</p>
+          <p>Simply add a player party name and don't let the timer run out.</p>
 
           <div v-if="!loading">
+		Player
             <Claim :items="claimed_avis" entity="avi" entities="avis"/>
+			<hr>
+		Party
             <Claim :items="claimed_parties" entity="party" entities="parties"/>
           </div>
 
@@ -17,15 +20,14 @@
       <b-col cols="12" lg="4">
         <div class="profileContainer">
           <div class="d-flex justify-content-between align-items-center">
-            <h2>{{ profile.username }}</h2>
-            <b-button variant="secondary" size="sm" @click="emitLogout">Logout</b-button>
+
           </div>
         </div>
       </b-col>
       <b-col cols="12">
         <transition name="fade">
           <div class="profileContainer" v-if="!loading">
-            <h2 class="ml-4 mb-4 mt-3">Your Comments</h2>
+            <h4 class="ml-4 mb-4 mt-3">Your last 5 comments</h4>
             <CommentItem v-for="(comment, key) in comments" :key="key" :comment="comment"/>
           </div>
         </transition>
@@ -167,5 +169,18 @@ export default {
 
 .table td, .table th {
     width: 33%;
+}
+
+.badge {
+    display: none;
+}
+.commentItem__content {
+	min-height: 1px;
+    background: #2083281a;
+    font-size: 14px;
+	padding: 3px;
+}
+hr {
+    border-top: 1px solid #26cd5b;
 }
 </style>
