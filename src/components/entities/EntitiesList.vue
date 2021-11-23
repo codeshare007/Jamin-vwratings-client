@@ -5,7 +5,7 @@
         <b-form>
           <b-row class="justify-content-center">
             <b-col cols="6">
-              <b-form-group label="Name">
+              <b-form-group label="Start typing. If you see the name below, it is already added.">
                 <b-form-input v-mask="mask" type="text" placeholder="Enter Name" v-model="form.name"/>
               </b-form-group>
             </b-col>
@@ -224,5 +224,12 @@ export default {
       color: #02cf4a;
     }
   }
+}
+
+.modal-content {
+    background-color: #aec3d1;
+}
+.modal-backdrop {
+    opacity: .9;
 }
 </style>
