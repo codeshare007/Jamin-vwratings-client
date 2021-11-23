@@ -39,7 +39,7 @@
         </template>
 
         <template #cell(actions)="row">
-          <b-button variant="success" size="sm" @click="stayClaimed(row.item.id)">Stay Claimed</b-button>
+          <b-button variant="success" size="sm" @click="stayClaimed(row.item.id)">Reset</b-button>
           <b-button variant="primary" size="sm" @click="redirectToItem(row.item)" class="ml-2">
             <b-icon-eye/>
           </b-button>
