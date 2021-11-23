@@ -2,7 +2,7 @@
   <div class="claimComponent">
     <div v-if="!loading" class="mb-3">
       <b-form v-if="Object.keys(items).length === 0">
-        <b-row class="justify-content-start mt-4">
+        <b-row class="justify-content-start">
           <b-col cols="6">
             <b-form-input
               :placeholder="'Name of ' + this.entity"

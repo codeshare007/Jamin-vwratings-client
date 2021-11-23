@@ -93,4 +93,14 @@ export default {
     color: white;
   }
 }
+@media screen and (min-width: 980px){
+.blackContainer {
+    margin: 0 300px;
+	}
+}
+@media screen and (min-width: 768px) and (max-width: 980px){
+.blackContainer {
+    margin: 20px 100px;
+	}
+}
 </style>

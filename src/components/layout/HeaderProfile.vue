@@ -48,7 +48,6 @@ export default {
 <style lang="scss">
 .headerProfile {
   position: relative;
-  margin-left: 30px;
 
   a,
   &__button {
@@ -60,6 +59,7 @@ export default {
     align-items: center;
     justify-content: center;
     padding: 0 20px;
+	width: 150px;
   }
 
   &__name {

@@ -159,7 +159,7 @@ export default {
   &__container {
     background: #000;
     padding: 25px;
-    width: 450px;
+    width: 340px;
     border-radius: 5px;
     margin-bottom: 100px;
   }
@@ -176,7 +176,7 @@ export default {
   .auth-container {
     background: #000;
     padding: 25px;
-    width: 400px;
+    width: 340px;
     border-radius: 5px;
     margin-bottom: 100px;
   }

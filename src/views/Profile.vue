@@ -5,7 +5,7 @@
         <div class="profileContainer">
           <h3>Claim Avi Name</h3>
 
-          <p>Simply add a player party name and don't let the timer run out.</p>
+          <p>Simply add a player and/or party name and don't let the timer run out.</p>
 
           <div v-if="!loading">
 		Player
