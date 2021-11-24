@@ -140,8 +140,6 @@ export default {
     min-height: 250px;
     margin-bottom: 20px;
   }
-}
-
 
 .section1 {
   padding: 180px 30px;
@@ -177,10 +175,12 @@ export default {
 .commentItem__content {
 	min-height: 1px;
     background: #2083281a;
-    font-size: 14px;
+    font-size: 20px;
 	padding: 3px;
+	border-bottom: 1px solid #274a30;
 }
 hr {
     border-top: 1px solid #26cd5b;
+}
 }
 </style>

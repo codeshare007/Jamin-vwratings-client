@@ -138,6 +138,10 @@ export default {
     border: 2px solid red;
     border-radius: 5px;
   }
+  
+  .commentItem__content {
+    border-bottom: 1px solid #274a30;
+}
 
 }
 </style>
