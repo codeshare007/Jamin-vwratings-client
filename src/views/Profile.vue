@@ -20,7 +20,7 @@
       <b-col cols="12" lg="4">
         <div class="profileContainer">
           <div class="d-flex justify-content-between align-items-center">
-
+			<p>Hi {{ profile.username }}, <br>There will be more added to this page.<br><br>Browse around and let us know if you find any bugs.</p>
           </div>
         </div>
       </b-col>
