@@ -133,7 +133,7 @@ export default {
   }
 
   .profileContainer {
-    background: #000000b3;
+    background: rgb(41 73 94 / 75%);
     width: 100%;
     height: calc(100% - 20px);
     padding: 20px 25px;

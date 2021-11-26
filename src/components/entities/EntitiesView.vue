@@ -91,7 +91,7 @@ export default {
 <style lang="scss">
 
 .entityView {
-  background: black;
+  background: rgb(41 73 94 / 75%);
   padding: 40px 30px;
 
   &--claimed {

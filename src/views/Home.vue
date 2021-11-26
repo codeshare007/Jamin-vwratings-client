@@ -105,7 +105,7 @@
 
 
   &__container {
-    background-color: rgba(0,0,0,.7);
+    background-color: rgb(41 73 94 / 75%);
     padding: 20px;
     margin: 20px;
 

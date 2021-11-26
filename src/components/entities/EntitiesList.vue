@@ -196,7 +196,7 @@ export default {
 </script>
 <style lang="scss">
 .entitiesList {
-  background: black;
+  background: rgb(41 73 94 / 75%);
   padding-top: 40px;
   margin-bottom: 40px;
   padding-bottom: 40px;

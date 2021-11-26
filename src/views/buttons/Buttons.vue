@@ -33,6 +33,11 @@
 </script>
 <style lang="scss">
   .buttonsPage {
+  
+	.blackContainer {
+		background-color: rgb(41 73 94 / 75%);
+	}
+	
     .btn-secondary {
       color: #fff;
       background-color: transparent;
