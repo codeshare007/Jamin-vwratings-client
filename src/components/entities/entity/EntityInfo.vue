@@ -22,7 +22,6 @@
         :rating="item.average_rating"
       />
     </div>
-    <hr>
   </div>
 </template>
 <script>
@@ -103,7 +102,7 @@ export default {
 
   &__name {
     font-size: 30px;
-    color: #23e116;
+    color: #97d39b;
   }
 
 }

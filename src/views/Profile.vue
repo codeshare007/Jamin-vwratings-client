@@ -139,6 +139,7 @@ export default {
     padding: 20px 25px;
     min-height: 250px;
     margin-bottom: 20px;
+	border: 1px solid #18786f;
   }
 
 .section1 {

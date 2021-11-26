@@ -131,7 +131,8 @@ export default {
   }
 
   hr {
-    background: #007209;
+    background: #0b6e58;
+	height: 3px;
   }
 
   .form-group__error {
