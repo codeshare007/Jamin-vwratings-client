@@ -124,7 +124,7 @@
   }
 
   .infoCard {
-    background: #1c4a1d;
+    background: #336a7e;
     text-align: center;
     font-size: 18px;
     margin-bottom: 10px;
@@ -165,7 +165,7 @@
 .about-section {
   padding: 50px;
   text-align: center;
-  background-color: #474e5d;
+  background-color: #336a7e;
   color: white;
 }
 
@@ -188,7 +188,7 @@ hr {
 }
 
 .topy {
-  background-color: #1c4a1d;
+  background-color: #336a7e;
   margin-bottom: 7px;
   text-align: center;
 }
