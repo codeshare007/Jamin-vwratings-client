@@ -12,7 +12,7 @@
         </p>
         <p class="mb-4">
           Claiming is simple... In your dashboard, you will see a Claim Avi area. Submit the name you want to claim. A
-          timer will start counting down from 127 hours. You can restart the timer at any time but if you
+          timer will start counting down. You can restart the timer at any time but if you
           don't, your avi will unclaim and any negative comments will show again
         </p>
         <p class="mb-4">
