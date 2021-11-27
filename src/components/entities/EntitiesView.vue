@@ -9,7 +9,8 @@
       <EntityRate
         v-if="loggedIn"
         @rated="rate"
-        placeholder="Fill the stars below. Change them anytime. Stars above are the total average of all ratings."
+        placeholder="Fill the stars below. Change them anytime.
+Stars above are the total average of all ratings."
         :user_rating="item.user_rating"
       />
 
@@ -95,11 +96,8 @@ export default {
   padding: 40px 30px;
 
   &--claimed {
-    background: #77a19d;
+    background: rgb(41 73 94 / 75%);
 
-    p, div, span, .commentList__sortBlock button {
-      color: black;
-    }
   }
 }
 
@@ -121,8 +119,9 @@ export default {
   }
 
   .btn {
-    background: #00a71c;
-    border: 0;
+	background: #3c786b;
+    border: 1px solid #082b30;
+	font-size: 12px;
 
     &.active, &:focus, &:active {
       outline: 0;

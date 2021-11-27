@@ -90,9 +90,9 @@ export default {
     button {
       border: 0;
       background: unset;
-      color: white;
+      color: #848f80;
       font-family: 'Futura PT', sans-serif;
-      font-size: 22px;
+      font-size: 18px;
       position: relative;
       margin: 0;
       z-index: 2;

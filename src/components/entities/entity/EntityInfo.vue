@@ -1,17 +1,14 @@
 <template>
   <div class="entityInfo">
-    <b-row class="justify-content-between">
-      <b-col cols="4">
-        <b-button class="back float-left mt-2" :to="{ name: screen }">Back</b-button>
-      </b-col>
-      <b-col cols="4">
+	<b-row> 
+		<div><b-button class="back" :to="{ name: screen }">Back</b-button></div>
+	</b-row>
+    <b-row>	
+      <b-col>
         <p class="entityInfo__name">{{ item.name }}</p>
-        <p class="entityInfo__claim" style="background: #27ff00;" v-if="item.claim && item.claim.user_id">
+        <p class="entityInfo__claim" style="background: rgb(23 151 145);" v-if="item.claim && item.claim.user_id">
           Claimed for: {{ timeleft }}
         </p>
-      </b-col>
-      <b-col cols="4">
-
       </b-col>
     </b-row>
     <div class="entityInfo__rating">
@@ -96,14 +93,25 @@ export default {
   }
 
   &__claim {
-    margin-top: 13px;
     font-size: 18px;
+    width: fit-content;
+    margin: auto;
   }
 
   &__name {
     font-size: 30px;
     color: #97d39b;
   }
+  
+  .back {
+  float: left;
+  }
+  
+	@media screen and (max-width: 600px) {
+		.back {
+		float: none;
+		}
+	}
 
 }
 </style>

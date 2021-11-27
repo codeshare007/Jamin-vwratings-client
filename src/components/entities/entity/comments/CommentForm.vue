@@ -1,6 +1,6 @@
 <template>
   <div class="commentForm">
-    <p>Choose your opinion about {{ name }} before you can post</p>
+    <p>Choose your comment sentiment before you can post</p>
     <b-form v-if="!loading" class="d-flex flex-column" ref="commentForm">
       <b-row class="justify-content-between align-items-center">
         <b-col />
@@ -27,8 +27,8 @@
         </b-col>
       </b-row>
 
-      <div class="text-center text-danger" style="height: 30px">
-        <p class="m-0" v-if="$v.form.$error && !errorRefreshed">You need to make a post or upload an image or both</p>
+      <div class="text-center text-danger">
+        <p class="m-0 text-danger" v-if="$v.form.$error && !errorRefreshed">You need to make a post or upload an image or both</p>
       </div>
 
       <b-form-textarea
@@ -39,7 +39,7 @@
         placeholder="Type here... but we delete pathetic posts"
       />
 
-      <div class="mt-3 d-flex justify-content-between">
+      <div class="d-flex justify-content-between">
           <span class="text-danger d-block" v-if="previews.length">
             If this isn't the pic you wanted just hit upload again.
           </span>
@@ -197,13 +197,14 @@ export default {
 
   p {
     text-align: center;
-    font-size: 20px;
+    font-size: 18px;
     font-family: 'Futura PT', sans-serif;
+	color: #848f80;
   }
 
   textarea {
-    background: #173618;
-    border: 1px solid #ffffff61;
+    background: #3b5e55;
+    border: 1px solid #2a7a2b;
     color: #fff;
 
     &:focus {
@@ -222,11 +223,11 @@ export default {
 
     .btn {
       &:first-child {
-        background: #218838;
+        background: #0d6421;
       }
 
       &:last-child {
-        background: #c82333;
+        background: #74262e;
       }
     }
   }

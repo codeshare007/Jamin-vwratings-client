@@ -33,9 +33,11 @@ export default {
 
   p {
     text-align: center;
-    font-size: 20px;
+    font-size: 18px;
     font-family: 'Futura PT', sans-serif;
 	color: #848f80;
+    white-space: pre-wrap;
+	margin-bottom: 0;
   }
 
   &__starBlock {
