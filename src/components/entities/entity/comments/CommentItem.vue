@@ -61,7 +61,7 @@ export default {
 
   &__content {
     min-height: 100px;
-    border-bottom: 1px solid #ffffff61;
+    border: 1px solid #204422;
     position: relative;
     background: #2083281a;
     border-bottom: none;

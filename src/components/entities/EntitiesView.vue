@@ -24,7 +24,7 @@ Stars above are the total average of all ratings."
       />
 
       <div v-if="loggedIn === false">
-        <h2 class="text-danger text-center">Log in to rate and comment</h2>
+        <h4 class="text-danger text-center">Log in to rate and comment</h4>
       </div>
 
       <CommentList
