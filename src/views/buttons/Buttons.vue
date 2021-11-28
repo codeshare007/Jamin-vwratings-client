@@ -21,14 +21,18 @@
       <hr>
       <div class="text-center">
         <b-button :to="{name: 'ratings.home'}">Home</b-button>
-        <b-button :to="{name: 'ratings.forum'}">Forum</b-button>
+        <b-button @click="emitForum">Forum</b-button>
       </div>
     </div>
   </div>
 </template>
 <script>
   export default {
-
+    methods: {
+      emitForum() {
+        window.location.href = '/avi-forum/';
+      }
+    }
   }
 </script>
 <style lang="scss">
