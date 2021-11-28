@@ -9,31 +9,33 @@
         target="nav-mobile"
         @click="toggleMobileMenu"
       />
-      <div id="nav-mobile" class="nav-mobile" :class="{'d-none': !isMobileMenu }">
-        <div class="d-flex justify-content-between mt-2">
-          <b-navbar-brand class="ml-3" :to="{ name: 'ratings.home' }">
-            VW Ratings
-          </b-navbar-brand>
-          <b-icon-x
-            @click="toggleMobileMenu"
-            variant="light"
-            class="mr-2"
-            height="3rem"
-            width="3rem"
-          />
-        </div>
+      <transition name="fade">
+        <div id="nav-mobile" class="nav-mobile" :class="{'d-none': !isMobileMenu}">
+          <div class="d-flex justify-content-between mt-2">
+            <b-navbar-brand class="ml-3" :to="{ name: 'ratings.home' }">
+              VW Ratings
+            </b-navbar-brand>
+            <b-icon-x
+              @click="toggleMobileMenu"
+              variant="light"
+              class="mr-2"
+              height="3rem"
+              width="3rem"
+            />
+          </div>
 
-        <div>
-          <header-profile v-if="loggedIn"/>
-        </div>
+          <div>
+            <header-profile v-if="loggedIn" @closed="toggleMobileMenu()" />
+          </div>
 
-        <b-navbar-nav class="ml-auto" v-if="!loading">
-          <b-nav-item :to="{name: 'ratings.avis.list'}">Players</b-nav-item>
-          <b-nav-item :to="{name: 'ratings.parties.list'}">Parties</b-nav-item>
-          <b-nav-item :to="{name: 'ratings.buttons'}">Buttons</b-nav-item>
-          <b-nav-item v-if="!loggedIn" :to="{name: 'ratings.signp'}">Login/Join</b-nav-item>
-        </b-navbar-nav>
-      </div>
+          <b-navbar-nav class="ml-auto" v-if="!loading">
+            <b-nav-item @click="toggleMobileMenu()" :to="{name: 'ratings.avis.list'}">Players</b-nav-item>
+            <b-nav-item @click="toggleMobileMenu()" :to="{name: 'ratings.parties.list'}">Parties</b-nav-item>
+            <b-nav-item @click="toggleMobileMenu()" :to="{name: 'ratings.buttons'}">Buttons</b-nav-item>
+            <b-nav-item v-if="!loggedIn" :to="{name: 'ratings.signp'}">Login/Join</b-nav-item>
+          </b-navbar-nav>
+        </div>
+      </transition>
       <b-collapse id="nav-collapse" is-nav>
         <div v-if="loading" class="d-flex justify-content-end w-100">
           <b-skeleton
@@ -116,11 +118,6 @@ export default {
   @media screen and (max-width: 994px) {
     height: 54px;
 
-    /*
-    .navbar-brand img {
-      width: 25px;
-    }*/
-
     .navbar-toggler-icon {
       background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 255' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")
     }
@@ -137,6 +134,11 @@ export default {
     height: 100%;
     background: rgb(31 31 31 / 98%);
     color: white;
+    padding: 20px;
+
+    .headerProfile {
+      padding: 10px 0;
+    }
 
     .nav-item a {
       color: white;

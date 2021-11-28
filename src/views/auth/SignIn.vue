@@ -20,7 +20,6 @@
                   autofocus
                 />
               </b-form-group>
-
               <b-form-group class="password-group">
                 <b-form-input
                   size="lg"

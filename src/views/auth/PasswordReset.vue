@@ -14,13 +14,14 @@
               type="email"
               :state="validateState('email')"
               placeholder="Email"
+              disabled
               class="mb-4"
             />
             <b-form-input
               v-model="$v.form.password.$model"
               type="password"
               :state="validateState('password')"
-              placeholder="Password (must be 8 characters minimal length)"
+              placeholder="Password (must be 6 characters minimal length)"
               class="mb-4"
             />
             <b-form-input
@@ -42,6 +43,8 @@
   </div>
 </template>
 <script>
+import {mapActions} from "vuex";
+
 const {required, email, minLength} = require('vuelidate/lib/validators')
 
 export default {
@@ -64,16 +67,25 @@ export default {
       email: {required, email},
       password: {
         required: required,
-        minLength: minLength(8)
+        minLength: minLength(6)
       },
       password_confirmation: {
         required: required,
-        minLength: minLength(8)
+        minLength: minLength(6)
       },
     }
   },
 
+  mounted() {
+    this.form.email = this.$route.query.email;
+  },
+
   methods: {
+
+    ...mapActions({
+      login: 'auth/LOGIN'
+    }),
+
     changePassword() {
       this.$v.form.$touch();
       if (this.$v.form.$anyError) {
@@ -91,8 +103,12 @@ export default {
         }
 
         this.$api.auth.resetPassword(payload).then(response => {
-          console.log(response);
-        //  this.$router.push({name: 'auth.signin'})
+          this.login({
+            username: response.data.data,
+            password: this.form.password
+          }).then(() => {
+            this.$router.push({name: 'ratings.profile'})
+          })
         }).catch(error => {
           this.errors = [];
           const errors = error.response.data.errors;

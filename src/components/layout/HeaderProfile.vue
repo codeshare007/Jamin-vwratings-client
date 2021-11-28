@@ -1,13 +1,13 @@
 <template>
-  <div class="headerProfile">
-    <div class="headerProfile__button" @click="hidden = !hidden">
+  <div class="headerProfile" id="dropdown">
+    <div class="headerProfile__button" @click="menuOpened = !menuOpened">
       <span class="headerProfile__name">{{ profile.username }}</span>
       <b-avatar :src="profile.avatar" size="1.5rem"/>
     </div>
     <transition name="fade">
-      <div class="headerProfile__menu" v-if="!hidden">
-        <button @click="$router.push({ name: 'ratings.profile' }).catch(err => {}); hidden = true">profile</button>
-        <a v-if="isAdmin" href="/admin">admin</a>
+      <div class="headerProfile__menu" v-show="menuOpened">
+        <button @click="emitProfile">profile</button>
+        <button @click="emitAdmin" v-if="isAdmin">admin</button>
         <button @click="emitLogout">logout</button>
       </div>
     </transition>
@@ -19,8 +19,16 @@ import {mapActions} from "vuex";
 export default {
   data() {
     return {
-      hidden: true,
+      menuOpened: false,
     }
+  },
+
+  created() {
+    window.addEventListener('click', this.close)
+  },
+
+  beforeDestroy() {
+    window.removeEventListener('click', this.close)
   },
 
   computed: {
@@ -33,10 +41,36 @@ export default {
   },
 
   methods: {
+    toggle() {
+      this.menuOpened = !this.menuOpened
+    },
+
+    close(e) {
+      if (!this.$el.contains(e.target)) {
+        this.menuOpened = false
+      }
+    },
+
+    emitProfile() {
+      this.$router.push({ name: 'ratings.profile' }).catch(() => {});
+      this.hideMenu();
+    },
+
     emitLogout() {
+      this.hideMenu();
       this.logout().then(() => {
         this.$router.push({name: 'auth.signin'})
-      })
+      });
+    },
+
+    hideMenu() {
+      this.menuOpened = false;
+      this.$emit('closed');
+    },
+
+    emitAdmin() {
+      window.location.href = '/admin';
+      this.hideMenu();
     },
 
     ...mapActions({
@@ -59,7 +93,7 @@ export default {
     align-items: center;
     justify-content: center;
     padding: 0 20px;
-	width: fit-content;
+    width: fit-content;
   }
 
   &__name {
