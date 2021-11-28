@@ -51,6 +51,7 @@ export default {
 .commentItem {
   font-size: 20px;
   background: transparent;
+  display: block;
   margin: 20px;
 
   &__attachments {

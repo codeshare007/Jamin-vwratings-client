@@ -14,6 +14,7 @@ import '@/plugins/v-viewer'
 import '@/plugins/vue-star-rating'
 import '@/plugins/vue-the-mask'
 import '@/plugins/vue-loading'
+import '@/plugins/vue-countdown';
 import '@/assets/scss/main.scss'
 
 new Vue({

@@ -28,7 +28,10 @@
         <transition name="fade">
           <div class="profileContainer" v-if="!loading">
             <h4 class="ml-4 mb-4 mt-3">Your last 5 comments</h4>
-            <CommentItem v-for="(comment, key) in comments" :key="key" :comment="comment"/>
+            <div v-for="(comment, key) in comments" :key="key">
+              <router-link class="ml-4 text-white" :to="{ name: 'ratings.avis.view', params: {id: comment.avi.id }}">{{ comment.avi.name }}</router-link>
+              <CommentItem :comment="comment" />
+            </div>
           </div>
         </transition>
       </b-col>
@@ -160,10 +163,6 @@ export default {
 
 .table thead th {
     display: none;
-}
-
-.btn:not(:disabled):not(.disabled) {
-    float: right;
 }
 
 .table td, .table th {

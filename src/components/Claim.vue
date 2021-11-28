@@ -35,7 +35,10 @@
          ]">
 
         <template #cell(claimed_until)="row">
-          {{ items[row.index]['claimed_until_formatted'] || '00:00:00' }}
+          <vue-countdown :time="countdown(row.item.claimed_until)" :interval="100" v-slot="{ totalHours, minutes, seconds }">
+            {{ totalHours + ':' +  minutes + ':' + seconds }}
+          </vue-countdown>
+
         </template>
 
         <template #cell(actions)="row">
@@ -51,6 +54,7 @@
 </template>
 <script>
 const {required} = require('vuelidate/lib/validators');
+import moment from 'moment';
 
 export default {
   props: {
@@ -74,10 +78,6 @@ export default {
     form: {
       name: {required}
     }
-  },
-
-  mounted() {
-    this.countDownTimer();
   },
 
   methods: {
@@ -126,26 +126,12 @@ export default {
       this.$router.push({name: `ratings.${this.entities}.view`, params: {id: id}})
     },
 
-    countDownTimer() {
-      for (let i in this.items) {
-        let t = Date.parse(new Date(this.items[i].claimed_until)) - Date.parse(new Date());
+    countdown(date) {
+      let until = moment(date.until);
+      let duration = moment.duration(until.diff(date.now));
+      return duration['_milliseconds'];
+    }
 
-        if (t > 0) {
-          setTimeout(() => {
-            let timeLeft = '';
-            timeLeft += Math.floor(t / (1000 * 60 * 60)) + ':';
-            timeLeft += Math.floor(t / 1000 / 60 % 60) + ':';
-            timeLeft += Math.floor(t / 1000 % 60) + '';
-            this.items[i].claimed_until_formatted = timeLeft;
-            this.countDownTimer();
-          }, 1000);
-
-          this.$forceUpdate();
-        } else {
-          this.items[i].claimed_until_formatted = 0;
-        }
-      }
-    },
   }
 }
 </script>

@@ -7,7 +7,9 @@
       <b-col>
         <p class="entityInfo__name">{{ item.name }}</p>
         <p class="entityInfo__claim" style="background: rgb(23 151 145);" v-if="item.claim && item.claim.user_id">
-          Claimed for: {{ timeleft }}
+          <vue-countdown :time="currentTime()" :interval="100" v-slot="{ totalHours, minutes, seconds }">
+            Claimed until：{{ totalHours + ':' +  minutes + ':' + seconds }}
+          </vue-countdown>
         </p>
       </b-col>
     </b-row>
@@ -22,6 +24,8 @@
   </div>
 </template>
 <script>
+import moment from 'moment';
+
 export default {
   props: {
     screen: String,
@@ -34,30 +38,11 @@ export default {
     }
   },
 
-  mounted() {
-    this.countdown();
-  },
-
   methods: {
-    countdown() {
-      if (this.item.claim) {
-        let t = Date.parse(new Date(this.item.claim.claimed_until)) - Date.parse(new Date());
-
-        if (t > 0) {
-          setTimeout(() => {
-            let timeLeft = '';
-            timeLeft += Math.floor(t / (1000 * 60 * 60)) + ':';
-            timeLeft += Math.floor(t / 1000 / 60 % 60) + ':';
-            timeLeft += Math.floor(t / 1000 % 60) + '';
-            this.timeleft = timeLeft;
-            this.countdown();
-          }, 1000);
-
-          this.$forceUpdate();
-        } else {
-          this.timeleft = 0;
-        }
-      }
+    currentTime() {
+      let until = moment(this.item.claim.claimed_until.until);
+      let duration = moment.duration(until.diff(this.item.claim.claimed_until.now));
+      return duration['_milliseconds'];
     }
   }
 }
@@ -71,7 +56,6 @@ export default {
   p {
     margin-bottom: 0;
   }
-
 
   @media screen and (min-width: 1024px) {
     padding: 0 40px;
