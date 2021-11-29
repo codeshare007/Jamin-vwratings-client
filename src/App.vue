@@ -1,5 +1,5 @@
 <template>
-  <div class="app">
+  <div class="app" :style="dynamicBackground()">
     <loading
       :active.sync="isLoading"
       :can-cancel="true"
@@ -46,6 +46,15 @@ export default {
   },
 
   methods: {
+
+    dynamicBackground() {
+      if (this.$route.name === 'ratings.parties.view' || this.$route.name === 'ratings.parties.list') {
+        return { backgroundImage: 'url(/images/party.jpg)' }
+      } else {
+        return { backgroundImage: 'url(/images/background.jpg)' }
+      }
+    },
+
     preloader() {
       this.preloader();
       this.isLoading = true;
@@ -71,6 +80,5 @@ export default {
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url('./assets/images/background.jpg');
 }
 </style>
