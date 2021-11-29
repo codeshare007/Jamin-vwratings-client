@@ -3,7 +3,7 @@
     <b-row>
       <b-col cols="12" lg="8">
         <div class="profileContainer">
-          <h3>Claim Avi Name</h3>
+          <h3>Claim Player and/or Party</h3>
 
           <p>Simply add a player and/or party name and don't let the timer run out.</p>
 
@@ -29,7 +29,7 @@
           <div class="profileContainer" v-if="!loading">
             <h4 class="ml-4 mb-4 mt-3">Your last 5 comments</h4>
             <div v-for="(comment, key) in comments" :key="key">
-              <router-link class="ml-4 text-white" :to="{ name: 'ratings.avis.view', params: {id: comment.avi.id }}">{{ comment.avi.name }}</router-link>
+              <router-link class="ml-4 comname" :to="{ name: 'ratings.avis.view', params: {id: comment.avi.id }}">{{ comment.avi.name }}</router-link>
               <CommentItem :comment="comment" />
             </div>
           </div>
@@ -181,6 +181,9 @@ export default {
 }
 hr {
     border-top: 1px solid #26cd5b;
+}
+.comname {
+	color: #2fcf7e;
 }
 }
 </style>

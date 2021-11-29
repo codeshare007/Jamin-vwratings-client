@@ -8,7 +8,7 @@
         <p class="entityInfo__name">{{ item.name }}</p>
         <p class="entityInfo__claim" style="background: rgb(23 151 145);" v-if="item.claim && item.claim.user_id">
           <vue-countdown :time="currentTime()" :interval="100" v-slot="{ totalHours, minutes, seconds }">
-            Claimed until：{{ totalHours + ':' +  minutes + ':' + seconds }}
+            Claimed for：{{ totalHours + ':' +  minutes + ':' + seconds }}
           </vue-countdown>
         </p>
       </b-col>

@@ -36,7 +36,8 @@
         v-model="$v.form.comment.$model"
         :state="validateState('comment')"
         ref="commentArea"
-        placeholder="Type here... but we delete pathetic posts"
+        placeholder="Type here... but we delete pathetic posts
+You can put pics with your post."
       />
 
       <div class="d-flex justify-content-between">

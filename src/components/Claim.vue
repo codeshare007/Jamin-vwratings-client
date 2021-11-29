@@ -5,7 +5,7 @@
         <b-row class="justify-content-start">
           <b-col cols="6">
             <b-form-input
-              :placeholder="'Name of ' + this.entity"
+              :placeholder="'Enter Name'"
               class="bg-dark text-white border-dark"
               :state="validateState('name')"
               v-model="$v.form.name.$model"
@@ -13,7 +13,7 @@
           </b-col>
 
           <b-col cols="3" class="d-flex">
-            <b-button variant="success" type="submit" @click="claimItem">
+            <b-button class="claimbut" type="submit" @click="claimItem">
               Claim
             </b-button>
           </b-col>
@@ -138,5 +138,8 @@ export default {
 <style>
 .claimComponent {
 
+.claimbut {
+background: transparent;
+}
 }
 </style>
