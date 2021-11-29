@@ -32,7 +32,7 @@
             <b-nav-item @click="toggleMobileMenu()" :to="{name: 'ratings.avis.list'}">Players</b-nav-item>
             <b-nav-item @click="toggleMobileMenu()" :to="{name: 'ratings.parties.list'}">Parties</b-nav-item>
             <b-nav-item @click="toggleMobileMenu()" :to="{name: 'ratings.buttons'}">Buttons</b-nav-item>
-            <b-nav-item v-if="!loggedIn" :to="{name: 'ratings.signin'}">Login/Join</b-nav-item>
+            <b-nav-item v-if="!loggedIn" :to="{name: 'auth.signin'}">Login/Join</b-nav-item>
           </b-navbar-nav>
         </div>
       </transition>
