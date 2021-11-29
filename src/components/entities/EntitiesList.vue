@@ -13,9 +13,7 @@
 
           <b-row v-if="form.name">
             <b-col v-for="(item, key) in this.suggestions" :key="key" cols="4">
-              <div>
-                {{ item.name }}
-              </div>
+              <div>{{ item.name }}</div>
             </b-col>
           </b-row>
 
@@ -34,7 +32,7 @@
 
       <b-row class="d-flex justify-content-center">
         <div class="d-flex justify-content-between">
-          <b-form-select v-model="type" class="mr-2">
+          <b-form-select v-model="params.type" class="mr-2">
             <b-form-select-option
               :key="key"
               v-for="(item, key) in this.types"
@@ -84,7 +82,6 @@ export default {
       currentPage: 1,
       loading: true,
       screenLoaded: false,
-      type: 'full_list',
       types: {
         full_list: 'All',
         good_list: 'Good',
@@ -114,7 +111,6 @@ export default {
 
   watch: {
     'form.name'(value) {
-      console.log(value.length);
       if (value.length >= 2) {
         this.searchItems();
       }
@@ -128,17 +124,22 @@ export default {
         this.fetchItems();
       }
     },
-    type(data) {
+    'params.type'() {
       this.currentPage = 1;
-      this.params.type = data;
+      this.$router.push({query: {type: this.params.type}});
       this.items = [];
       this.fetchItems();
     }
   },
 
   mounted() {
+    if (this.$route.query) {
+      if (this.$route.query.type) this.params.type = this.$route.query.type;
+    }
+
     this.fetchItems();
     this.lazyLoad();
+
   },
 
   methods: {
