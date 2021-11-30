@@ -107,6 +107,10 @@ export default {
     padding-bottom: 30px;
   }
 
+	.vue-star-rating-rating-text[data-v-fde73a0c] {
+		width: 20px;
+	}
+
   @media screen and (min-width: 1024px) {
     &__buttons {
       padding: 20px;
