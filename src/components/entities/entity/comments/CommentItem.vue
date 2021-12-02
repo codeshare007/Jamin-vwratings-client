@@ -3,7 +3,7 @@
     <b-badge v-if="comment.opinion === 1" variant="success">{{ comment.opinion | opinion }}</b-badge>
     <b-badge v-if="comment.opinion === 2" variant="danger">{{ comment.opinion | opinion }}</b-badge>
     <div class="commentItem__content">
-      <p>{{ comment.content }}</p>
+      <p v-text="comment.content" v-linkified />
       <div class="commentItem__attachments">
         <viewer v-for="(attachment, key) in comment.attachments" :key="key">
           <img alt="Attachment" class="attachmentItem mr-2" :src="attachment.path"/>
