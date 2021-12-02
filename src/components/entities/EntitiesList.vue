@@ -1,26 +1,47 @@
 <template>
   <transition name="fade">
     <div class="entitiesList" v-if="screenLoaded">
-      <b-modal ref="createModal" ok-title="Add" size="lg" ok-variant="dark" @ok="create" @cancel="clear" title="Add a Name">
-        <b-form>
+      <b-modal
+        ref="createModal"
+        ok-title="Add"
+        size="lg"
+        ok-variant="dark"
+        hide-footer
+        modal-class="entitiesList__modal"
+        title="Add a Name">
+
+        <b-form @reset="closeCreateForm">
+          <span class="d-block mb-3 text-center">Start typing. If you see the name below, it is already added.</span>
+          <span class="d-block text-danger mb-3 text-center font-weight-bold" v-if="createError">{{ createError }}</span>
           <b-row class="justify-content-center">
             <b-col cols="6">
-              <b-form-group label="Start typing. If you see the name below, it is already added.">
+              <b-form-group label="Name">
                 <b-form-input v-mask="mask" type="text" placeholder="Enter Name" v-model="form.name"/>
               </b-form-group>
             </b-col>
           </b-row>
 
           <b-row v-if="form.name">
-            <b-col v-for="(item, key) in this.suggestions" :key="key" cols="4">
-              <div>{{ item.name }}</div>
+            <b-col v-for="(item, key) in this.suggestions" :key="key" cols="3">
+              <b-button @click="form.name = item.name" variant="light" size="sm" class="mb-2">{{ item.name }}</b-button>
             </b-col>
           </b-row>
 
+          <div class="d-flex justify-content-end mt-5">
+            <b-button variant="secondary" type="reset" class="mr-2">Cancel</b-button>
+            <b-button variant="primary"  @click="create">Add</b-button>
+          </div>
         </b-form>
+
       </b-modal>
 
-      <b-modal ref="notRegistered" ok-only ok-title="Close" ok-variant="secondary" title="No no no !!!">
+      <b-modal
+        ref="notRegistered"
+        ok-only
+        ok-title="Close"
+        modal-class="entitiesList__modal"
+        ok-variant="secondary"
+        title="No no no !!!">
         <div>You must log in first.</div>
       </b-modal>
 
@@ -63,7 +84,7 @@
       </div>
 
       <div v-if="loading" class="d-flex justify-content-center mt-3 align-items-center" style="min-height: inherit;">
-        <b-spinner />
+        <b-spinner/>
       </div>
     </div>
   </transition>
@@ -81,6 +102,7 @@ export default {
       search: null,
       currentPage: 1,
       loading: true,
+      createError: null,
       screenLoaded: false,
       types: {
         full_list: 'All',
@@ -111,7 +133,7 @@ export default {
 
   watch: {
     'form.name'(value) {
-      if (value.length >= 2) {
+      if (value && value.length >= 2) {
         this.searchItems();
       }
     },
@@ -148,10 +170,29 @@ export default {
       return {name: routeName, params: {id: id}}
     },
 
-    create() {
+    closeCreateForm() {
+      this.createError = null;
+      this.form.name = null;
+      this.$refs['createModal'].hide();
+    },
+
+    create(e) {
+      e.preventDefault();
+      this.createError = null;
       this.$api[this.method].create(this.form).then(response => {
-        const item = response.data.data;
-        this.$router.push({name: `ratings.${this.method}.view`, params: {id: item.id}})
+        if (response.data.status === 'success') {
+          const item = response.data.data;
+          this.$router.push({
+            name: `ratings.${this.method}.view`,
+            params: {id: item.id}
+          })
+
+          this.$refs['createModal'].clear();
+        }
+      }).catch(error => {
+        if (error.response.data.status === 'error') {
+          this.createError = error.response.data.message;
+        }
       })
     },
 
@@ -196,6 +237,11 @@ export default {
 }
 </script>
 <style lang="scss">
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
 .entitiesList {
   background: rgb(41 73 94 / 75%);
   padding-top: 40px;
@@ -203,18 +249,40 @@ export default {
   padding-bottom: 40px;
   display: block;
 
+  &__modal {
+    .close:focus {
+      outline: 0;
+    }
+
+    .modal-footer {
+      border-top: 0;
+    }
+
+    .modal-header {
+      border-bottom: 0;
+    }
+  }
+
   @media screen and (min-width: 1024px) {
     margin-right: 150px;
     margin-left: 150px;
   }
 
   &__button {
-    background: #1c4a1d;
+    background: #348336;
     color: white;
     border: 0;
     padding: 5px 15px;
     margin-bottom: 5px;
     border-radius: 5px;
+
+    &:hover {
+      background: #307832;
+    }
+
+    &:focus {
+      outline: 0;
+    }
   }
 
   a {
@@ -228,9 +296,10 @@ export default {
 }
 
 .modal-content {
-    background-color: #aec3d1;
+  background-color: #aec3d1;
 }
+
 .modal-backdrop {
-    opacity: .9;
+  opacity: .9;
 }
 </style>
