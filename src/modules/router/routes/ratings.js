@@ -1,3 +1,5 @@
+import {Authenticated} from "../middleware";
+
 export default [
   {
     name: 'ratings.home',
@@ -9,7 +11,7 @@ export default [
     name: 'ratings.profile',
     path: 'profile',
     component: () => import('@/views/Profile'),
-    meta: {title: 'Profile'}
+    meta: {title: 'Profile', middleware: [Authenticated]}
   },
   {
     name: 'ratings.avis.list',

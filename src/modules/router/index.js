@@ -5,7 +5,7 @@ import store from '../../store/index'
 import AuthRoutes from './routes/auth'
 import RatingsRoutes from './routes/ratings'
 
-import {middlewarePipeline} from './middleware'
+import {middlewarePipeline, Guest} from './middleware'
 
 Vue.use(VueRouter);
 
@@ -15,6 +15,7 @@ const routes = [
     name: 'auth',
     redirect: {name: 'auth.signin'},
     component: () => import('../../layouts/default'),
+    meta: {middleware: [Guest]},
     children: AuthRoutes
   },
   {
