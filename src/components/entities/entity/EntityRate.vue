@@ -1,6 +1,6 @@
 <template>
   <div class="entityRate">
-    <p>{{ placeholder }}</p>
+    <p><slot /></p>
     <div class="entityRate__starBlock">
       <star-rating
         :max-rating="12"

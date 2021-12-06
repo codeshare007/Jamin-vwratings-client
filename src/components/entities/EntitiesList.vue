@@ -51,6 +51,16 @@
         <div>You must log in first.</div>
       </b-modal>
 
+      <b-modal
+        ref="limitedModal"
+        ok-only
+        ok-title="Close"
+        modal-class="entitiesList__modal"
+        ok-variant="secondary"
+        title="No no no !!!">
+        <div>You are temporarily banned</div>
+      </b-modal>
+
       <b-row class="d-flex justify-content-center mb-1">
         <div class="d-flex">
           <button class="entitiesList__button mr-2" @click="showCreateDialog">Add name</button>
@@ -61,8 +71,8 @@
         <div class="d-flex justify-content-between">
           <b-form-select v-model="params.type" class="mr-2">
             <b-form-select-option
-              :key="key"
               v-for="(item, key) in this.types"
+              :key="key"
               :value="key"
               v-html="item"
             />
@@ -134,6 +144,9 @@ export default {
   computed: {
     loggedIn() {
       return this.$store.getters['auth/loggedIn']
+    },
+    isLimited() {
+      return this.$store.getters['auth/isLimited'];
     }
   },
 
@@ -164,10 +177,8 @@ export default {
     if (this.$route.query) {
       if (this.$route.query.type) this.params.type = this.$route.query.type;
     }
-
     this.fetchItems();
     this.lazyLoad();
-
   },
 
   methods: {
@@ -218,7 +229,11 @@ export default {
     },
 
     showCreateDialog() {
-      this.loggedIn ? this.$refs['createModal'].show() : this.$refs['notRegistered'].show()
+      let modalName = !this.loggedIn ?
+        'notRegistered' :
+        (this.isLimited ? 'limitedModal' : 'createModal');
+
+      if (modalName) this.$refs[modalName].show();
     },
 
     clear() {

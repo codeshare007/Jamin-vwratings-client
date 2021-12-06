@@ -7,21 +7,26 @@
       />
 
       <EntityRate
-        v-if="loggedIn"
+        v-if="loggedIn && !isLimited"
         @rated="rate"
-        placeholder="Fill the stars below. Change them anytime.
-Stars above are the total average of all ratings."
         :user_rating="item.user_rating"
-      />
+      >
+        <p>Fill the stars below. Change them anytime.</p>
+        <p>Stars above are the total average of all ratings.</p>
+      </EntityRate>
 
       <CommentForm
-        v-if="loggedIn"
+        v-if="loggedIn && !isLimited"
         :id="id"
         :method="method"
         :name="item.name"
         @send="fetchItem"
         :comments="item.comments"
       />
+
+      <div v-if="isLimited === true">
+        <h4 class="text-danger text-center">You are temporarily banned</h4>
+      </div>
 
       <div v-if="loggedIn === false">
         <h4 class="text-danger text-center">Log in to rate and comment</h4>
@@ -73,6 +78,9 @@ export default {
     loggedIn() {
       return this.$store.getters['auth/loggedIn']
     },
+    isLimited() {
+      return this.$store.getters['auth/isLimited']
+    }
   },
 
   methods: {

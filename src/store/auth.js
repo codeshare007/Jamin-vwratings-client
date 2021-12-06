@@ -7,11 +7,13 @@ export default {
     loggedIn: !!Cookie.get('access_token'),
     hasRefreshToken: !!Cookie.get('refresh_token'),
     isAdmin: false,
+    isLimited: false
   },
 
   getters: {
     profile: state => state.profile,
     loggedIn: state => state.loggedIn,
+    isLimited: state => state.isLimited,
     isAdmin: state => state.isAdmin
   },
 
@@ -28,6 +30,9 @@ export default {
     },
     SET_ADMIN: (state, payload = false) => {
       state.isAdmin = payload
+    },
+    SET_LIMITED: (state, payload = false) => {
+      state.isLimited = payload
     }
   },
 
@@ -63,6 +68,7 @@ export default {
     GET_PROFILE: async function ({commit}) {
       let {data} = await this.$api.auth.me();
       commit('SET_ADMIN', data.role === 1);
+      commit('SET_LIMITED', data.role === 3);
       commit('SET_PROFILE', data);
     },
   },
