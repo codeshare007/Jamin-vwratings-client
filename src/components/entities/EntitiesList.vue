@@ -12,7 +12,7 @@
 
         <b-form @reset="closeCreateForm">
           <span class="d-block mb-3 text-center">Start typing. If you see the name below, it is already added.</span>
-          <span class="d-block text-danger mb-3 text-center font-weight-bold" v-if="createError">{{ createError }}</span>
+          <span class="d-block text-danger mb-3 text-center font-weight-bold" v-if="createError" v-html="createError" />
           <b-row class="justify-content-center">
             <b-col cols="6">
               <b-form-group label="Name">
@@ -23,13 +23,19 @@
 
           <b-row v-if="form.name">
             <b-col v-for="(item, key) in this.suggestions" :key="key" cols="3">
-              <b-button @click="form.name = item.name" variant="light" size="sm" class="mb-2">{{ item.name }}</b-button>
+              <b-button
+                :to="redirectToItem(item.id)"
+                variant="light"
+                size="sm"
+                class="mb-2"
+                v-html="item.name"
+              />
             </b-col>
           </b-row>
 
           <div class="d-flex justify-content-end mt-5">
             <b-button variant="secondary" type="reset" class="mr-2">Cancel</b-button>
-            <b-button variant="primary"  @click="create">Add</b-button>
+            <b-button variant="primary" @click="create">Add</b-button>
           </div>
         </b-form>
 
