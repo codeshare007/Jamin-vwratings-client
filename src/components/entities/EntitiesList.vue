@@ -174,10 +174,11 @@ export default {
   },
 
   mounted() {
-    if (this.$route.query) {
-      if (this.$route.query.type) this.params.type = this.$route.query.type;
+    if (typeof this.$route.query.type !== 'undefined') {
+      this.params.type = this.$route.query.type;
+    } else {
+      this.fetchItems();
     }
-    this.fetchItems();
     this.lazyLoad();
   },
 

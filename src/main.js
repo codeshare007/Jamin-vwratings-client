@@ -4,9 +4,17 @@ import App from './App.vue'
 import router from './modules/router'
 import store from './store'
 import Api from './modules/api'
+import VueGtag from "vue-gtag";
 
 Vue.config.productionTip = false
 Vue.use(Api, store, router)
+
+if (process.env.VUE_APP_GTAG_KEY) {
+  Vue.use(VueGtag, {
+    config: { id: process.env.VUE_APP_GTAG_KEY }
+  });
+}
+
 
 import '@/plugins/bootstrap-vue'
 import '@/plugins/vuelidate'
