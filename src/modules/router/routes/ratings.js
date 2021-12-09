@@ -17,32 +17,32 @@ export default [
     name: 'ratings.avis.list',
     path: 'avis',
     component: () => import('@/views/avis/List'),
-    meta: {title: 'Avis'}
+    meta: {title: 'Player list'}
   },
   {
     name: 'ratings.avis.view',
     path: 'avis/:id',
     props: true,
     component: () => import('@/views/avis/View'),
-    meta: {title: 'Avi View'}
+    meta: {title: 'Player View'}
   },
   {
     name: 'ratings.parties.list',
     path: 'parties',
     component: () => import('@/views/parties/List'),
-    meta: {title: 'Parties'}
+    meta: {title: 'Party list'}
   },
   {
     name: 'ratings.specialone',
     path: 'specialone',
     component: () => import('@/views/buttons/SpecialOne'),
-    meta: {title: 'Special Page'}
+    meta: {title: 'Special Page1'}
   },
   {
     name: 'ratings.specialtwo',
     path: 'specialtwo',
     component: () => import('@/views/buttons/SpecialTwo'),
-    meta: {title: 'Special Page'}
+    meta: {title: 'Special Page2'}
   },
   {
     name: 'ratings.peepscreeps',
@@ -66,19 +66,13 @@ export default [
     name: 'ratings.contact',
     path: 'contact',
     component: () => import('@/views/buttons/Contact'),
-    meta: {title: 'Contact Us'}
+    meta: {title: 'Message Us'}
   },
   {
     name: 'ratings.buttons',
     path: 'buttons',
     component: () => import('@/views/buttons/Buttons'),
     meta: {title: 'Buttons'}
-  },
-  {
-    name: 'ratings.parties.list',
-    path: 'parties',
-    component: () => import('@/views/parties/List'),
-    meta: {title: 'Parties'}
   },
   {
     name: 'ratings.parties.view',
