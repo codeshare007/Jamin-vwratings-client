@@ -12,7 +12,7 @@ Vue.use(Api, store, router)
 if (process.env.VUE_APP_GTAG_KEY) {
   Vue.use(VueGtag, {
     config: { id: process.env.VUE_APP_GTAG_KEY }
-  });
+  }, router);
 }
 
 
