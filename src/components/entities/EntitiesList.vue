@@ -223,7 +223,7 @@ export default {
     fetchItems(lazy = false) {
       this.loading = true;
       this.$api[this.method].fetch(this.currentPage, this.params).then(response => {
-        lazy ? this.items = [...this.items, ...response.data] : this.items = response.data;
+        lazy ? this.items = [...this.items, ...response.data.data] : this.items = response.data.data;
         if (!lazy) this.screenLoaded = true;
         this.loading = false;
       })
