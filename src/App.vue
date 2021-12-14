@@ -6,6 +6,10 @@
       :is-full-page="fullPage"
     />
     <router-view />
+
+    <b-modal ref="announcement" title="Announcement" ok-only ok-title="Close" ok-variant="secondary">
+      <div v-html="html"></div>
+    </b-modal>
   </div>
 </template>
 
@@ -18,6 +22,7 @@ export default {
   data() {
     return {
       isLoading: false,
+      html: null,
       fullPage: true
     }
   },
@@ -31,6 +36,9 @@ export default {
         if (response.data['start_promo']) {
           window.location.href = '/promo';
         }
+
+        this.html = response.data['announcement_content'];
+        this.$refs['announcement'].show();
       }).catch(error => {
         if (error) {
           window.location.href = '/promo'

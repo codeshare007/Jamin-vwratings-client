@@ -272,6 +272,15 @@ export default {
   display: block;
 
   &__modal {
+
+    .modal-content {
+      background-color: #aec3d1;
+    }
+
+    .modal-backdrop {
+      opacity: .9;
+    }
+
     .close:focus {
       outline: 0;
     }
@@ -315,13 +324,5 @@ export default {
       color: #02cf4a;
     }
   }
-}
-
-.modal-content {
-  background-color: #aec3d1;
-}
-
-.modal-backdrop {
-  opacity: .9;
 }
 </style>
