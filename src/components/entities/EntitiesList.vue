@@ -216,7 +216,7 @@ export default {
 
     searchItems() {
       this.$api[this.method].fetch(1, {search: this.form.name, per_page: 5000}).then(response => {
-        this.suggestions = response.data
+        this.suggestions = response.data.data
       })
     },
 
