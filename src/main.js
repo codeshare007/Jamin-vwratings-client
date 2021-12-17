@@ -15,7 +15,6 @@ if (process.env.VUE_APP_GTAG_KEY) {
   }, router);
 }
 
-
 import '@/plugins/bootstrap-vue'
 import '@/plugins/vuelidate'
 import '@/plugins/v-viewer'

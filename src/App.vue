@@ -37,7 +37,7 @@ export default {
           window.location.href = '/promo';
         }
 
-        if (response.data['show_announcement']) {
+        if (response.data['show_modal']) {
           this.html = response.data['modal_content'];
           this.$refs['announcement'].show();
         }
