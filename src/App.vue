@@ -91,4 +91,35 @@ export default {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+.modal-content {
+    background-color: #389b70;
+}
+
+.modal-footer {
+    display: none;
+}
+
+.modal-header {
+    border-bottom: none;
+}
+
+.modal-backdrop {
+    opacity: .9;
+	background-color: #062204;
+}
+
+.modal-title {
+    display: none;
+}
+
+.modal-header .close {
+    padding: 0rem .5rem;
+    font-size: 34px;
+}
+
+@media (min-width: 576px){
+.modal-dialog {
+    max-width: 700px;}
+}
 </style>
