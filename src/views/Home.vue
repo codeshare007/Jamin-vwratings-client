@@ -1,6 +1,18 @@
 <template>
   <div class="homePage">
     <div class="homePage__container">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3655622089482340"
+     crossorigin="anonymous"></script>
+<!-- vwratings home -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3655622089482340"
+     data-ad-slot="3406436587"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>	
       <h1 class="text-center">Welcome to vwRatings!</h1>
       <h2 class="text-center">Behaviour ratings of vw players to highlight the awesome and expose the rotten.</h2>
 
@@ -15,7 +27,7 @@
         <p class="text-center">Everything is anonymous....</p>
       </div>
 
-      <div class="d-flex justify-content-center">
+ <!--     <div class="d-flex justify-content-center">
         <div align="center" class="homePage__gallery">
           <viewer>
             <img class="homePage__image" alt="Image 1" src="../assets/images/home/1.png" />
@@ -24,7 +36,7 @@
             <img class="homePage__image" alt="Image 4" src="../assets/images/home/4.jpeg" />
           </viewer>
         </div>
-      </div>
+      </div> -->
     <div class="row">
       <div class="column">
         <div class="card">
