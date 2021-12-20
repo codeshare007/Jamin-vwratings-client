@@ -22,8 +22,9 @@
       </div>
 
       <div class="mt-4">
-        <p class="text-center m-0">Rate and comment about other vw players that you think are exceptional or just plain
-          trouble.</p>
+        <p class="text-center m-0">
+          Rate and comment about other vw players that you think are exceptional or just plain trouble.
+        </p>
         <p class="text-center">Everything is anonymous....</p>
       </div>
 

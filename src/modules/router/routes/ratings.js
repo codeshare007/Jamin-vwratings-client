@@ -1,4 +1,4 @@
-import {Authenticated} from "../middleware";
+import { Authenticated } from "../middleware";
 
 export default [
   {
@@ -33,16 +33,16 @@ export default [
     meta: {title: 'Party list'}
   },
   {
-    name: 'ratings.specialone',
-    path: 'specialone',
+    name: 'ratings.special.one',
+    path: 'special-one',
     component: () => import('@/views/buttons/SpecialOne'),
-    meta: {title: 'Special Page1'}
+    meta: {title: 'Special Page 1'}
   },
   {
-    name: 'ratings.specialtwo',
-    path: 'specialtwo',
+    name: 'ratings.special.one',
+    path: 'special-two',
     component: () => import('@/views/buttons/SpecialTwo'),
-    meta: {title: 'Special Page2'}
+    meta: {title: 'Special Page 2'}
   },
   {
     name: 'ratings.peepscreeps',
@@ -80,6 +80,18 @@ export default [
     component: () => import('@/views/parties/View'),
     meta: {title: 'Party View'},
     props: true
+  },
+  {
+    name: 'ratings.parties.gallery',
+    path: 'gallery/parties',
+    component: () => import('@/views/parties/Gallery'),
+    meta: {title: 'Parties Gallery'}
+  },
+  {
+    name: 'ratings.avis.gallery',
+    path: 'gallery/avis',
+    component: () => import('@/views/avis/Gallery'),
+    meta: {title: 'Avis Gallery'}
   },
   {
     name: 'ratings.notfound',

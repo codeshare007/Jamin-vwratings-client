@@ -52,6 +52,7 @@ export default {
       border-color: #57bd25;
     }
   }
+
   .sidey {
     border: none;
     padding: 1rem 1rem;
