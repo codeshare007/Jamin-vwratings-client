@@ -1,15 +1,11 @@
 <template>
   <div class="app" :style="dynamicBackground()">
-    <loading
-      :active.sync="isLoading"
-      :can-cancel="true"
-      :is-full-page="fullPage"
-    />
+    <div class="dialogs">
+      <b-modal ref="announcement" title="Announcement" ok-only ok-title="Close" ok-variant="secondary">
+        <div v-html="html"></div>
+      </b-modal>
+    </div>
     <router-view />
-
-    <b-modal ref="announcement" title="Announcement" ok-only ok-title="Close" ok-variant="secondary">
-      <div v-html="html"></div>
-    </b-modal>
   </div>
 </template>
 

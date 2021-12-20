@@ -36,7 +36,6 @@ export default {
     }
   },
 
-
   data() {
     return {
       options: [
@@ -67,6 +66,10 @@ export default {
     background: #2083281a;
     border-bottom: none;
     padding: 15px;
+
+    p {
+      white-space: pre;
+    }
   }
 
   &__attachmentsList {

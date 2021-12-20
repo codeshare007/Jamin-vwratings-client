@@ -1,12 +1,13 @@
 <template>
   <div class="avisList">
-    <Adsense
-      class="adsense-block"
-      data-ad-client="ca-pub-3655622089482340"
-      data-ad-slot="3406436587"
-      data-ad-format="auto"
-      data-full-width-responsive="true">
-    </Adsense>
+    <div class="avisList__adsBlock">
+      <Adsense
+        data-ad-client="ca-pub-3655622089482340"
+        data-ad-slot="3406436587"
+        data-ad-format="fluid"
+        data-full-width-responsive="true">
+      </Adsense>
+    </div>
     <EntitiesList entity="avi" method="avis"/>
   </div>
 </template>
@@ -25,13 +26,16 @@ export default {
 }
 </script>
 <style lang="scss">
-  .avisList {
-    .adsense-block {
-      display: block;
-      background: #29495ebf;
-      margin-right: 150px;
-      margin-left: 150px;
-      margin-bottom: 20px;
-    }
+.avisList {
+  &__adsBlock {
+    display: block;
+    overflow: hidden;
+    background: #29495ebf;
+    margin-right: 150px;
+    margin-left: 150px;
+    height: 240px;
+    margin-bottom: 20px;
+    border: 1px solid #18786f;
   }
+}
 </style>

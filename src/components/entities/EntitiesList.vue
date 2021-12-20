@@ -259,17 +259,17 @@ export default {
 }
 </script>
 <style lang="scss">
-
-.cursor-pointer {
-  cursor: pointer;
-}
-
 .entitiesList {
-  background: rgb(41 73 94 / 75%);
   padding-top: 40px;
   margin-bottom: 40px;
   padding-bottom: 40px;
   display: block;
+  background: #29495ebf;
+  border: 1px solid #18786f;
+
+  .cursor-pointer {
+    cursor: pointer;
+  }
 
   &__modal {
 
