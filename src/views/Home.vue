@@ -1,18 +1,13 @@
 <template>
   <div class="homePage">
     <div class="homePage__container">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3655622089482340"
-     crossorigin="anonymous"></script>
-<!-- vwratings home -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-3655622089482340"
-     data-ad-slot="3406436587"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>	
+      <Adsense
+        class="adsense-block"
+        data-ad-client="ca-pub-3655622089482340"
+        data-ad-slot="3406436587"
+        data-ad-format="auto"
+        data-full-width-responsive="true">
+      </Adsense>
       <h1 class="text-center">Welcome to vwRatings!</h1>
       <h2 class="text-center">Behaviour ratings of vw players to highlight the awesome and expose the rotten.</h2>
 
@@ -115,6 +110,10 @@
 <style lang="scss">
 .homePage {
 
+  .adsense-block {
+    display: block;
+    margin-bottom: 20px;
+  }
 
   &__container {
     background-color: rgb(41 73 94 / 75%);
