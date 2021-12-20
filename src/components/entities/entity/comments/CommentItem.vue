@@ -68,7 +68,7 @@ export default {
     padding: 15px;
 
     p {
-      white-space: pre;
+      white-space: pre-line;
     }
   }
 
