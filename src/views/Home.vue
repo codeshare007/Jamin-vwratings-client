@@ -1,6 +1,6 @@
 <template>
   <div class="homePage">
-    <div class="homePage__container">
+<!--    <div class="homePage__container">
       <div class="homePage__adsBlock">
         <Adsense
           data-ad-client="ca-pub-3655622089482340"
@@ -10,7 +10,7 @@
         </Adsense>
       </div>
     </div>
-
+-->
     <div class="homePage__container">
       <h1 class="text-center">Welcome to vwRatings!</h1>
       <h2 class="text-center">Behaviour ratings of vw players to highlight the awesome and expose the rotten.</h2>
