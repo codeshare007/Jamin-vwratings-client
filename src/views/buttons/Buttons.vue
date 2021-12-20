@@ -8,6 +8,11 @@
       </div>
 
       <div class="buttonsPage__btnBlock">
+        <b-button class="btn-special" :to="{name: 'ratings.parties.gallery'}">Party Pics soon</b-button>
+        <b-button class="btn-special" :to="{name: 'ratings.avis.gallery'}">Player Pics soon</b-button>
+      </div>
+
+      <div class="buttonsPage__btnBlock">
         <b-button class="btn-special" :to="{name: 'ratings.peepscreeps'}">Peeps & Creeps</b-button>
       </div>
 
@@ -18,11 +23,6 @@
       <div class="buttonsPage__btnBlock">
         <b-button class="btn-special" :to="{name: 'ratings.contact'}">Message Us</b-button>
         <b-button class="btn-special" :to="{name: 'ratings.info'}">Info</b-button>
-      </div>
-
-      <div class="buttonsPage__btnBlock">
-        <b-button class="btn-special" :to="{name: 'ratings.parties.gallery'}">Parties Gallery</b-button>
-        <b-button class="btn-special" :to="{name: 'ratings.avis.gallery'}">Avis Gallery</b-button>
       </div>
 
       <div class="buttonsPage__btnBlock">
