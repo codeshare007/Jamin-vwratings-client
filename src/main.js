@@ -22,6 +22,7 @@ import '@/plugins/vue-star-rating'
 import '@/plugins/vue-the-mask'
 import '@/plugins/vue-loading'
 import '@/plugins/vue-countdown';
+import '@/plugins/vue-lazyload'
 import '@/plugins/vue-linkify';
 import '@/plugins/vue-adsense'
 import '@/assets/scss/main.scss'

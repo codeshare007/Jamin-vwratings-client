@@ -7,7 +7,7 @@
         <b-button class="btn-special" :to="{name: 'ratings.special.one'}">Special</b-button>
       </div>
 
-      <div class="buttonsPage__btnBlock">
+      <div class="buttonsPage__btnBlock" v-if="loggedIn">
         <b-button class="btn-special" :to="{name: 'ratings.parties.gallery'}">Party Pics soon</b-button>
         <b-button class="btn-special" :to="{name: 'ratings.avis.gallery'}">Player Pics soon</b-button>
       </div>
@@ -34,7 +34,17 @@
 </template>
 <script>
 export default {
+  data() {
+    return {
 
+    }
+  },
+
+  computed: {
+    loggedIn() {
+      return this.$store.getters['auth/loggedIn']
+    }
+  }
 }
 </script>
 <style lang="scss">

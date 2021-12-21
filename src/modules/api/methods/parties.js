@@ -18,4 +18,9 @@ export default axios => ({
       headers: {'Content-Type': 'multipart/form-data'}
     })
   },
+  attachments(page = 1, filter = {}) {
+    return axios.get('avis/attachments', {
+      params: {page: page, ...filter}
+    });
+  },
 });
