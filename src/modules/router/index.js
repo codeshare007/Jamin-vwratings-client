@@ -45,7 +45,7 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  document.title = 'vwRatings ' + to.meta.title;
+  document.title = 'vwRatings — ' + to.meta.title;
   next();
 });
 

@@ -92,12 +92,17 @@ export default {
 </script>
 <style lang="scss">
 .entitiesGallery {
-  margin-right: 150px;
-  margin-left: 150px;
   background: #29495ebf;
   border: 1px solid #18786f;
   padding: 40px 30px;
-  margin-bottom: 40px;
+  margin: 20px 20px 40px;
+
+  @media screen and (min-width: 1024px) {
+    margin-right: 150px;
+    margin-left: 150px;
+    margin-top: 0;
+    margin-bottom: 40px;
+  }
 
   .btn-back {
     background: #3c786b;
@@ -124,17 +129,19 @@ export default {
   }
 
   &__attachment {
-    max-width: 100px;
-    flex: 0 0 100px;
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     object-fit: cover;
     margin-right: 27px;
-    padding-bottom: 40px;
+    padding-bottom: 60px;
     overflow: hidden;
-
     display: block;
     cursor: pointer;
+
+    @media screen and (min-width: 1024px) {
+      width: 160px;
+      height: 160px;
+    }
 
     img {
       width: 100%;

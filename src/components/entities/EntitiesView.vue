@@ -92,6 +92,7 @@ export default {
       this.$api[this.method].get(this.id).then(response => {
         this.item = response.data;
         this.screenLoaded = true;
+        this.$route.meta.title = this.item.name + ' Player Page'
       })
     },
   }

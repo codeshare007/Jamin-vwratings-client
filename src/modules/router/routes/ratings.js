@@ -17,13 +17,19 @@ export default [
     name: 'ratings.avis.list',
     path: 'avis',
     component: () => import('@/views/avis/List'),
-    meta: {title: 'Player list'}
+    meta: {title: 'Player List'}
   },
   {
     name: 'ratings.avis.gallery',
     path: 'avis/gallery',
     component: () => import('@/views/avis/Gallery'),
-    props: {title: 'Avis Gallery'}
+    meta: {title: 'Avis Gallery', middleware: [Authenticated]}
+  },
+  {
+    name: 'ratings.avis.interviews',
+    path: 'avis/interviews',
+    component: () => import('@/views/avis/Interviews'),
+    meta: {title: 'Avis Interviews'}
   },
   {
     name: 'ratings.avis.view',
@@ -42,7 +48,7 @@ export default [
     name: 'ratings.parties.gallery',
     path: 'parties/gallery',
     component: () => import('@/views/parties/Gallery'),
-    meta: {title: 'Parties Gallery'}
+    meta: {title: 'Parties Gallery', middleware: [Authenticated]}
   },
   {
     name: 'ratings.parties.view',

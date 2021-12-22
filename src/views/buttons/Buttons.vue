@@ -7,9 +7,9 @@
         <b-button class="btn-special" :to="{name: 'ratings.special.one'}">Special</b-button>
       </div>
 
-      <div class="buttonsPage__btnBlock" v-if="loggedIn">
-        <b-button class="btn-special" :to="{name: 'ratings.parties.gallery'}">Party Pics soon</b-button>
-        <b-button class="btn-special" :to="{name: 'ratings.avis.gallery'}">Player Pics soon</b-button>
+      <div class="buttonsPage__btnBlock">
+        <b-button class="btn-special" :to="{name: 'ratings.parties.gallery'}">Party Pics</b-button>
+        <b-button class="btn-special" :to="{name: 'ratings.avis.gallery'}">Player Pics</b-button>
       </div>
 
       <div class="buttonsPage__btnBlock">
