@@ -1,6 +1,6 @@
 <template>
   <div class="avisList">
-<!--    <div class="avisList__adsBlock">
+    <div class="avisList__adsBlock">
       <Adsense
         data-ad-client="ca-pub-3655622089482340"
         data-ad-slot="3406436587"
@@ -8,7 +8,6 @@
         data-full-width-responsive="true">
       </Adsense>
     </div>
-	-->
     <EntitiesList entity="avi" method="avis"/>
   </div>
 </template>

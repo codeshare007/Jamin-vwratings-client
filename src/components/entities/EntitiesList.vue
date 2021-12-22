@@ -272,7 +272,6 @@ export default {
   }
 
   &__modal {
-
     .modal-content {
       background-color: #aec3d1;
     }

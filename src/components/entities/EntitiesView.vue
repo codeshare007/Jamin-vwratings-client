@@ -99,18 +99,13 @@ export default {
 }
 </script>
 <style lang="scss">
-
 .entityView {
   background: rgb(41 73 94 / 75%);
   padding: 40px 30px;
 
   &--claimed {
     background: rgb(41 73 94 / 75%);
-
   }
-}
-
-.entityView {
 
   &__buttons {
     padding-bottom: 30px;
@@ -155,6 +150,5 @@ export default {
   .commentItem__content {
     border-bottom: 1px solid #274a30;
   }
-
 }
 </style>
