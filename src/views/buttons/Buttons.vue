@@ -1,7 +1,6 @@
 <template>
   <div class="buttonsPage">
     <div class="blackContainer">
-
       <div class="buttonsPage__btnBlock">
         <b-button class="btn-special" :to="{name: 'ratings.special.one'}">Special</b-button>
         <b-button class="btn-special" :to="{name: 'ratings.special.one'}">Special</b-button>

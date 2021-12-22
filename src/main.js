@@ -24,7 +24,7 @@ import '@/plugins/vue-loading'
 import '@/plugins/vue-countdown';
 import '@/plugins/vue-lazyload'
 import '@/plugins/vue-linkify';
-import '@/plugins/vue-adsense'
+// import '@/plugins/vue-adsense'
 import '@/assets/scss/main.scss'
 
 new Vue({
