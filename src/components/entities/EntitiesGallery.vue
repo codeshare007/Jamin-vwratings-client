@@ -12,21 +12,26 @@
       :per-page="perPage"
     />
 
-    <div v-viewer class="entitiesGallery__viewer">
-      <div
-        :key="key"
-        class="entitiesGallery__attachment"
-        v-for="(item, key) in attachments">
-        <img
-          v-lazy="item.path"
-          :alt="item.name"
-        />
-        <router-link
-          v-if="item.comment && item.comment[entity]"
-          class="text-white pt-2 d-block"
-          :to="{ name: `ratings.${method}.view`, params: { id: item.comment[entity].id } }"
-        >{{ item.comment[entity].name }}
-        </router-link>
+    <div class="entitiesGallery__wrapper">
+      <div v-viewer class="entitiesGallery__viewer" v-if="!loading">
+        <div
+          :key="key"
+          class="entitiesGallery__attachment"
+          v-for="(item, key) in attachments">
+          <div>
+            <img
+              v-lazy="item.path"
+              :alt="item.comment && item.comment[entity] ? item.comment[entity].name : ''"
+            />
+            <b-skeleton-img />
+          </div>
+          <router-link
+            v-if="item.comment && item.comment[entity]"
+            class="text-white pt-2 d-block"
+            :to="{ name: `ratings.${method}.view`, params: { id: item.comment[entity].id } }"
+          >{{ item.comment[entity].name }}
+          </router-link>
+        </div>
       </div>
     </div>
 
@@ -53,8 +58,9 @@ export default {
       perPage: 1,
       total: 1,
       currentPage: 1,
+      loading: false,
       params: {
-        per_page: 50
+        per_page: 48
       }
     }
   },
@@ -75,11 +81,13 @@ export default {
 
   methods: {
     fetchAttachments() {
+      this.loading = true;
       this.$api[this.method].attachments(this.currentPage, this.params).then(response => {
         this.attachments = response.data.data;
         this.currentPage = response.data['current_page'];
         this.total = response.data.total;
         this.perPage = response.data.per_page;
+        this.loading = false;
       })
     },
 
@@ -98,10 +106,11 @@ export default {
   margin: 20px 20px 40px;
 
   @media screen and (min-width: 1024px) {
-    margin-right: 150px;
-    margin-left: 150px;
-    margin-top: 0;
-    margin-bottom: 40px;
+    margin: 0 150px 40px;
+  }
+
+  &__wrapper {
+    min-height: 500px;
   }
 
   .btn-back {
@@ -112,7 +121,7 @@ export default {
 
   &__viewer {
     display: flex;
-    justify-content: start;
+    justify-content: space-between;
     flex-wrap: wrap;
   }
 
@@ -130,23 +139,41 @@ export default {
 
   &__attachment {
     width: 120px;
-    height: 120px;
+    height: auto;
     object-fit: cover;
-    margin-right: 27px;
-    padding-bottom: 60px;
     overflow: hidden;
     display: block;
+    padding-bottom: 20px;
     cursor: pointer;
+    position: relative;
 
     @media screen and (min-width: 1024px) {
       width: 160px;
-      height: 160px;
+      height: 220px;
+      padding-bottom: 60px;
+    }
+
+    .b-aspect {
+      width: 100%;
+      height: 100px;
+      top: 0;
+      z-index: 0;
+      position: absolute;
+
+      @media screen and (min-width: 1024px) {
+        height: 160px;
+      }
     }
 
     img {
       width: 100%;
-      height: 100%;
+      position: relative;
+      z-index: 1;
+      height: 120px;
       object-fit: cover;
+      @media screen and (min-width: 1024px) {
+        height: 160px;
+      }
     }
   }
 }
