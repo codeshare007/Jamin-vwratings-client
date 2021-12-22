@@ -17,7 +17,7 @@ export default [
     name: 'ratings.avis.list',
     path: 'avis',
     component: () => import('@/views/avis/List'),
-    meta: {title: 'Player List'}
+    meta: {title: 'Players'}
   },
   {
     name: 'ratings.avis.gallery',
@@ -36,7 +36,7 @@ export default [
     path: 'avis/:id',
     props: true,
     component: () => import('@/views/avis/View'),
-    meta: {title: 'Player View'}
+    meta: {title: 'Players'}
   },
   {
     name: 'ratings.parties.list',

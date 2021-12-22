@@ -92,7 +92,7 @@ export default {
       this.$api[this.method].get(this.id).then(response => {
         this.item = response.data;
         this.screenLoaded = true;
-        this.$route.meta.title = this.item.name + ' Player Page'
+        document.title = 'vwRatings — ' + this.item.name + ' Player Page'
       })
     },
   }
@@ -116,9 +116,9 @@ export default {
     padding-bottom: 30px;
   }
 
-	.vue-star-rating-rating-text[data-v-fde73a0c] {
-		width: 20px;
-	}
+  .vue-star-rating-rating-text[data-v-fde73a0c] {
+    width: 20px;
+  }
 
   @media screen and (min-width: 1024px) {
     &__buttons {
@@ -132,9 +132,9 @@ export default {
   }
 
   .btn {
-	background: #3c786b;
+    background: #3c786b;
     border: 1px solid #082b30;
-	font-size: 12px;
+    font-size: 12px;
 
     &.active, &:focus, &:active {
       outline: 0;
@@ -144,17 +144,17 @@ export default {
 
   hr {
     background: #0b6e58;
-	height: 3px;
+    height: 3px;
   }
 
   .form-group__error {
     border: 2px solid red;
     border-radius: 5px;
   }
-  
+
   .commentItem__content {
     border-bottom: 1px solid #274a30;
-}
+  }
 
 }
 </style>
