@@ -19,7 +19,7 @@ export default axios => ({
     })
   },
   attachments(page = 1, filter = {}) {
-    return axios.get('avis/attachments', {
+    return axios.get('parties/attachments', {
       params: {page: page, ...filter}
     });
   },

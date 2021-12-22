@@ -1,7 +1,7 @@
 <template>
   <div class="entityInfo">
 	<b-row> 
-		<div><b-button class="back" :to="{ name: screen }">Back</b-button></div>
+		<div><b-button class="back" @click="$router.go(-1)">Back</b-button></div>
 	</b-row>
     <b-row>	
       <b-col>

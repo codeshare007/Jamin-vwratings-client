@@ -20,6 +20,12 @@ export default [
     meta: {title: 'Player list'}
   },
   {
+    name: 'ratings.avis.gallery',
+    path: 'avis/gallery',
+    component: () => import('@/views/avis/Gallery'),
+    props: {title: 'Avis Gallery'}
+  },
+  {
     name: 'ratings.avis.view',
     path: 'avis/:id',
     props: true,
@@ -31,6 +37,19 @@ export default [
     path: 'parties',
     component: () => import('@/views/parties/List'),
     meta: {title: 'Party list'}
+  },
+  {
+    name: 'ratings.parties.gallery',
+    path: 'parties/gallery',
+    component: () => import('@/views/parties/Gallery'),
+    meta: {title: 'Parties Gallery'}
+  },
+  {
+    name: 'ratings.parties.view',
+    path: 'parties/:id',
+    component: () => import('@/views/parties/View'),
+    meta: {title: 'Party View'},
+    props: true
   },
   {
     name: 'ratings.special.one',
@@ -73,25 +92,6 @@ export default [
     path: 'buttons',
     component: () => import('@/views/buttons/Buttons'),
     meta: {title: 'Buttons'}
-  },
-  {
-    name: 'ratings.parties.view',
-    path: 'parties/:id',
-    component: () => import('@/views/parties/View'),
-    meta: {title: 'Party View'},
-    props: true
-  },
-  {
-    name: 'ratings.parties.gallery',
-    path: 'gallery/parties',
-    component: () => import('@/views/parties/Gallery'),
-    meta: {title: 'Parties Gallery'}
-  },
-  {
-    name: 'ratings.avis.gallery',
-    path: 'gallery/avis',
-    component: () => import('@/views/avis/Gallery'),
-    meta: {title: 'Avis Gallery'}
   },
   {
     name: 'ratings.notfound',
