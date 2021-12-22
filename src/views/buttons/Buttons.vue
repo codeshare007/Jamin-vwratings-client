@@ -27,7 +27,7 @@
 
       <div class="buttonsPage__btnBlock">
         <b-button class="btn-special" :to="{name: 'ratings.home'}">Home</b-button>
-        <b-button class="btn-special" @click="window.location.href = '/avi-forum/'">Forum</b-button>
+        <b-button class="btn-special" @click="emitForum">Forum</b-button>
       </div>
     </div>
   </div>
@@ -43,6 +43,12 @@ export default {
   computed: {
     loggedIn() {
       return this.$store.getters['auth/loggedIn']
+    }
+  },
+
+  methods: {
+    emitForum() {
+      window.location.href = '/avi-forum/'
     }
   }
 }
