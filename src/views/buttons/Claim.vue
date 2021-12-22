@@ -5,17 +5,17 @@
         <h3 class="mb-4">
           Claim a Name
         </h3>
-        <p class="mb-4">
+        <p class="claimer mb-4">
           Claiming your avatar gives you a clean slate. Or keeps your slate clean.<br>Picture proof is required with
           negative comments on claimed avis which stops people from making things up.<br>Negative comments without
-          pictures will be removed when you claim.
+          pictures will be removed when you claim. After you claim and want the pics reviewed then just ask. We have deleted a few pics that really didn't show anything proof wise.<br><br>The plan is to give some good perks to claimed names but let's finish the site first.
         </p>
-        <p class="mb-4">
+        <p class="claimer mb-4">
           Claiming is simple... In your dashboard, you will see a Claim Avi area. Submit the name you want to claim. A
           timer will start counting down. You can restart the timer at any time but if you
-          don't, your avi will unclaim and any negative comments will show again
+          don't, your avi will unclaim and any negative comments will show again.<br><br>You can claim any name. It doesn't have to be yours. Nobody really knows who is claiming who.
         </p>
-        <p class="mb-4">
+        <p class="claimer mb-4">
           Log in... Head over to your profile... Claim your avi or your party !!
         </p>
       </div>
@@ -35,3 +35,12 @@ export default {
   }
 }
 </script>
+<style lang="scss">
+.claimPage {
+
+.claimer {
+	font-size: 20px
+	}
+
+}
+</style>

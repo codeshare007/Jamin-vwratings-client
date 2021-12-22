@@ -1,6 +1,7 @@
 <template>
   <transition name="fade">
     <div class="entitiesList" v-if="screenLoaded">
+	<div class="topwords mb-1">Use the search to narrow the names down. The names will sort as you type. Filter names by using the dropdown. Good in the dropdown shows all names rated higher than 9. Bad in the dropdowns shows all names under a 4 rating. Comments and pics in the dropdown show all names with comments or pics and are sorted most recent at the top. Use the Add Name to add a name to the list. Maybe a friend or enemy. Maybe a name you want to see what others think. Or just your name. </div>
       <b-modal
         ref="createModal"
         ok-title="Add"
@@ -260,7 +261,7 @@ export default {
 </script>
 <style lang="scss">
 .entitiesList {
-  padding-top: 40px;
+  padding-top: 7px;
   margin-bottom: 40px;
   padding-bottom: 40px;
   display: block;
@@ -293,6 +294,10 @@ export default {
     }
   }
 
+.topwords {
+	width: 90%;
+    margin: auto;
+}
   @media screen and (min-width: 1024px) {
     margin-right: 150px;
     margin-left: 150px;

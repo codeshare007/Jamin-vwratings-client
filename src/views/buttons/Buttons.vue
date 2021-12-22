@@ -1,18 +1,11 @@
 <template>
   <div class="buttonsPage">
     <div class="blackContainer">
-      <div class="buttonsPage__btnBlock">
-        <b-button class="btn-special" :to="{name: 'ratings.special.one'}">Special</b-button>
-        <b-button class="btn-special" :to="{name: 'ratings.special.one'}">Special</b-button>
-      </div>
+
 
       <div class="buttonsPage__btnBlock">
         <b-button class="btn-special" :to="{name: 'ratings.parties.gallery'}">Party Pics</b-button>
         <b-button class="btn-special" :to="{name: 'ratings.avis.gallery'}">Player Pics</b-button>
-      </div>
-
-      <div class="buttonsPage__btnBlock">
-        <b-button class="btn-special" :to="{name: 'ratings.peepscreeps'}">Peeps & Creeps</b-button>
       </div>
 
       <div class="buttonsPage__btnBlock">
@@ -28,6 +21,8 @@
         <b-button class="btn-special" :to="{name: 'ratings.home'}">Home</b-button>
         <b-button class="btn-special" @click="emitForum">Forum</b-button>
       </div>
+		<p style="font-size: 24px">There will be more buttons added as new features are built. Try them all and see where they go. If you happen to come across any glitchs in your travels, please use the Message Us button to report them.</p>
+		<p style="font-size: 24px">Have fun and watch for new and useful features.</p>
     </div>
   </div>
 </template>
