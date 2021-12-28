@@ -1,53 +1,43 @@
 <template>
-  <div class="entitiesInterviews">
+  <div class="entityInterviewView">
     <div class="profileContainer">
 
       <b-button
         class="mb-4 btn-back"
         @click="$router.go(-1)">Back</b-button>
 
-      <div class="d-flex flex-wrap">
-        <b-button
-          variant="outline-light"
-          :to="{ name: `ratings.${entities}.interview.view`,
-           params: {id: item[entity].id }}"
-          class="entityItem mr-3 mb-3"
-          v-for="(item, key) in interviews" :key="key">
-          {{ item[entity].name }}
-        </b-button>
-      </div>
+      <div v-html="interview.content"></div>
     </div>
   </div>
 </template>
 <script>
 export default {
-
   props: {
-    entities: String,
-    entity: String
+    id: {},
+    entities: String
   },
 
   data() {
     return {
-      interviews: []
+      interview: {}
     }
   },
 
   mounted() {
-    this.fetchInterviews()
+    this.fetchInterview()
   },
 
   methods: {
-    fetchInterviews() {
-      this.$api[this.entities].fetchInterviews().then(response => {
-        this.interviews = response.data;
+    fetchInterview() {
+      this.$api[this.entities].getInterview(this.id).then(response => {
+        this.interview = response.data;
       })
     }
   }
 }
 </script>
 <style lang="scss">
-.entitiesInterviews {
+.entityInterviewView {
 
   @media screen and (min-width: 1024px) {
     padding: 0 150px;
@@ -67,10 +57,6 @@ export default {
     background: #3c786b;
     border: 1px solid #082b30;
     font-size: 12px;
-  }
-
-  .entityItem {
-    font-size: 20px;
   }
 }
 </style>

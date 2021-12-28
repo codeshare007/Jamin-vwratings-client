@@ -39,6 +39,13 @@ export default [
     meta: {title: 'Players'}
   },
   {
+    name: 'ratings.avis.interview.view',
+    path: 'avis/:id/interview',
+    props: true,
+    component: () => import('@/views/avis/InterviewView'),
+    meta: {title: 'Interview View'}
+  },
+  {
     name: 'ratings.parties.list',
     path: 'parties',
     component: () => import('@/views/parties/List'),
@@ -49,6 +56,12 @@ export default [
     path: 'parties/gallery',
     component: () => import('@/views/parties/Gallery'),
     meta: {title: 'Parties Gallery', middleware: [Authenticated]}
+  },
+  {
+    name: 'ratings.parties.interviews',
+    path: 'parties/interviews',
+    component: () => import('@/views/parties/Interviews'),
+    meta: {title: 'Parties Interviews'}
   },
   {
     name: 'ratings.parties.view',
