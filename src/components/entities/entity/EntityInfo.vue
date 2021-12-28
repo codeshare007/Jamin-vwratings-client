@@ -1,14 +1,23 @@
 <template>
   <div class="entityInfo">
-	<b-row> 
-		<div><b-button class="back" @click="$router.go(-1)">Back</b-button></div>
-	</b-row>
-    <b-row>	
+    <b-row class="justify-content-between">
+      <div>
+        <b-button class="back" @click="$router.go(-1)">Back</b-button>
+      </div>
+      <div>
+        <b-button v-if="loggedIn" @click="$emit('toggle-favorite')">
+          <b-icon-heart-fill v-if="item['is_favorite'] === true" />
+          <b-icon-heart v-if="!item['is_favorite']" />
+        </b-button>
+      </div>
+    </b-row>
+    <b-row>
       <b-col>
         <p class="entityInfo__name">{{ item.name }}</p>
-        <p class="entityInfo__claim" style="background: rgb(23 151 145);" v-if="item.claim && item.claim.user_id">
+        <p class="entityInfo__claim pr-2 pl-2" style="background: rgb(23 151 145);"
+           v-if="item.claim && item.claim.user_id">
           <vue-countdown :time="currentTime()" :interval="100" v-slot="{ totalHours, minutes, seconds }">
-            Claimed for：{{ totalHours + ':' +  minutes + ':' + seconds }}
+            Claimed for：{{ totalHours + ':' + minutes + ':' + seconds }}
           </vue-countdown>
         </p>
       </b-col>
@@ -27,6 +36,7 @@
 import moment from 'moment';
 
 export default {
+
   props: {
     screen: String,
     item: {}
@@ -35,6 +45,12 @@ export default {
   data() {
     return {
       timeleft: '00:00:00'
+    }
+  },
+
+  computed: {
+    loggedIn() {
+      return this.$store.getters['auth/loggedIn']
     }
   },
 
@@ -86,16 +102,16 @@ export default {
     font-size: 30px;
     color: #97d39b;
   }
-  
+
   .back {
-  float: left;
+    float: left;
   }
-  
-	@media screen and (max-width: 600px) {
-		.back {
-		float: none;
-		}
-	}
+
+  @media screen and (max-width: 600px) {
+    .back {
+      float: none;
+    }
+  }
 
 }
 </style>

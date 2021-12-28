@@ -8,32 +8,42 @@
           <p>Simply add a player and/or party name and don't let the timer run out.</p>
 
           <div v-if="!loading">
-            Player
-            <Claim :items="claimed_avis" entity="avi" entities="avis"/>
-            <hr>
-            Party
-            <Claim :items="claimed_parties" entity="party" entities="parties"/>
+            <Claim :items="claimed_avis" entity="avi" entities="avis" placeholder="Player" class="claimDelimiter"/>
+            <Claim :items="claimed_parties" entity="party" entities="parties" placeholder="Party"/>
           </div>
-
         </div>
       </b-col>
       <b-col cols="12" lg="4">
         <div class="profileContainer">
-          <div class="d-flex justify-content-between align-items-center">
-            <p>Hi {{ profile.username }}, <br>There will be more added to this page.<br><br>Browse around and let us
-              know if you find any bugs.</p>
+          <div class="d-flex flex-column">
+            <h4>Hi, {{ profile.username }}</h4>
+            <p class="m-0">There will be more added to this page.</p>
+            <p class="m-0">Browse around and let us know if you find any bugs.</p>
           </div>
         </div>
+      </b-col>
+      <b-col cols="12">
+        <b-row>
+          <b-col cols="6">
+            <EntitiesFavorites @deleted="dispatchProfile()" :profile="profile" entities="avis" entity="avi"/>
+          </b-col>
+          <b-col cols="6">
+            <EntitiesFavorites @deleted="dispatchProfile()" :profile="profile" entities="parties" entity="party"/>
+          </b-col>
+        </b-row>
       </b-col>
       <b-col cols="12">
         <transition name="fade">
           <div class="profileContainer" v-if="!loading">
             <h4 class="ml-4 mb-4 mt-3">Your last 5 comments</h4>
             <div v-for="(comment, key) in comments" :key="key">
-              <router-link class="ml-4 comname" :to="{ name: 'ratings.avis.view', params: {id: comment.avi.id }}">
-                {{ comment.avi.name }}
+              <router-link
+                class="ml-4 commentItem__commentName"
+                v-html="comment.avi.name"
+                :to="{ name: 'ratings.avis.view', params: {id: comment.avi.id }}"
+              >
               </router-link>
-              <CommentItem :comment="comment"/>
+              <CommentItem :comment="comment" />
             </div>
           </div>
         </transition>
@@ -46,11 +56,12 @@
 import CommentItem from "../components/entities/entity/comments/CommentItem";
 import {mapActions, mapGetters} from "vuex";
 import Claim from "../components/Claim";
+import EntitiesFavorites from "../components/EntitiesFavorites";
 
 const {required} = require('vuelidate/lib/validators');
 
 export default {
-  components: {Claim, CommentItem},
+  components: {EntitiesFavorites, Claim, CommentItem},
   data() {
     return {
       timerCount: [],
@@ -67,7 +78,6 @@ export default {
       countdown: 10
     }
   },
-
 
   filters: {
     role(data) {
@@ -89,25 +99,34 @@ export default {
     }
   },
 
-  computed: {
-    fetchProfile() {
-      return this.$store.getters['auth/profile']
-    }
-  },
-
   mounted() {
-    this.profile = this.getProfile();
-    this.fetchClaimed();
-    this.fetchComments();
+    this.loading = true;
+    this.fetchProfile().then(() => {
+      this.profile = this.getProfile();
+      this.fetchClaimed();
+      this.fetchComments();
+      this.loading = false;
+    })
   },
 
   methods: {
     ...mapActions({
-      logout: 'auth/LOGOUT'
+      logout: 'auth/LOGOUT',
+      fetchProfile: 'profile/FETCH_PROFILE'
     }),
+
     ...mapGetters({
-      getProfile: 'auth/profile'
+      getProfile: 'profile/profile'
     }),
+
+    dispatchProfile() {
+      this.loading = true;
+      this.fetchProfile().then(() => {
+        this.profile = this.getProfile();
+        this.loading = false;
+      });
+    },
+
     emitLogout() {
       this.logout().then(() => {
         this.$router.push({name: 'auth.signin'})
@@ -184,12 +203,14 @@ export default {
     border-bottom: 1px solid #274a30;
   }
 
-  hr {
-    border-top: 1px solid #26cd5b;
+  .commentItem__commentName {
+    color: #2fcf7e;
   }
 
-  .comname {
-    color: #2fcf7e;
+  .claimDelimiter {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #26cd5b;
   }
 }
 </style>

@@ -4,6 +4,7 @@
       <EntityInfo
         :screen="screenBack"
         :item="item"
+        @toggle-favorite="toggleFavorite()"
       />
 
       <EntityRate
@@ -95,6 +96,9 @@ export default {
         document.title = 'vwRatings — ' + this.item.name + ' Player Page'
       })
     },
+    toggleFavorite() {
+      this.$api[this.method].toggleFavorite(this.id).then(() => this.fetchItem())
+    }
   }
 }
 </script>

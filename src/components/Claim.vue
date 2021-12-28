@@ -1,5 +1,8 @@
 <template>
   <div class="claimComponent">
+
+    <p class="m-0 pl-1 pb-2">{{ placeholder }}</p>
+
     <div v-if="!loading" class="mb-3">
       <b-form v-if="Object.keys(items).length === 0">
         <b-row class="justify-content-start">
@@ -61,7 +64,8 @@ export default {
     items: [],
     entity: String,
     entities: String,
-    itemName: String
+    itemName: String,
+    placeholder: String
   },
 
   data() {

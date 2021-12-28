@@ -23,4 +23,10 @@ export default axios => ({
       params: {page: page, ...filter}
     });
   },
+  toggleFavorite(id) {
+    return axios.post(`parties/${id}/favorite`)
+  },
+  removeFavorite(id) {
+    return axios.delete(`parties/${id}/remove-favorite`)
+  }
 });
