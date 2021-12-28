@@ -1,4 +1,4 @@
-import { Authenticated } from "../middleware";
+import {Authenticated} from "../middleware";
 
 export default [
   {
@@ -13,6 +13,7 @@ export default [
     component: () => import('@/views/Profile'),
     meta: {title: 'Profile', middleware: [Authenticated]}
   },
+  // Avis
   {
     name: 'ratings.avis.list',
     path: 'avis',
@@ -43,8 +44,9 @@ export default [
     path: 'avis/:id/interview',
     props: true,
     component: () => import('@/views/avis/InterviewView'),
-    meta: {title: 'Interview View'}
+    meta: {title: 'Interview View', middleware: [Authenticated]}
   },
+  // Parties
   {
     name: 'ratings.parties.list',
     path: 'parties',
@@ -61,7 +63,7 @@ export default [
     name: 'ratings.parties.interviews',
     path: 'parties/interviews',
     component: () => import('@/views/parties/Interviews'),
-    meta: {title: 'Parties Interviews'}
+    meta: {title: 'Parties Interviews', middleware: [Authenticated]}
   },
   {
     name: 'ratings.parties.view',
@@ -70,6 +72,14 @@ export default [
     meta: {title: 'Party View'},
     props: true
   },
+  {
+    name: 'ratings.parties.interview.view',
+    path: 'parties/:id/interview',
+    props: true,
+    component: () => import('@/views/parties/InterviewView'),
+    meta: {title: 'Interview View', middleware: [Authenticated]}
+  },
+  // Buttons
   {
     name: 'ratings.special.one',
     path: 'special-one',
