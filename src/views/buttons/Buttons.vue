@@ -2,10 +2,10 @@
   <div class="buttonsPage">
     <div class="blackContainer">
 
-      <div class="buttonsPage__btnBlock">
-        <b-button class="btn-special" :to="{name: 'ratings.parties.interviews'}">Parties Interviews</b-button>
-        <b-button class="btn-special" :to="{name: 'ratings.avis.interviews'}">Players Interviews</b-button>
-      </div>
+<!--      <div class="buttonsPage__btnBlock">-->
+<!--        <b-button class="btn-special" :to="{name: 'ratings.parties.interviews'}">Parties Interviews</b-button>-->
+<!--        <b-button class="btn-special" :to="{name: 'ratings.avis.interviews'}">Players Interviews</b-button>-->
+<!--      </div>-->
 
       <div class="buttonsPage__btnBlock">
         <b-button class="btn-special" :to="{name: 'ratings.parties.gallery'}">Party Pics</b-button>
