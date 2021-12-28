@@ -25,10 +25,10 @@
       <b-col cols="12">
         <b-row>
           <b-col cols="6">
-            <EntitiesFavorites @deleted="dispatchProfile()" :profile="profile" entities="avis" entity="avi"/>
+            <EntitiesFavorites placeholder="Players" @deleted="dispatchProfile()" :profile="profile" entities="avis" entity="avi"/>
           </b-col>
           <b-col cols="6">
-            <EntitiesFavorites @deleted="dispatchProfile()" :profile="profile" entities="parties" entity="party"/>
+            <EntitiesFavorites placeholder="Parties" @deleted="dispatchProfile()" :profile="profile" entities="parties" entity="party"/>
           </b-col>
         </b-row>
       </b-col>

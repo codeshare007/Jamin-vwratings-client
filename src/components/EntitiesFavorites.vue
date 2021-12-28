@@ -1,6 +1,6 @@
 <template>
   <div class="entitiesFavorites">
-    <h2>{{ entities }} favorites</h2>
+    <h2>{{ placeholder }} favorites</h2>
 
     <div class="entitiesFavorites__inner" v-if="profile['favorites']">
       <div v-for="(item, key) in profile['favorites'][entities]" :key="key" class="mb-2 d-flex align-items-center">
@@ -21,6 +21,7 @@ export default {
   props: {
     entities: String,
     entity: String,
+    placeholder: String,
     profile: Object
   },
 

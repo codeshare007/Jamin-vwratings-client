@@ -29,8 +29,8 @@
             v-if="item.comment && item.comment[entity]"
             class="text-white pt-2 d-block"
             :to="{ name: `ratings.${method}.view`, params: { id: item.comment[entity].id } }"
-          >{{ item.comment[entity].name }}
-          </router-link>
+            v-html="item.comment[entity].name"
+          />
         </div>
       </div>
     </div>

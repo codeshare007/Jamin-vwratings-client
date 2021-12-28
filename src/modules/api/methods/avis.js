@@ -28,5 +28,11 @@ export default axios => ({
   },
   removeFavorite(id) {
     return axios.delete(`avis/${id}/remove-favorite`)
+  },
+  fetchInterviews() {
+    return axios.get('avis/interviews')
+  },
+  getInterview(id) {
+    return axios.get(`avis/${id}/interview`)
   }
 });

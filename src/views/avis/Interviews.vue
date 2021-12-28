@@ -1,15 +1,13 @@
 <template>
-  <div class="entitiesInterviews">
-
+  <div class="avisInterviews">
+    <EntitiesInterviews entities="avis" entity="avi" />
   </div>
 </template>
 <script>
+  import EntitiesInterviews from "../../components/entities/EntitiesInterviews";
   export default {
-
+    components: {
+      EntitiesInterviews
+    }
   }
 </script>
-<style lang="scss">
-  .entitiesInterviews {
-
-  }
-</style>
