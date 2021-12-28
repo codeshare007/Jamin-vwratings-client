@@ -4,7 +4,8 @@
 
       <b-button
         class="mb-4 btn-back"
-        @click="$router.go(-1)">Back</b-button>
+        @click="$router.go(-1)"
+      >Back</b-button>
 
       <div v-html="interview.content"></div>
     </div>
