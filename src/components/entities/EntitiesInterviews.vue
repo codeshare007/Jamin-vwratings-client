@@ -3,8 +3,8 @@
     <div class="profileContainer">
 
       <b-button
-        class="mb-4 btn-back"
-        @click="$router.go(-1)">Back</b-button>
+        class="mb-4 mr-4 btn-back"
+        @click="$router.go(-1)">Back</b-button> <span style="color: red;">Interviews will be cleaned up to reflect our new name. Pics aren't working yet</span>
 
       <div class="d-flex flex-wrap">
         <b-button

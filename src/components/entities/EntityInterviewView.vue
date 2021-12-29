@@ -52,6 +52,7 @@ export default {
     min-height: 250px;
     margin-bottom: 20px;
     border: 1px solid #18786f;
+	font-size: 20px;
   }
 
   .btn-back {
@@ -59,5 +60,13 @@ export default {
     border: 1px solid #082b30;
     font-size: 12px;
   }
+  
+  .namer {
+	color: #00ffad;
+	}
+	
+  .namee {
+	color: #e3de52;
+	}	
 }
 </style>
