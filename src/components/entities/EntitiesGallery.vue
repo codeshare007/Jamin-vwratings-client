@@ -4,6 +4,8 @@
     <b-button
       class="mb-4 btn-back"
       @click="$router.go(-1)">Back</b-button>
+	<b-button
+      class="mb-4 ml-5 btn-back" :to="{name: 'ratings.parties.gallery'}">Party Pics</b-button>
 
     <b-pagination
       v-model="currentPage"
