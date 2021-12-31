@@ -5,7 +5,7 @@
         <div class="profileContainer">
           <h3>Claim Player and/or Party</h3>
 
-          <p>Simply add a player and/or party name and don't let the timer run out.</p>
+          <p>Simply add a player and/or party name and don't let the timer run out. <router-link :to="{name: 'ratings.claim'}">More info</router-link></p>
 
           <div v-if="!loading">
             <Claim :items="claimed_avis" entity="avi" entities="avis" placeholder="Player" class="claimDelimiter"/>

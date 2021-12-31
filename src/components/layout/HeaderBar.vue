@@ -154,7 +154,7 @@ export default {
 
     &.router-link-exact-active,
     &.router-link-active {
-      color: white;
+      color: #5fe134;
     }
 
     &:hover {
