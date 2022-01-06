@@ -22,10 +22,19 @@ export default axios => ({
       headers: {'content-type': 'multipart/form-data'}
     });
   },
+  changePassword(payload) {
+    return axios.post('profile/change-password', payload)
+  },
   favoriteAvis() {
     return axios.get('profile/favorite-avis')
   },
   favoriteParties() {
     return axios.get('profile/favorite-parties')
+  },
+  deleteFavoriteAvi(id) {
+    return axios.delete(`profile/favorite-avis/${id}`)
+  },
+  deleteFavoriteParty(id) {
+    return axios.delete(`profile/favorite-parties/${id}`)
   }
 });

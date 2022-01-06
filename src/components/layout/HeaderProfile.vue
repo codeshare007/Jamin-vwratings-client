@@ -52,7 +52,7 @@ export default {
     },
 
     emitProfile() {
-      this.$router.push({ name: 'ratings.profile' }).catch(() => {});
+      this.$router.push({ name: 'ratings.profile.view' }).catch(() => {});
       this.hideMenu();
     },
 

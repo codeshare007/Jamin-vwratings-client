@@ -1,74 +1,110 @@
 <template>
   <div class="entitiesFavorites">
-    <span>List of your favorite avis</span>
-    <div v-for="(item, key) in items" :key="key" class="entitiesFavorites__item">
-      <div>{{ item.avi.name }}</div>
-      <b-button variant="outline-light" size="sm"><b-icon-trash /></b-button>
+    <span class="entitiesFavorites__title">
+      <font-awesome-icon icon="star" size="sm" class="mr-1" />
+      List of your favorite {{ labels[entity] }}
+    </span>
+
+    <div v-if="Object.keys(items).length">
+      <div v-for="(item, key) in items" :key="key" class="entitiesFavorites__item">
+        <div v-if="item[entity]">{{ item[entity].name }}</div>
+        <b-icon-trash @click="openDeleteModal(item[entity].id)"/>
+      </div>
     </div>
+
+    <div v-else>
+      There is no favorite yet.
+    </div>
+
+    <b-modal
+      ref="deleteModal"
+      title="Delete from favorite"
+      ok-title="Delete"
+      ok-variant="danger"
+      @ok="deleteItem()">
+      Are you sure that you want to delete this {{ entity }} from your favorites ?
+    </b-modal>
   </div>
 </template>
 <script>
-  export default {
+export default {
+  props: {
+    entity: String,
+    entities: String
+  },
 
-    props: {
-      entity: Number
-    },
-
-    watch: {
-      entity(value) {
-        if (value === 1) {
-          this.fetchFavoriteAvis()
-        } else if (value === 2) {
-          this.fetchFavoritesParties()
-        }
-      }
-    },
-
-    data() {
-      return {
-        items: []
-      }
-    },
-
-    mounted() {
-      this.fetchFavoriteAvis();
-    },
-
-    methods: {
-      fetchFavoritesParties() {
-        this.$api.profile.favoriteParties().then(response => {
-          this.items = response.data;
-          this.loading = false;
-        })
+  data() {
+    return {
+      items: [],
+      labels: {
+        avi: 'players',
+        party: 'parties'
       },
-      fetchFavoriteAvis() {
-        this.$api.profile.favoriteAvis().then(response => {
-          this.items = response.data;
-          this.loading = false;
-        })
-      },
+      deletableId: null,
+      loading: false,
     }
+  },
+
+  watch: {
+    entity() {
+      this.fetchFavorites();
+    }
+  },
+
+  mounted() {
+    this.fetchFavorites();
+  },
+
+  methods: {
+    openDeleteModal(id) {
+      this.deletableId = id;
+      this.$refs["deleteModal"].show();
+    },
+
+    deleteItem() {
+      this.$api[this.entities].removeFavorite(this.deletableId).then(() => {
+        this.deletableId = null;
+        this.fetchFavorites();
+      })
+    },
+
+    fetchFavorites() {
+      this.loading = true;
+      this.$api[this.entities].favorites().then(response => {
+        this.items = response.data;
+        this.loading = false;
+      })
+    },
   }
+}
 </script>
 <style lang="scss">
-  .entitiesFavorites {
-    background: #3a6581;
-    min-height: 100px;
-    border-radius: 7px;
-    padding: 15px;
-    width: 100%;
-    margin-bottom: 20px;
+.entitiesFavorites {
+  background: #1f5476;
+  border-radius: 15px;
+  padding: 15px;
+  width: 100%;
+  margin-bottom: 10px;
 
-    &__item {
-      margin-top: 10px;
-      background: #4f83a5;
-      padding: 10px;
-      border-radius: 7px;
-      margin-bottom: 15px;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+  @media screen and (min-width: 1024px) {
+    margin-bottom: 20px;
+    min-height: calc(100% - 21px);
   }
+
+  &__title {
+    margin-bottom: 13px;
+    display: block;
+  }
+
+  &__item {
+    background: #133347;
+    padding: 4px 10px;
+    border-radius: 7px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
 </style>

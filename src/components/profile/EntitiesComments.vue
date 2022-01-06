@@ -1,21 +1,43 @@
 <template>
   <div class="entitiesComments">
-    <span>Your last comments to players pages</span>
-    <div v-for="(item, key) in comments" :key="key" class="entitiesComments__item">
-      <div v-html="item.content"></div>
+    <span>
+      <font-awesome-icon icon="comment" size="sm" class="mr-1"/>
+      Your last 5 comments to players pages
+    </span>
+    <div v-if="Object.keys(comments).length">
+      <div v-for="(item, key) in comments" :key="key">
+        <router-link
+          class="text-white ml-1 mb-1 mt-1 d-block"
+          :to="{name: `ratings.${entities}.view`, params: {id: item[entity].id }}"
+          v-if="item[entity]"
+          v-html="item[entity].name"
+        />
+        <div class="entitiesComments__item">
+          <div v-html="item.content"></div>
+        </div>
+      </div>
     </div>
+
+    <div class="mt-2" v-else>There is no comments yet.</div>
   </div>
 </template>
 <script>
 export default {
 
   props: {
-    entity: Number,
+    entity: String,
+    entities: String
   },
 
   data() {
     return {
       comments: []
+    }
+  },
+
+  watch: {
+    entity() {
+      this.fetchComments()
     }
   },
 
@@ -26,7 +48,7 @@ export default {
   methods: {
     fetchComments() {
       this.loading = true;
-      this.$api.profile.comments().then(response => {
+      this.$api[this.entities].comments().then(response => {
         this.comments = response.data;
         this.loading = false;
       })
@@ -36,7 +58,7 @@ export default {
 </script>
 <style lang="scss">
 .entitiesComments {
-  background: #3a6581;
+  background: #1f5476;
   min-height: 100px;
   border-radius: 7px;
   padding: 15px;
@@ -44,16 +66,15 @@ export default {
   margin-bottom: 20px;
 
   &__item {
-    margin-top: 10px;
-    background: #4f83a5;
+    background: #133347;
     padding: 10px;
     border-radius: 7px;
-    margin-bottom: 15px;
     min-height: 45px;
     cursor: pointer;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    white-space: pre-line;
   }
 }
 </style>

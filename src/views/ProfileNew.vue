@@ -6,13 +6,6 @@
           <b-col cols="12">
             <ProfileWidget :username="profile.username" />
           </b-col>
-          <b-col cols="12">
-            <div class="d-flex flex-column">
-              <b-button class="mb-2">Edit Profile</b-button>
-              <b-button class="mb-2">Change password</b-button>
-              <b-button class="mb-2">Logout</b-button>
-            </div>
-          </b-col>
         </b-row>
       </b-col>
       <b-col cols="12" lg="8">

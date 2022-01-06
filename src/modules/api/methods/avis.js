@@ -34,5 +34,14 @@ export default axios => ({
   },
   getInterview(id) {
     return axios.get(`avis/${id}/interview`)
+  },
+  favorites() {
+    return axios.get('profile/avis/favorites')
+  },
+  comments() {
+    return axios.get('profile/avis/comments')
+  },
+  stats() {
+    return axios.get('profile/avis/stats')
   }
 });

@@ -23,7 +23,11 @@
 <style lang="scss">
   .entitySwitcher {
     display: flex;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+
+    @media screen and (min-width: 1024px) {
+      margin-bottom: 20px;
+    }
 
     &__button {
       border: 0;
@@ -31,7 +35,7 @@
       color: white;
       width: 100%;
       height: 40px;
-      background: #3a6581;
+      background: #1f5476;
 
       &:focus {
         outline: 0;

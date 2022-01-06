@@ -10,8 +10,32 @@ export default [
   {
     name: 'ratings.profile',
     path: 'profile',
-    component: () => import('@/views/Profile'),
-    meta: {title: 'Profile', middleware: [Authenticated]}
+    redirect: {name: 'ratings.profile.view'},
+    component: () => import('@/layouts/profile'),
+    meta: {
+      title: 'Profile',
+      middleware: [Authenticated]
+    },
+    children: [
+      {
+        name: 'ratings.profile.view',
+        path: '',
+        component: () => import('@/views/profile/View'),
+        meta: {title: 'Profile View'}
+      },
+      {
+        name: 'ratings.profile.edit',
+        path: 'edit',
+        component: () => import('@/views/profile/Edit'),
+        meta: {title: 'Profile Edit'}
+      },
+      {
+        name: 'ratings.profile.password',
+        path: 'password',
+        component: () => import('@/views/profile/PasswordChange'),
+        meta: {title: 'Password Change'}
+      }
+    ]
   },
   {
     name: 'ratings.profile-new',

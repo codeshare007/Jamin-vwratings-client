@@ -1,11 +1,12 @@
 <template>
   <div class="app" :style="dynamicBackground()">
     <div class="dialogs">
-      <b-modal ref="announcement" title="Announcement" ok-only ok-title="Close" ok-variant="secondary">
+      <b-modal ref="announcement" modal-class="announcement-modal" title="Announcement" ok-only ok-title="Close"
+               ok-variant="secondary">
         <div v-html="html"></div>
       </b-modal>
     </div>
-    <router-view />
+    <router-view/>
   </div>
 </template>
 
@@ -55,9 +56,9 @@ export default {
 
     dynamicBackground() {
       if (this.$route.name === 'ratings.parties.view' || this.$route.name === 'ratings.parties.list') {
-        return { backgroundImage: 'url(/images/party.jpg)' }
+        return {backgroundImage: 'url(/images/party.jpg)'}
       } else {
-        return { backgroundImage: 'url(/images/background.jpg)' }
+        return {backgroundImage: 'url(/images/background.jpg)'}
       }
     },
 
@@ -88,34 +89,37 @@ export default {
   background-size: cover;
 }
 
-.modal-content {
+.announcement-modal {
+  .modal-content {
     background-color: #389b70;
-}
+  }
 
-.modal-footer {
+  .modal-footer {
     display: none;
-}
+  }
 
-.modal-header {
+  .modal-header {
     border-bottom: none;
-}
+  }
 
-.modal-backdrop {
+  .modal-backdrop {
     opacity: .9;
-	background-color: #062204;
-}
+    background-color: #062204;
+  }
 
-.modal-title {
+  .modal-title {
     display: none;
-}
+  }
 
-.modal-header .close {
-    padding: 0rem .5rem;
+  .modal-header .close {
+    padding: 0 .5rem;
     font-size: 34px;
-}
+  }
 
-@media (min-width: 576px){
-.modal-dialog {
-    max-width: 700px;}
+  @media (min-width: 576px) {
+    .modal-dialog {
+      max-width: 700px;
+    }
+  }
 }
 </style>

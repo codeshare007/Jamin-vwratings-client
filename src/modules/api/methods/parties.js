@@ -28,5 +28,15 @@ export default axios => ({
   },
   removeFavorite(id) {
     return axios.delete(`parties/${id}/remove-favorite`)
+  },
+
+  favorites() {
+    return axios.get('profile/parties/favorites')
+  },
+  comments() {
+    return axios.get('profile/parties/comments')
+  },
+  stats() {
+    return axios.get('profile/parties/stats')
   }
 });

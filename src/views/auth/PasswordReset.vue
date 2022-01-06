@@ -44,7 +44,6 @@
 </template>
 <script>
 import {mapActions} from "vuex";
-
 const {required, email, minLength} = require('vuelidate/lib/validators')
 
 export default {

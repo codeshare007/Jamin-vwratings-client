@@ -12,6 +12,7 @@
 <script>
 import ScrollToTop from "../components/ScrollToTop";
 import HeaderBar from '@/components/layout/HeaderBar';
+
 export default {
   components: {
     HeaderBar,
