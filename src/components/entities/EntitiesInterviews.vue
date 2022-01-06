@@ -3,8 +3,8 @@
     <div class="profileContainer">
 
       <b-button
-        class="mb-4 btn-back"
-        @click="$router.go(-1)">Back</b-button>
+        class="mb-4 mr-4 btn-back"
+        @click="$router.go(-1)">Back</b-button> <span style="color: #48c443;"><router-link :to="{name: 'ratings.contact'}">Message Us</router-link> if you dare to be interviewed or re-interviewed.</span>
 
       <div class="d-flex flex-wrap">
         <b-button

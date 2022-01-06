@@ -28,7 +28,6 @@
         <p class="text-center">Everything is anonymous....</p>
       </div>
 
-      <!--
       <div class="d-flex justify-content-center">
        <div align="center" class="homePage__gallery">
          <viewer>
@@ -39,7 +38,6 @@
          </viewer>
        </div>
      </div>
-     -->
 
       <div class="row">
         <div class="column">
@@ -112,6 +110,26 @@
             </div>
           </div>
         </div>
+		
+        <div class="column">
+          <div class="card">
+            <div class="topy"> View Pics</div>
+            <div class="contain">
+              <p>See all the cool things and the trash that your fellow players have been caught doing. Hopefully you don't see yourself on the trash side.</p>
+              Maybe you can snap a creep.
+            </div>
+          </div>
+        </div>
+
+        <div class="column">
+          <div class="card">
+            <div class="topy"> Read Interviews</div>
+            <div class="contain">
+              <p>Get to know other players better. Read what they say when asked random questions from us. Some are fun and some are serious.</p>
+              We dare you to do one.
+            </div>
+          </div>
+        </div>		
       </div>
     </div>
   </div>

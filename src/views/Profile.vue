@@ -5,7 +5,7 @@
         <div class="profileContainer">
           <h3>Claim Player and/or Party</h3>
 
-          <p>Simply add a player and/or party name and don't let the timer run out.</p>
+          <p>Simply add a player and/or party name and don't let the timer run out. <router-link :to="{name: 'ratings.claim'}">More info</router-link></p>
 
           <div v-if="!loading">
             <Claim :items="claimed_avis" entity="avi" entities="avis" placeholder="Player" class="claimDelimiter"/>
@@ -25,10 +25,10 @@
       <b-col cols="12">
         <b-row>
           <b-col cols="6">
-            <EntitiesFavorites placeholder="Players" @deleted="dispatchProfile()" :profile="profile" entities="avis" entity="avi"/>
+            <EntitiesFavorites placeholder="Player" @deleted="dispatchProfile()" :profile="profile" entities="avis" entity="avi"/>
           </b-col>
           <b-col cols="6">
-            <EntitiesFavorites placeholder="Parties" @deleted="dispatchProfile()" :profile="profile" entities="parties" entity="party"/>
+            <EntitiesFavorites placeholder="Party" @deleted="dispatchProfile()" :profile="profile" entities="parties" entity="party"/>
           </b-col>
         </b-row>
       </b-col>
