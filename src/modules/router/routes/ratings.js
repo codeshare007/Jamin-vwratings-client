@@ -13,6 +13,12 @@ export default [
     component: () => import('@/views/Profile'),
     meta: {title: 'Profile', middleware: [Authenticated]}
   },
+  {
+    name: 'ratings.profile-new',
+    path: 'profile-new',
+    component: () => import('@/views/ProfileNew'),
+    meta: {title: 'Profile', middleware: [Authenticated]}
+  },
   // Avis
   {
     name: 'ratings.avis.list',

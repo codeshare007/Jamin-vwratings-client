@@ -22,4 +22,10 @@ export default axios => ({
       headers: {'content-type': 'multipart/form-data'}
     });
   },
+  favoriteAvis() {
+    return axios.get('profile/favorite-avis')
+  },
+  favoriteParties() {
+    return axios.get('profile/favorite-parties')
+  }
 });

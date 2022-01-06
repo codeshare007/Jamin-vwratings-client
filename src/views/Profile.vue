@@ -132,6 +132,7 @@ export default {
         this.$router.push({name: 'auth.signin'})
       })
     },
+
     fetchClaimed() {
       this.loading = true;
       this.$api.profile.claimed().then(response => {
