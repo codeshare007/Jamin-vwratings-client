@@ -57,6 +57,9 @@ export default {
     dynamicBackground() {
       if (this.$route.name === 'ratings.parties.view' || this.$route.name === 'ratings.parties.list') {
         return {backgroundImage: 'url(/images/party.jpg)'}
+      } else if (
+		this.$route.name === 'ratings.profile.view') {
+        return {background: '#133347'}
       } else {
         return {backgroundImage: 'url(/images/background.jpg)'}
       }
