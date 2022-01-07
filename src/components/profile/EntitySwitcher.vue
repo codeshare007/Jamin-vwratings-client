@@ -42,9 +42,7 @@
       }
 
       &.active {
-        border: 1px solid #f6b135;
-        background: rgb(238,131,1);
-        background: linear-gradient(90deg, rgba(238,131,1,1) 0%, rgba(241,146,3,1) 35%, rgba(238,131,1,1) 100%);
+        background: linear-gradient(353deg,#12b19b,#095e4b 35%,#128d75);
       }
     }
   }

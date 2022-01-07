@@ -27,14 +27,14 @@
           v-model="$v.form.password.$model"
           type="password"
           :state="validateState('password')"
-          placeholder="New password (must be 6 characters minimal length)"
+          placeholder="New password (6 characters minimum)"
           class="mb-2"
         />
         <b-form-input
           v-model="$v.form.password_confirmation.$model"
           type="password"
           :state="validateState('password_confirmation')"
-          placeholder="New password confirmation"
+          placeholder="Retype new password"
           class="mb-2"
         />
 
@@ -114,7 +114,7 @@ export default {
 </script>
 <style lang="scss">
 .passwordChange {
-  background: #1f5476;
+  background: #157272;
   border-radius: 15px;
   padding: 20px 19px;
 

@@ -2,9 +2,9 @@
   <transition name="fade">
     <div class="profileChange" v-if="loaded">
 
-      <h3 class="mb-4">Profile</h3>
+      <h3 class="mb-4">Change/Add Email</h3>
 
-      <b-form-group label="Email">
+      <b-form-group>
         <b-form-input  v-model="$v.form.email.$model" />
       </b-form-group>
 
@@ -73,7 +73,7 @@ export default {
 </script>
 <style lang="scss">
 .profileChange {
-  background: #1f5476;
+  background: #157272;
   border-radius: 15px;
   padding: 20px 19px;
 

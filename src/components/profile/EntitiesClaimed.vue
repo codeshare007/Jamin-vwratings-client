@@ -4,7 +4,7 @@
     <div class="d-flex align-items-center mb-2 justify-content-between">
       <p class="m-0">
         <font-awesome-icon icon="user-edit" size="sm" class="mr-1" />
-        Claimed {{ entityName }}
+        Claim {{ entityName }}
       </p>
 
       <b-button variant="transparent" size="sm" id="tooltip-target-1">
@@ -13,7 +13,7 @@
     </div>
 
     <b-tooltip target="tooltip-target-1" triggers="hover">
-      Simply add a {{ entityName }} name and don't let the timer run out.
+      Simply add a {{ entityName }} name and don't let the timer run out. Reset it by using the orange refresh button.<br> 
       <router-link :to="{name: 'ratings.claim'}">More info</router-link>
     </b-tooltip>
 
@@ -29,7 +29,7 @@
           </vue-countdown>
         </div>
         <div>
-          <b-button variant="warning" @click="stayClaimed()" size="sm">
+          <b-button variant="danger" @click="stayClaimed()" size="sm">
             <b-icon-arrow-clockwise />
           </b-button>
         </div>
@@ -44,7 +44,7 @@
         v-model="$v.form.name.$model"
         :placeholder="`Enter ${entityName} name`"
       />
-      <b-button @click="claimItem" variant="warning">Claim</b-button>
+      <b-button class="claimbutt" @click="claimItem">Claim</b-button>
     </div>
 
     <b-alert variant="danger" show v-for="(item, key) in errors" :key="key">{{ item }}</b-alert>
@@ -148,7 +148,7 @@ export default {
 </script>
 <style lang="scss">
 .entitiesClaimed {
-  background: #1f5476;
+  background: #157272;
   min-height: 140px;
   border-radius: 15px;
   padding: 15px;
@@ -184,5 +184,9 @@ export default {
     justify-content: space-between;
     align-items: center;
   }
+  
+  .claimbutt {
+	background: #299b71;
+	}
 }
 </style>

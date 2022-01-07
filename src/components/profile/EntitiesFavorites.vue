@@ -1,9 +1,17 @@
 <template>
   <div class="entitiesFavorites">
-    <span class="entitiesFavorites__title">
-      <font-awesome-icon icon="star" size="sm" class="mr-1" />
-      List of your favorite {{ labels[entity] }}
+    <span class="entitiesFavorites__title d-flex align-items-center justify-content-between">
+      <b-icon-heart-fill size="sm" class="mr-1" />
+      Watched {{ labels[entity] }}
+	
+      <b-button variant="transparent" size="sm" id="tooltip-target-2">
+        <b-icon-info-circle variant="light"/>
+      </b-button>
     </span>
+
+    <b-tooltip target="tooltip-target-2" triggers="hover">
+      Click the heart at the top of the {{ entityName }} page to save it to this list for quick access. 
+    </b-tooltip>	
 
     <div v-if="Object.keys(items).length">
       <div v-for="(item, key) in items" :key="key" class="entitiesFavorites__item">
@@ -13,7 +21,7 @@
     </div>
 
     <div v-else>
-      There is no favorite yet.
+      Not watching any names yet.
     </div>
 
     <b-modal
@@ -80,11 +88,13 @@ export default {
 </script>
 <style lang="scss">
 .entitiesFavorites {
-  background: #1f5476;
+  background: #157272;
   border-radius: 15px;
   padding: 15px;
   width: 100%;
   margin-bottom: 10px;
+  overflow-y: auto;
+  max-height: 245px;
 
   @media screen and (min-width: 1024px) {
     margin-bottom: 20px;

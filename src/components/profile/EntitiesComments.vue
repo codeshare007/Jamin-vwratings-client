@@ -7,18 +7,18 @@
     <div v-if="Object.keys(comments).length">
       <div v-for="(item, key) in comments" :key="key">
         <router-link
-          class="text-white ml-1 mb-1 mt-1 d-block"
+          class="comlink ml-1 mt-1 d-block"
           :to="{name: `ratings.${entities}.view`, params: {id: item[entity].id }}"
           v-if="item[entity]"
           v-html="item[entity].name"
         />
-        <div class="entitiesComments__item">
+        <div class="entitiesComments__item mb-3">
           <div v-html="item.content"></div>
         </div>
       </div>
     </div>
 
-    <div class="mt-2" v-else>There is no comments yet.</div>
+    <div class="mt-2" v-else>You have not made any posts yet</div>
   </div>
 </template>
 <script>
@@ -58,7 +58,7 @@ export default {
 </script>
 <style lang="scss">
 .entitiesComments {
-  background: #1f5476;
+  background: #157272;
   min-height: 100px;
   border-radius: 7px;
   padding: 15px;
@@ -75,6 +75,10 @@ export default {
     justify-content: space-between;
     align-items: center;
     white-space: pre-line;
+  }
+  
+  .comlink {
+  color: #24efa4;
   }
 }
 </style>

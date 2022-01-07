@@ -2,18 +2,18 @@
   <div class="statisticsWidget">
     <span class="d-block mb-2">
       <font-awesome-icon icon="chart-line" size="sm" class="mr-1" />
-      Stats
+      Your Stats
     </span>
 
     <b-row class="justify-content-between m-0">
       <div class="statisticsWidget__item">
-        {{ stats.rated }} rated
+        Made {{ stats.rated }} rates
       </div>
       <div class="statisticsWidget__item">
-        {{ stats.comments }} comments
+        Made {{ stats.comments }} posts
       </div>
       <div class="statisticsWidget__item">
-        {{ stats.added }} added
+        Added {{ stats.added }} names
       </div>
     </b-row>
   </div>
@@ -63,7 +63,7 @@ export default {
   margin-bottom: 10px;
   border-radius: 10px;
   padding: 6px 16px 13px;
-  background: #1f5476;
+  background: #157272;
 
   @media screen and (min-width: 1024px) {
     margin-bottom: 20px;
