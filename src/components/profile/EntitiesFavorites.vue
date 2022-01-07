@@ -1,16 +1,16 @@
 <template>
   <div class="entitiesFavorites">
-    <span class="entitiesFavorites__title d-flex align-items-center justify-content-between">
+    <div class="entitiesFavorites__title">
       <b-icon-heart-fill size="sm" class="mr-1" />
       Watched {{ labels[entity] }}
 	
       <b-button variant="transparent" size="sm" id="tooltip-target-2">
         <b-icon-info-circle variant="light"/>
       </b-button>
-    </span>
+    </div>
 
     <b-tooltip target="tooltip-target-2" triggers="hover">
-      Click the heart at the top of the {{ entityName }} page to save it to this list for quick access. 
+      Click the heart at the top of the {{ entityName }} pages to save it to this list for quick access. 
     </b-tooltip>	
 
     <div v-if="Object.keys(items).length">

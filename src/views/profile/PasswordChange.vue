@@ -17,13 +17,6 @@
 
       <b-form v-else>
         <b-form-input
-          v-model="$v.form.old_password.$model"
-          type="password"
-          :state="validateState('old_password')"
-          placeholder="Old password"
-          class="mb-2"
-        />
-        <b-form-input
           v-model="$v.form.password.$model"
           type="password"
           :state="validateState('password')"
@@ -55,7 +48,7 @@ export default {
       errors: [],
       passwordChanged: false,
       form: {
-        old_password: '',
+        old_password: 'any',
         password: '',
         password_confirmation: ''
       }
