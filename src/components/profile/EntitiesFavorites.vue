@@ -15,7 +15,12 @@
 
     <div v-if="Object.keys(items).length">
       <div v-for="(item, key) in items" :key="key" class="entitiesFavorites__item">
-        <div v-if="item[entity]">{{ item[entity].name }}</div>
+        <div v-if="item[entity]">
+          <router-link
+            class="text-white cursor-pointer"
+            v-html="item[entity].name"
+            :to="{name: `ratings.${entities}.view`, params: {id: item[entity].id}}"
+          /></div>
         <b-icon-trash @click="openDeleteModal(item[entity].id)"/>
       </div>
     </div>
