@@ -4,8 +4,8 @@
 
       <h3 class="mb-4">Change/Add Email</h3>
 
-      <b-form-group>
-        <b-form-input  v-model="$v.form.email.$model" />
+      <b-form-group label="Email">
+        <b-form-input v-on:keyup.enter="updateProfile()" v-model="$v.form.email.$model" />
       </b-form-group>
 
       <div class="d-flex justify-content-end">
@@ -15,8 +15,6 @@
   </transition>
 </template>
 <script>
-const {required} = require('vuelidate/lib/validators')
-
 export default {
   data() {
     return {
@@ -27,7 +25,6 @@ export default {
     }
   },
 
-
   computed: {
     profile() {
       return this.$store.getters['auth/profile']
@@ -36,7 +33,7 @@ export default {
 
   validations: {
     form: {
-      email: {required}
+      email: {}
     }
   },
 
@@ -58,13 +55,24 @@ export default {
       this.$api.profile.update(payload).then(response => {
         if (response.data.status === 'success') {
           this.errors = [];
+          this.$bvToast.toast('Password changed successfully', {
+            title: `Success`,
+            toaster: 'b-toaster-bottom-right',
+            variant: 'success',
+            solid: true
+          })
         }
       }).catch(error => {
         this.errors = [];
         const errors = error.response.data.errors;
         for (let i in errors) {
           let error = errors[i][0]
-          this.errors.push(error);
+          this.$bvToast.toast(error, {
+            title: `Error`,
+            toaster: 'b-toaster-bottom-right',
+            variant: 'danger',
+            solid: true
+          })
         }
       })
     }
@@ -84,6 +92,7 @@ export default {
 
     &:focus {
       background: #133347;
+      box-shadow: 0 0 0 0.2rem #06abab75;
     }
 
     &::placeholder {

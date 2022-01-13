@@ -17,6 +17,12 @@ export default axios => ({
   stayClaimed(payload) {
     return axios.post('stay-claimed', payload)
   },
+  notifications() {
+    return axios.get('profile/notifications')
+  },
+  readNotifications() {
+    return axios.post('profile/notifications/read')
+  },
   changeAvatar(payload) {
     return axios.post('profile/change-avatar', payload, {
       headers: {'content-type': 'multipart/form-data'}

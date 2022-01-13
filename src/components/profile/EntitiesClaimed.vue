@@ -3,7 +3,7 @@
 
     <div class="d-flex align-items-center mb-2 justify-content-between">
       <p class="m-0">
-        <font-awesome-icon icon="user-edit" size="sm" class="mr-1" />
+        <font-awesome-icon icon="user-edit" size="sm" class="mr-1"/>
         Claim {{ entityName }}
       </p>
 
@@ -13,7 +13,8 @@
     </div>
 
     <b-tooltip target="tooltip-target-1" triggers="hover">
-      Simply add a {{ entityName }} name and don't let the timer run out. Reset it by using the orange refresh button.<br> 
+      Simply add a {{ entityName }} name and don't let the timer run out. Reset it by using the orange refresh
+      button.<br>
       <router-link :to="{name: 'ratings.claim'}">More info</router-link>
     </b-tooltip>
 
@@ -30,7 +31,7 @@
         </div>
         <div>
           <b-button variant="danger" @click="stayClaimed()" size="sm">
-            <b-icon-arrow-clockwise />
+            <b-icon-arrow-clockwise/>
           </b-button>
         </div>
       </div>
@@ -44,7 +45,7 @@
         v-model="$v.form.name.$model"
         :placeholder="`Enter ${entityName} name`"
       />
-      <b-button class="claimbutt" @click="claimItem">Claim</b-button>
+      <b-button class="claim-btn" @click="claimItem">Claim</b-button>
     </div>
 
     <b-alert variant="danger" show v-for="(item, key) in errors" :key="key">{{ item }}</b-alert>
@@ -184,9 +185,9 @@ export default {
     justify-content: space-between;
     align-items: center;
   }
-  
-  .claimbutt {
-	background: #299b71;
-	}
+
+  .claim-btn {
+    background: #299b71;
+  }
 }
 </style>

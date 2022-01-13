@@ -10,7 +10,7 @@
     </div>
 
     <b-tooltip target="tooltip-target-2" triggers="hover">
-      Click the heart at the top of the {{ entityName }} pages to save it to this list for quick access. 
+      Click the heart at the top of the {{ labels[entity] }} pages to save it to this list for quick access.
     </b-tooltip>	
 
     <div v-if="Object.keys(items).length">

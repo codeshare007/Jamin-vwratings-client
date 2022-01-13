@@ -7,7 +7,7 @@
     <div v-if="Object.keys(comments).length">
       <div v-for="(item, key) in comments" :key="key">
         <router-link
-          class="comlink ml-1 mt-1 d-block"
+          class="entitiesComments__link ml-1 mt-1 d-block"
           :to="{name: `ratings.${entities}.view`, params: {id: item[entity].id }}"
           v-if="item[entity]"
           v-html="item[entity].name"
@@ -76,9 +76,9 @@ export default {
     align-items: center;
     white-space: pre-line;
   }
-  
-  .comlink {
-  color: #24efa4;
+
+  &__link {
+    color: #24efa4;
   }
 }
 </style>

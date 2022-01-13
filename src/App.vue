@@ -1,9 +1,14 @@
 <template>
   <div class="app" :style="dynamicBackground()">
     <div class="dialogs">
-      <b-modal ref="announcement" modal-class="announcement-modal" title="Announcement" ok-only ok-title="Close"
-               ok-variant="secondary">
-        <div v-html="html"></div>
+      <b-modal
+        ref="announcement"
+        modal-class="announcement-modal"
+        title="Announcement"
+        ok-only
+        ok-title="Close"
+        ok-variant="secondary">
+        <div v-html="html"/>
       </b-modal>
     </div>
     <router-view/>
@@ -53,16 +58,22 @@ export default {
   },
 
   methods: {
-
     dynamicBackground() {
-      if (this.$route.name === 'ratings.parties.view' || this.$route.name === 'ratings.parties.list') {
-        return {backgroundImage: 'url(/images/party.jpg)'}
-      } else if (
-		this.$route.name === 'ratings.profile.view') {
-        return {background: '#133347'}
-      } else {
-        return {backgroundImage: 'url(/images/background.jpg)'}
-      }
+
+      const parties = [
+        'ratings.parties.view',
+        'ratings.parties.list'
+      ];
+
+      const profile = [
+        'ratings.profile.view',
+        'ratings.profile.password',
+        'ratings.profile.edit'
+      ];
+
+      if (parties.includes(this.$route.name)) return {backgroundImage: 'url(/images/party.jpg)'};
+      if (profile.includes(this.$route.name)) return {background: '#133347'};
+      return {backgroundImage: 'url(/images/background.jpg)'}
     },
 
     preloader() {

@@ -3,7 +3,9 @@
 
     <b-button
       class="mb-4 btn-back"
-      @click="$router.go(-1)">Back</b-button>
+      @click="$router.go(-1)"
+      v-html="`Back`"
+    />
 
     <b-pagination
       v-model="currentPage"

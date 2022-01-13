@@ -6,6 +6,7 @@ import {
   faUserEdit,
   faChartLine,
   faComment,
+  faBell
 } from '@fortawesome/free-solid-svg-icons'
 
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
@@ -15,6 +16,7 @@ library.add(faStar)
 library.add(faUserEdit)
 library.add(faChartLine)
 library.add(faComment)
+library.add(faBell)
 
 dom.watch();
 

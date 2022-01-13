@@ -12,10 +12,7 @@ export default [
     path: 'profile',
     redirect: {name: 'ratings.profile.view'},
     component: () => import('@/layouts/profile'),
-    meta: {
-      title: 'Profile',
-      middleware: [Authenticated]
-    },
+    meta: {title: 'Profile', middleware: [Authenticated]},
     children: [
       {
         name: 'ratings.profile.view',
@@ -34,14 +31,14 @@ export default [
         path: 'password',
         component: () => import('@/views/profile/PasswordChange'),
         meta: {title: 'Password Change'}
+      },
+      {
+        name: 'ratings.profile.notifications',
+        path: 'notifications',
+        component: () => import('@/views/profile/Notifications'),
+        meta: {title: 'Notifications'}
       }
     ]
-  },
-  {
-    name: 'ratings.profile-new',
-    path: 'profile-new',
-    component: () => import('@/views/ProfileNew'),
-    meta: {title: 'Profile', middleware: [Authenticated]}
   },
   // Avis
   {
@@ -60,7 +57,7 @@ export default [
     name: 'ratings.avis.interviews',
     path: 'avis/interviews',
     component: () => import('@/views/avis/Interviews'),
-    meta: {title: 'Avis Interviews'}
+    meta: {title: 'Avis Interviews', middleware: [Authenticated]}
   },
   {
     name: 'ratings.avis.view',
@@ -117,7 +114,7 @@ export default [
     meta: {title: 'Special Page 1'}
   },
   {
-    name: 'ratings.special.one',
+    name: 'ratings.special.two',
     path: 'special-two',
     component: () => import('@/views/buttons/SpecialTwo'),
     meta: {title: 'Special Page 2'}
@@ -151,6 +148,12 @@ export default [
     path: 'buttons',
     component: () => import('@/views/buttons/Buttons'),
     meta: {title: 'Buttons'}
+  },
+  {
+    name: 'ratings.statistics',
+    path: 'statistics',
+    component: () => import('@/views/Statistics'),
+    meta: {title: 'Statistics'}
   },
   {
     name: 'ratings.notfound',

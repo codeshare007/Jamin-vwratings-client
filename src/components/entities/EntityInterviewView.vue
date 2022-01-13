@@ -1,12 +1,7 @@
 <template>
   <div class="entityInterviewView">
     <div class="profileContainer">
-
-      <b-button
-        class="mb-4 btn-back"
-        @click="$router.go(-1)"
-      >Back</b-button>
-
+      <b-button class="mb-4 btn-back" @click="$router.go(-1)" v-html="`Back`"/>
       <div v-html="interview.content"></div>
     </div>
   </div>
@@ -52,7 +47,7 @@ export default {
     min-height: 250px;
     margin-bottom: 20px;
     border: 1px solid #18786f;
-	font-size: 20px;
+    font-size: 20px;
   }
 
   .btn-back {
@@ -60,13 +55,13 @@ export default {
     border: 1px solid #082b30;
     font-size: 12px;
   }
-  
+
   .namer {
-	color: #00ffad;
-	}
-	
+    color: #00ffad;
+  }
+
   .namee {
-	color: #e3de52;
-	}	
+    color: #e3de52;
+  }
 }
 </style>

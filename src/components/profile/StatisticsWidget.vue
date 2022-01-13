@@ -1,7 +1,7 @@
 <template>
   <div class="statisticsWidget">
     <span class="d-block mb-2">
-      <font-awesome-icon icon="chart-line" size="sm" class="mr-1" />
+      <font-awesome-icon icon="chart-line" size="sm" class="mr-1"/>
       Your Stats
     </span>
 

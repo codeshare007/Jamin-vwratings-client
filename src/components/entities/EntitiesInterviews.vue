@@ -1,20 +1,29 @@
 <template>
   <div class="entitiesInterviews">
     <div class="profileContainer">
+      <div class="d-flex align-items-center mb-4">
 
-      <b-button
-        class="mb-4 mr-4 btn-back"
-        @click="$router.go(-1)">Back</b-button> <span style="color: #48c443;"><router-link :to="{name: 'ratings.contact'}">Message Us</router-link> if you dare to be interviewed or re-interviewed.</span>
-
-      <div class="d-flex flex-wrap">
         <b-button
-          variant="outline-light"
-          :to="{ name: `ratings.${entities}.interview.view`,
-           params: {id: item[entity].id }}"
-          class="entityItem mr-3 mb-3"
-          v-for="(item, key) in interviews" :key="key">
-          {{ item[entity].name }}
-        </b-button>
+          class="mr-4 btn-back"
+          @click="$router.go(-1)"
+          v-html="`Back`"
+        />
+
+        <div class="entitiesInterviews__disclaimer">
+          <router-link :to="{name: 'ratings.contact'}">Message Us</router-link>
+          if you dare to be interviewed or re-interviewed.
+        </div>
+
+        <div />
+      </div>
+
+      <div class="d-flex flex-column align-items-center">
+        <router-link
+          :to="{ name: `ratings.${entities}.interview.view`, params: {id: item[entity].id }}"
+          class="entityItem mr-3 text-white"
+          v-html="item[entity].name"
+          v-for="(item, key) in interviews" :key="key"
+        />
       </div>
     </div>
   </div>
@@ -48,9 +57,17 @@ export default {
 </script>
 <style lang="scss">
 .entitiesInterviews {
-
   @media screen and (min-width: 1024px) {
     padding: 0 150px;
+  }
+
+  &__disclaimer {
+    color: #48c443;
+
+    a {
+      color: #25ed1d;
+      text-decoration: underline;
+    }
   }
 
   .profileContainer {
