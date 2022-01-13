@@ -260,12 +260,16 @@ export default {
 </script>
 <style lang="scss">
 .entitiesList {
-  padding-top: 7px;
-  margin-bottom: 40px;
+  padding-top: 40px;
+  margin: 0 20px 40px;
   padding-bottom: 40px;
   display: block;
   background: #29495ebf;
   border: 1px solid #18786f;
+
+  @media screen and (min-width: 1024px) {
+
+  }
 
   .cursor-pointer {
     cursor: pointer;

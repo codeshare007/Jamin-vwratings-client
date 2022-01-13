@@ -68,7 +68,8 @@ export default {
       const profile = [
         'ratings.profile.view',
         'ratings.profile.password',
-        'ratings.profile.edit'
+        'ratings.profile.edit',
+        'ratings.profile.notifications'
       ];
 
       if (parties.includes(this.$route.name)) return {backgroundImage: 'url(/images/party.jpg)'};

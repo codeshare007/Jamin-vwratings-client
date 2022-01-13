@@ -51,7 +51,7 @@ export default {
   font-size: 20px;
   background: transparent;
   display: block;
-  margin: 20px;
+  margin: 20px 0;
 
   &__attachments {
     margin-top: 10px;

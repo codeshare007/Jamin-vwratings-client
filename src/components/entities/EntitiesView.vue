@@ -105,7 +105,13 @@ export default {
 <style lang="scss">
 .entityView {
   background: rgb(41 73 94 / 75%);
-  padding: 40px 30px;
+  padding: 10px 30px;
+  border: 1px solid #18786f;
+
+
+  @media screen and (min-width: 1200px) {
+    margin: 0 150px;
+  }
 
   &--claimed {
     background: rgb(41 73 94 / 75%);
@@ -127,7 +133,7 @@ export default {
 
   @media screen and (max-width: 1024px) {
     margin: 20px;
-    padding: 20px;
+    padding: 7px 25px;
   }
 
   .btn {
@@ -143,7 +149,7 @@ export default {
 
   hr {
     background: #0b6e58;
-    height: 3px;
+    height: 1px;
   }
 
   .form-group__error {

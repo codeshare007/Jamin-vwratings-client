@@ -73,10 +73,6 @@ export default {
     margin-bottom: 0;
   }
 
-  @media screen and (min-width: 1024px) {
-    padding: 0 40px;
-  }
-
   &__rating {
     display: flex;
     width: 100%;

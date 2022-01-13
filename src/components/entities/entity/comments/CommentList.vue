@@ -67,15 +67,11 @@ export default {
 <style lang="scss">
 .commentList {
 
-  @media screen and (min-width: 1024px) {
-    padding: 0 150px;
-  }
-
   &__sortBlock {
     display: flex;
     justify-content: center;
     position: relative;
-    margin: 40px 20px 40px;
+    margin: 40px 0 40px;
     overflow: hidden;
 
     &:after {

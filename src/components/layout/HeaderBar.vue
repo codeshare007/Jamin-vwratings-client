@@ -101,6 +101,10 @@ export default {
     font-size: 25px;
     color: white;
 
+    &:focus {
+      outline: 2px solid #18786f;
+    }
+
     img {
       width: 120px;
     }
@@ -153,6 +157,11 @@ export default {
     text-transform: lowercase;
     font-weight: 400;
     font-family: 'Futura PT', sans-serif;
+
+    &:focus {
+      outline: 0;
+      color: #5fe134;
+    }
 
     &.router-link-exact-active,
     &.router-link-active {
