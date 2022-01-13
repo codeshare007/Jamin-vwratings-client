@@ -11,7 +11,26 @@
   </div>
 </template>
 <script>
-export default {}
+export default {
+
+  data() {
+    return {
+      data: {}
+    }
+  },
+
+  mounted() {
+    this.fetchStatistics()
+  },
+
+  methods: {
+    fetchStatistics() {
+      this.$api.profile.statistics().then(response => {
+        this.data = response.data.data;
+      })
+    }
+  }
+}
 </script>
 <style lang="scss">
 .statisticsPage {
@@ -23,6 +42,5 @@ export default {}
   @media screen and (min-width: 1024px) {
     margin: 0 150px 40px;
   }
-
 }
 </style>

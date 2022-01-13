@@ -20,6 +20,9 @@ export default axios => ({
   notifications() {
     return axios.get('profile/notifications')
   },
+  statistics() {
+    return axios.get('statistics')
+  },
   readNotifications() {
     return axios.post('profile/notifications/read')
   },
