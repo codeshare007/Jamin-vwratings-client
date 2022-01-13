@@ -3,7 +3,7 @@
     <p>Choose your comment sentiment before you can post</p>
     <b-form v-if="!loading" class="d-flex flex-column" ref="commentForm">
       <b-row class="justify-content-between align-items-center">
-        <b-col />
+        <b-col/>
         <b-col class="d-flex justify-content-center">
           <b-form-group class="m-0">
             <b-form-radio-group
@@ -18,9 +18,9 @@
           </b-form-group>
         </b-col>
         <b-col class="d-flex justify-content-end">
-          <div class="mt-2 pt-2 ml-3" v-if="$v.form.opinion.$model !== null">
+          <div class="mt-1 mb-2 pt-2 ml-3" v-if="$v.form.opinion.$model !== null">
             <b-button class="entityView__uploadButton" @click="openUploadDialog">
-              <b-icon-paperclip />
+              <b-icon-paperclip/>
             </b-button>
             <input type="file" ref="file" @change="onFileChange" class="d-none" multiple="multiple"/>
           </div>
@@ -28,7 +28,8 @@
       </b-row>
 
       <div class="text-center text-danger">
-        <p class="m-0 text-danger" v-if="$v.form.$error && !errorRefreshed">You need to make a post or upload an image or both</p>
+        <p class="m-0 text-danger" v-if="$v.form.$error && !errorRefreshed">You need to make a post or upload an image
+          or both</p>
       </div>
 
       <b-form-textarea
@@ -56,12 +57,12 @@ You can put pics with your post."
       </div>
     </b-form>
     <div class="d-flex w-100 justify-content-center" v-else>
-      <b-spinner />
+      <b-spinner/>
     </div>
   </div>
 </template>
 <script>
-const { required, minLength } = require('vuelidate/lib/validators');
+const {required, minLength} = require('vuelidate/lib/validators');
 
 export default {
   props: {
@@ -181,7 +182,6 @@ export default {
 </script>
 <style lang="scss">
 .commentForm {
-
   .imagePreview {
     cursor: pointer;
     width: 100px;
@@ -192,15 +192,11 @@ export default {
     margin-bottom: 10px;
   }
 
-  @media screen and (min-width: 1024px) {
-    padding: 0 170px;
-  }
-
   p {
     text-align: center;
     font-size: 18px;
     font-family: 'Futura PT', sans-serif;
-	color: #848f80;
+    color: #848f80;
   }
 
   textarea {

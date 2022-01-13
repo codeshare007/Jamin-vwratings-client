@@ -16,6 +16,8 @@
         <p>Stars above are the total average of all ratings.</p>
       </EntityRate>
 
+      <EntityStatistics v-if="loggedIn" :data="item.statistics" />
+
       <CommentForm
         v-if="loggedIn && !isLimited"
         :id="id"
@@ -44,6 +46,7 @@ import EntityInfo from "./entity/EntityInfo";
 import EntityRate from './entity/EntityRate';
 import CommentForm from './entity/comments/CommentForm';
 import CommentList from './entity/comments/CommentList';
+import EntityStatistics from "./entity/EntityStatistics";
 
 export default {
   props: {
@@ -62,6 +65,7 @@ export default {
   },
 
   components: {
+    EntityStatistics,
     EntityInfo,
     EntityRate,
     CommentForm,

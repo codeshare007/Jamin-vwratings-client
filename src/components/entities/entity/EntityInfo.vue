@@ -11,6 +11,7 @@
         </b-button>
       </div>
     </b-row>
+
     <b-row>
       <b-col>
         <p class="entityInfo__name">{{ item.name }}</p>
