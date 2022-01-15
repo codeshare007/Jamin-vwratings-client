@@ -55,7 +55,7 @@ export default {
       this.$api.profile.update(payload).then(response => {
         if (response.data.status === 'success') {
           this.errors = [];
-          this.$bvToast.toast('Password changed successfully', {
+          this.$bvToast.toast('Email changed successfully', {
             title: `Success`,
             toaster: 'b-toaster-bottom-right',
             variant: 'success',
