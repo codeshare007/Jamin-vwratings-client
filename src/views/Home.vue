@@ -1,16 +1,5 @@
 <template>
   <div class="homePage">
-<!--    <div class="homePage__container">
-      <div class="homePage__adsBlock">
-        <Adsense
-          data-ad-client="ca-pub-3655622089482340"
-          data-ad-slot="3406436587"
-          data-ad-format="fluid"
-          data-full-width-responsive="true">
-        </Adsense>
-      </div>
-    </div>
--->
     <div class="homePage__container">
       <h1 class="text-center">Welcome to vwRatings!</h1>
       <h2 class="text-center">Behaviour ratings of vw players to highlight the awesome and expose the rotten.</h2>
@@ -38,7 +27,12 @@
          </viewer>
        </div>
      </div>
-
+        <Adsense
+          data-ad-client="ca-pub-3655622089482340"
+          data-ad-slot="6351914106"
+          data-ad-format="auto"
+          data-full-width-responsive="true">
+        </Adsense>
       <div class="row">
         <div class="column">
           <div class="card">
@@ -136,13 +130,6 @@
 </template>
 <style lang="scss">
 .homePage {
-
-  &__adsBlock {
-    height: 150px;
-    display: block;
-    overflow: hidden;
-    margin-bottom: 20px;
-  }
 
   &__container {
     border: 1px solid #18786f;

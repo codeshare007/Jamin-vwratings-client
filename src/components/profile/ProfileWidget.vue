@@ -11,6 +11,12 @@
       <b-button class="btn-profile" :to="{ name: 'ratings.profile.notifications'}">Notifications</b-button>
       <b-button class="btn-profile" :to="{ name: 'ratings.profile.edit' }">Change/Add Email</b-button>
       <b-button class="btn-profile" :to="{ name: 'ratings.profile.password' }">Change Password</b-button>
+        <Adsense
+          data-ad-client="ca-pub-3655622089482340"
+          data-ad-slot="6259758220"
+          data-ad-format="auto"
+          data-full-width-responsive="true">
+        </Adsense>	  
     </div>
 
   </div>
