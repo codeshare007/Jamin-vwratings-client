@@ -85,16 +85,24 @@
           >
         </div>
       </b-row>
-
-      <div class="namers d-flex align-items-center flex-column">
+	<b-row class="d-flex justify-content-center">
+<b-col cols="4">	  
+      <Adsense
+        data-ad-client="ca-pub-3655622089482340"
+        data-ad-slot="4685794438"
+        data-ad-format="auto"
+        data-full-width-responsive="true">
+      </Adsense>
+	</b-col>
+<b-col cols="6">	  
         <router-link
           class="d-block"
           v-for="(item, i) in this.items" :key="i"
           :to="redirectToItem(item.id)"
           v-html="item.name"
         />
-      </div>
-
+		</b-col>
+	</b-row>
       <div v-if="items.length === 0">
         <p class="text-center">No name matches your search... you can add it.</p>
       </div>
