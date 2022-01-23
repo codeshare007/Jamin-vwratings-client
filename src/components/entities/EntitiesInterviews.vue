@@ -17,14 +17,24 @@
         <div />
       </div>
 
-      <div class="d-flex flex-column align-items-center">
+      <b-row class="d-flex justify-content-center">
+<b-col cols="4">	  
+      <Adsense
+        data-ad-client="ca-pub-3655622089482340"
+        data-ad-slot="4037252704"
+        data-ad-format="auto"
+        data-full-width-responsive="true">
+      </Adsense>
+	</b-col>
+<b-col cols="6 d-flex flex-column justify-content-center">	
         <router-link
           :to="{ name: `ratings.${entities}.interview.view`, params: {id: item[entity].id }}"
           class="entityItem mr-3 text-white"
           v-html="item[entity].name"
           v-for="(item, key) in interviews" :key="key"
         />
-      </div>
+	</b-col>		
+      </b-row>
     </div>
   </div>
 </template>

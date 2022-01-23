@@ -2,7 +2,6 @@
   <transition name="fade">
     <div class="profileView" v-if="loaded">
       <EntitySwitcher @changed="setEntity"/>
-      <StatisticsWidget :entities="entities" :entity="entity"/>
       <b-row class="m-0">
         <b-col cols="12" lg="6" class="p-0 pr-lg-3">
           <EntitiesFavorites :entity="entity" :entities="entities"/>
@@ -11,6 +10,7 @@
           <EntitiesClaimed :entity="entity"/>
         </b-col>
       </b-row>
+      <StatisticsWidget :entities="entities" :entity="entity"/>	  
       <EntitiesComments :entity="entity" :entities="entities"/>
     </div>
   </transition>

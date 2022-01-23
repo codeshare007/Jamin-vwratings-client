@@ -2,7 +2,7 @@
   <div class="entitiesComments">
     <span>
       <font-awesome-icon icon="comment" size="sm" class="mr-1"/>
-      Your last 5 comments to players pages
+      The last 5 comments you made
     </span>
     <div v-if="Object.keys(comments).length">
       <div v-for="(item, key) in comments" :key="key">
