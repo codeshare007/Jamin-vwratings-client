@@ -11,11 +11,11 @@
         title="Add a Name">
 
         <b-form @reset="closeCreateForm">
-          <span class="d-block mb-3 text-center">Start typing. If you see the name below, it is already added.</span>
+          <span class="d-block mb-3 text-center">Names that pop up are already added</span>
           <span class="d-block text-danger mb-3 text-center font-weight-bold" v-if="createError" v-html="createError"/>
           <b-row class="justify-content-center">
             <b-col cols="6">
-              <b-form-group label="Name">
+              <b-form-group>
                 <b-form-input v-mask="mask" type="text" placeholder="Enter Name" v-model="form.name"/>
               </b-form-group>
             </b-col>
