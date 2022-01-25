@@ -1,6 +1,6 @@
 <template>
-  <div class="auth-page" style="min-height: inherit">
-    <b-row class="d-flex justify-content-center align-items-center" style="min-height: inherit">
+  <div class="auth-page" style="min-height: 85vh">
+    <b-row class="d-flex justify-content-center align-items-center" style="min-height: 85vh">
       <div class="auth-container">
         <b-row class="d-flex justify-content-center align-items-center">
           <div class="d-flex flex-column mb-2">

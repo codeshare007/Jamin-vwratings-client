@@ -85,7 +85,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: inherit;
+  min-height: 85vh;
 
   .auth-container {
     background: #000;

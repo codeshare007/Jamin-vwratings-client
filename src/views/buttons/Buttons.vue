@@ -7,9 +7,12 @@
        <b-button class="btn-special members" :to="{name: 'ratings.avis.interviews'}">Interviews</b-button>
       </div>
 
-      <div class="buttonsPage__btnBlock">
+     <div class="buttonsPage__btnBlock">
+		<b-button class="btn-special" :to="{name: 'ratings.peepscreeps'}">Peeps & Creeps</b-button>
+	</div>
+	<div class="buttonsPage__btnBlock">	
         <b-button class="btn-special" :to="{name: 'ratings.claim'}">Claim Name</b-button>
-      </div>
+     </div>
 
       <div class="buttonsPage__btnBlock">
         <b-button class="btn-special" :to="{name: 'ratings.contact'}">Message Us</b-button>
@@ -51,6 +54,10 @@ export default {
     background-color: #29495ebf;
     border: 1px solid #18786f;
   }
+
+.blackContainer {
+	min-height: 85vh;
+}
 
   &__btnBlock {
     display: flex;

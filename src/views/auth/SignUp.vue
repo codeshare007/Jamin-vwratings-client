@@ -126,7 +126,7 @@ export default {
 </script>
 <style lang="scss">
 .signupPage {
-  min-height: inherit;
+  min-height: 85vh;
   display: flex;
   justify-content: center;
   align-items: center;

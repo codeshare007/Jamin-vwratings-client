@@ -104,6 +104,10 @@ export default {
   background-size: cover;
 }
 
+.blackContainer {
+	min-height: 85vh;
+}
+
 .announcement-modal {
   .modal-content {
     background-color: #389b70;

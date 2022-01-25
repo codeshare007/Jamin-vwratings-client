@@ -1,6 +1,6 @@
 <template>
-  <div class="auth-page" style="min-height: inherit">
-    <b-row class="d-flex justify-content-center align-items-center" style="min-height: inherit">
+  <div class="auth-page" style="min-height: 85vh">
+    <b-row class="d-flex justify-content-center align-items-center" style="min-height: 85vh">
       <div class="auth-container">
         <div class="text-center mt-2">
           <router-link :to="{ name: 'auth.signup'}" style="font-size: 20px;">Not signed up? Go Register</router-link>
