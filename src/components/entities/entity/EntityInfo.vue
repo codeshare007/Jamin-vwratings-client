@@ -1,10 +1,41 @@
 <template>
   <div class="entityInfo">
+<b-modal
+        ref="statsModal"
+        ok-title="Add"
+        size="lg"
+        ok-variant="dark"
+        hide-footer
+        modal-class="entitiesList__modal"
+        title="Statistics">
+		<EntityStatistics v-if="loggedIn" :data="item.statistics" />
+      </b-modal>
+
+      <b-modal
+        ref="notRegistered"
+        ok-only
+        ok-title="Close"
+        modal-class="entitiesList__modal"
+        ok-variant="secondary"
+        title="No no no !!!">
+        <div>You must log in first.</div>
+      </b-modal>
+
+      <b-modal
+        ref="limitedModal"
+        ok-only
+        ok-title="Close"
+        modal-class="entitiesList__modal"
+        ok-variant="secondary"
+        title="No no no !!!">
+        <div>You are temporarily banned</div>
+      </b-modal>  
     <b-row class="justify-content-between">
       <div>
         <b-button class="back" @click="$router.go(-1)">Back</b-button>
       </div>
       <div>
+<button class="entitiesList__button mr-2" @click="showCreateDialog" style="font-size: 17px; background: #3c786b; color: white;">Stats</button>	  
         <b-button v-if="loggedIn" @click="$emit('toggle-favorite')">
           <b-icon-heart-fill v-if="item['is_favorite'] === true" />
           <b-icon-heart v-if="!item['is_favorite']" />
@@ -35,6 +66,7 @@
 </template>
 <script>
 import moment from 'moment';
+import EntityStatistics from "./EntityStatistics";
 
 export default {
 
@@ -49,6 +81,10 @@ export default {
     }
   },
 
+  components: {
+    EntityStatistics,
+  },
+  
   computed: {
     loggedIn() {
       return this.$store.getters['auth/loggedIn']
@@ -60,7 +96,19 @@ export default {
       let until = moment(this.item.claim.claimed_until.until);
       let duration = moment.duration(until.diff(this.item.claim.claimed_until.now));
       return duration['_milliseconds'];
-    }
+    },
+		closeCreateForm() {
+      this.createError = null;
+      this.form.name = null;
+      this.$refs['statsModal'].hide();
+    },
+    showCreateDialog() {
+      let modalName = !this.loggedIn ?
+        'notRegistered' :
+        (this.isLimited ? 'limitedModal' : 'statsModal');
+
+      if (modalName) this.$refs[modalName].show();
+    }	
   }
 }
 </script>
@@ -99,11 +147,20 @@ export default {
     font-size: 30px;
     color: #97d39b;
   }
+  
+  &__buttons {
+    padding-bottom: 30px;
+  }  
 
   .back {
     float: left;
   }
-
+  
+  @media screen and (min-width: 1024px) {
+    &__buttons {
+      padding: 20px;
+    }
+  }
   @media screen and (max-width: 600px) {
     .back {
       float: none;

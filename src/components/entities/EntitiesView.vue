@@ -1,42 +1,6 @@
 <template>
   <transition name="fade">
     <div class="entityView" style="min-height: 85vh" v-if="screenLoaded" :class="{ 'entityView--claimed': item.claim && item.claim.user_id }">
-<b-modal
-        ref="statsModal"
-        ok-title="Add"
-        size="lg"
-        ok-variant="dark"
-        hide-footer
-        modal-class="entitiesList__modal"
-        title="testing">
-		<EntityStatistics v-if="loggedIn" :data="item.statistics" />
-      </b-modal>
-
-      <b-modal
-        ref="notRegistered"
-        ok-only
-        ok-title="Close"
-        modal-class="entitiesList__modal"
-        ok-variant="secondary"
-        title="No no no !!!">
-        <div>You must log in first.</div>
-      </b-modal>
-
-      <b-modal
-        ref="limitedModal"
-        ok-only
-        ok-title="Close"
-        modal-class="entitiesList__modal"
-        ok-variant="secondary"
-        title="No no no !!!">
-        <div>You are temporarily banned</div>
-      </b-modal>
-
-      <b-row class="d-flex justify-content-center mb-1">
-        <div class="d-flex">
-          <button class="entitiesList__button mr-2" @click="showCreateDialog">Stats</button>
-        </div>
-      </b-row>
       <EntityInfo
         :screen="screenBack"
         :item="item"
@@ -80,7 +44,6 @@ import EntityInfo from "./entity/EntityInfo";
 import EntityRate from './entity/EntityRate';
 import CommentForm from './entity/comments/CommentForm';
 import CommentList from './entity/comments/CommentList';
-import EntityStatistics from "./entity/EntityStatistics";
 
 export default {
   props: {
@@ -99,7 +62,6 @@ export default {
   },
 
   components: {
-    EntityStatistics,
     EntityInfo,
     EntityRate,
     CommentForm,
@@ -123,19 +85,6 @@ export default {
   },
 
   methods: {
-
-	closeCreateForm() {
-      this.createError = null;
-      this.form.name = null;
-      this.$refs['statsModal'].hide();
-    },
-    showCreateDialog() {
-      let modalName = !this.loggedIn ?
-        'notRegistered' :
-        (this.isLimited ? 'limitedModal' : 'statsModal');
-
-      if (modalName) this.$refs[modalName].show();
-    },	
     rate(value) {
       this.$api[this.method].rating(this.id, {rating: value})
         .then(() => this.fetchItem());
@@ -168,18 +117,8 @@ export default {
     background: rgb(41 73 94 / 75%);
   }
 
-  &__buttons {
-    padding-bottom: 30px;
-  }
-
   .vue-star-rating-rating-text[data-v-fde73a0c] {
     width: 20px;
-  }
-
-  @media screen and (min-width: 1024px) {
-    &__buttons {
-      padding: 20px;
-    }
   }
 
   @media screen and (max-width: 1024px) {

@@ -29,10 +29,11 @@ export default {
   .statItem {
     background: #3c786b;
     margin-left: 10px;
-    font-size: 12px;
+    font-size: 16px;
     padding: 10px;
     border-radius: 5px;
     margin-bottom: 10px;
+	color: white;
   }
 }
 </style>
