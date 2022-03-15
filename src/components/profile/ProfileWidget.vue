@@ -3,7 +3,8 @@
 
     <div class="profileWidget__mainBlock">
       <h5>Hi {{ profile.username }}</h5>
-      <p>Thanks for helping expose the good and the bad. Keep up the good work.</p>
+      <h6>ID# {{ profile.id }}</h6>	  
+      <p>Thanks for helping expose the good and the bad.</p>
     </div>
 
     <div class="profileWidget__navigation">
