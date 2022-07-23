@@ -17,8 +17,12 @@ export default axios => ({
   stayClaimed(payload) {
     return axios.post('stay-claimed', payload)
   },
-  notifications() {
-    return axios.get('profile/notifications')
+  notifications(isAll = 0) {
+    return axios.get('profile/notifications', {
+      params: {
+        all: isAll,
+      }
+    });
   },
   statistics() {
     return axios.get('statistics')

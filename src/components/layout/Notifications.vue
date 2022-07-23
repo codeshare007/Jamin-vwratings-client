@@ -1,7 +1,19 @@
 <template>
   <div class="notificationsWidget">
+    <div class="ttt">
+      <b-modal
+          ref="notificationModal"
+          ok-title="Add"
+          size="sg"
+          ok-variant="dark"
+          hide-footer
+          modal-class="ttt__modal"
+          title="Notification">
+      <Notification :data="item" />
+      </b-modal>
+    </div> 
     <div class="notificationsWidget__button" @click="notificationsOpened = !notificationsOpened">
-      <b-avatar v-if="profile.notifications_count" badge variant="transparent" badge-variant="danger">
+      <b-avatar v-if="profile.notifications_count > 0" badge variant="transparent" badge-variant="danger">
         <font-awesome-icon icon="bell" size="lg"/>
         <template #badge>{{ profile.notifications_count }}</template>
       </b-avatar>
@@ -25,7 +37,7 @@
              :class="{'notificationItem--unread': item.status === 1 || !item.hasOwnProperty('status')}"
              v-for="(item, key) in notifications"
              :key="key">
-          <div class="notificationItem__content">
+          <div class="notificationItem__content" @click="readNotification(item)">
             {{ item.content }}
           </div>
         </div>
@@ -34,13 +46,14 @@
           <button class="view-btn" @click="emitViewAll()">View all</button>
         </div>
 
-        <div v-if="!Object.keys(notifications).length" class="text-center mb-3">There is no notifications</div>
+        <div v-if="!Object.keys(notifications).length" class="text-center mb-3">No notifications</div>
       </div>
     </transition>
   </div>
 </template>
 <script>
 import {mapActions, mapGetters} from "vuex";
+import Notification from "./Notification.vue"			 
 
 export default {
   data() {
@@ -50,10 +63,14 @@ export default {
       notifications: [],
       profile: {
         notifications_count: 0
-      }
+      },
+      item: {}	  
     }
   },
 
+  components: {
+    Notification,
+  },
   watch: {
     notificationsOpened(value) {
       if (value && !this.notificationsFetched) this.fetchNotifications();
@@ -70,6 +87,7 @@ export default {
 
   mounted() {
     this.profile = this.getProfile();
+    this.fetchNotifications();							  
   },
 
   methods: {
@@ -77,7 +95,7 @@ export default {
     ...mapGetters({getProfile: 'auth/profile'}),
 
     fetchNotifications() {
-      this.$api.profile.notifications().then(response => {
+      this.$api.profile.notifications(0).then(response => {
         this.notifications = response.data.data;
         this.notificationsFetched = true;
       })
@@ -115,6 +133,11 @@ export default {
       this.$emit('closed');
     },
 
+    readNotification(item) {
+      this.item = item;
+      this.notificationsOpened = !this.notificationsOpened;
+      this.$refs['notificationModal'].show();
+    },
     ...mapActions({
       logout: 'auth/LOGOUT'
     })
@@ -179,11 +202,41 @@ export default {
     }
 
     &__content {
+      cursor: pointer;					  
       max-height: 85px;
       overflow: hidden;
       word-break: break-all;
       padding: 7px 19px 20px;
     }
+  }
+
+
+  .ttt {
+    &__modal {
+      .modal-content {
+        background-color: #aec3d1 !important;
+      }
+
+      .modal-backdrop {
+        opacity: .9;
+      }
+
+      .close:focus {
+        outline: 0;
+      }
+
+      .modal-footer {
+        border-top: 0;
+      }
+
+      .modal-header {
+        border-bottom: 0;
+      }
+    }
+
+    &__content {
+      background: #3c786b;
+    } 
   }
 }
 </style>
