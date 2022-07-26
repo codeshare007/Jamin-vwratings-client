@@ -110,12 +110,12 @@ export default {
 
       const payload = {
         name: this.form.name,
-        type: this.entity
+        type: this.entity,
       };
 
       this.$api.profile.claim(payload).then(response => {
         if (response.data.status === 'success')
-          window.location.href = '/promo';
+          window.location.href = '/promo?type=2';
       }).catch(error => {
         this.errors = [];
         const errors = error.response.data.errors;
@@ -129,7 +129,7 @@ export default {
     stayClaimed() {
       this.$api.profile.stayClaimed({type: this.entity}).then(response => {
         if (response.data.status === 'success') {
-          window.location = '/promo'
+          window.location = '/promo?type=2'
         }
       })
     },

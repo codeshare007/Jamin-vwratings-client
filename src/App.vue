@@ -36,7 +36,7 @@ export default {
         route: this.$route.name
       }).then(response => {
         if (response.data['start_promo']) {
-          window.location.href = '/promo';
+          window.location.href = '/promo?type=1';
         }
 
         if (response.data['show_modal']) {
@@ -45,7 +45,7 @@ export default {
         }
       }).catch(error => {
         if (error) {
-          window.location.href = '/promo'
+          window.location.href = '/promo?type=1'
         }
       });
     }
