@@ -5,7 +5,6 @@
         <div class="timer">
           <template>
             <div class="hour-counter">
-              <span class="days">{{ days }}</span><span class="normal">D</span>
               <span class="hours">{{ hours }}</span><span class="normal">H</span>
               <span class="minutes">{{ minutes }}</span><span class="normal">M</span>
               <span class="seconds">{{ seconds }}</span><span class="normal">S</span>
@@ -27,7 +26,6 @@ export default {
       distance: 0,
       timePeriodMinutes: 0,
       section_number: false,
-      days: 0,
       hours: 0,
       minutes: 0,
       seconds: 0,
@@ -54,9 +52,8 @@ export default {
             this.distance = this.timePeriodMinutes;
             //this.section_number = !(this.section_number);
           } else {
-            this.days = Math.floor(this.distance / (1000 * 60 * 60 * 24));
             this.hours = Math.floor(
-              (this.distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+              (this.distance / (1000 * 60 * 60))
             );
             this.minutes = Math.floor((this.distance % (1000 * 60 * 60)) / (1000 * 60));
             this.seconds = Math.floor((this.distance % (1000 * 60)) / 1000);
