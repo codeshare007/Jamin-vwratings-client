@@ -4,21 +4,19 @@
       <div class="blackContainer">
         <div class="text-center">
           <p class="mb-4">
-            Nominate and vote on your favorite players and the worst players you know.<br>Peeps will get treats.<br>Creeps
-            are just creeps.
+            Nominate and vote on your favorite players and the worst players you
+            know.<br />Peeps will get treats.<br />Creeps are just creeps.
           </p>
-          <h2 class="mb-4">
-            COMING SOON
-          </h2>
+          <h2 class="mb-4">COMING SOON</h2>
         </div>
         <div class="sidey text-center">
           <b-button :to="{}">Peeps</b-button>
-          <br>
+          <br />
           Peeps = Decent players
         </div>
         <div class="sidey text-center">
-          <b-button :to="{}">Creeps</b-button>
-          <br>
+          <b-button :to="{name: 'ratings.peepstimer'}">Creeps</b-button>
+          <br />
           Creeps = Not so decent
         </div>
       </div>
@@ -29,14 +27,16 @@
 export default {
   data() {
     return {
-      loading: false
-    }
+      loading: false,
+    };
   },
 
   mounted() {
     this.loading = true;
-  }
-}
+  },
+  methods: {
+  },
+};
 </script>
 <style lang="scss">
 .peepsCreepsPage {

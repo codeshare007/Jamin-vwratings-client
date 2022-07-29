@@ -49,5 +49,8 @@ export default axios => ({
   },
   deleteFavoriteParty(id) {
     return axios.delete(`profile/favorite-parties/${id}`)
-  }
+  },
+  fetch_timer() {
+    return axios.get('fetch_timer');
+  },
 });
