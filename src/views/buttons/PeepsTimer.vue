@@ -10,7 +10,23 @@
               <span class="seconds">{{ seconds }}</span><span class="normal">S</span>
             </div>
             <h1 v-if="section_number">This is the next section.</h1>
-            <h1 v-else>This is section 1.</h1>
+            <h3 v-else>Creep Nomination</h3>
+			<h4>Enter the exact name of the creep you would like to nominate this round, then come back to vote when the timer runs out.  Please note: Nominees must come from the bad list {link to bad list} </h4>
+			
+        <b-form>
+          <b-form-input
+              class="mb-1"
+              placeholder="Creep's Name"/>
+          <div class="d-flex justify-content-end">
+            <b-button @click="sendMessage" variant="primary">Submit</b-button>
+          </div>
+        </b-form>
+
+			<h3>Current Nominees</h3>
+			<h4>creep name</h4>
+			<h4>creep name</h4>
+			<h4>creep name</h4>
+			<h4>creep name</h4>			
           </template>
         </div>
       </div>
