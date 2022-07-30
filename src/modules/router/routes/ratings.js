@@ -126,11 +126,17 @@ export default [
     meta: {title: 'Peeps & Creeps'}
   },
   {
-    name: 'ratings.peepstimer',
-    path: 'peepstimer',
-    component: () => import('@/views/buttons/PeepsTimer'),
-    meta: {title: 'Peeps Timer'}
+    name: 'ratings.creeptimer',
+    path: 'creeptimer',
+    component: () => import('@/views/buttons/CreepTimer'),
+    meta: {title: 'Creep Timer'}
   },
+  {
+    name: 'ratings.peeptimer',
+    path: 'peeptimer',
+    component: () => import('@/views/buttons/PeepTimer'),
+    meta: {title: 'Peep Timer'}
+  },  
   {
     name: 'ratings.claim',
     path: 'claim',

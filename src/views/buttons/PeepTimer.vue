@@ -1,6 +1,6 @@
 <template>
   <transition name="fade">
-    <div class="peepsTimer" v-if="loading">
+    <div class="peepTimer" v-if="loading">
       <div class="blackContainer">
         <div class="timer">
           <template>
@@ -12,35 +12,35 @@
 			
 			
             <div class="vote text-center" v-if="section_number">
-				<h4>Creep Vote</h4>
-				<p>Here are this weeks nominations for creeps. Click the one that you think is the worst.</p>
+				<h4>Peep Vote</h4>
+				<p>Here are this weeks nominations for your favorite peeps. Click the one that you think is the best.</p>
 				<h5>Current Nominees</h5>
-				<p>creep name</p>
-				<p>creep name</p>
-				<p>creep name</p>
-				<p>creep name</p>				
+				<p>peep name</p>
+				<p>peep name</p>
+				<p>peep name</p>
+				<p>peep name</p>				
 			</div>
 			
 			
             <div class="nominate" v-else>
 				<div class="nom text-center">	
-					<h4>Creep Nomination</h4>
-					<p>Enter the exact name of the creep you would like to nominate this round, then come back to vote when the timer runs out.  Please note: Nominees must come from the bad list {link to bad list} </p>
+					<h4>Peep Nomination</h4>
+					<p>Enter the exact name of the peep you would like to nominate this round, then come back to vote when the timer runs out.  Please note: Nominees must come from the good list {link to good list} </p>
 					
 					<b-form>
 						<b-form-input
 							class="mb-1 text-center"
-							placeholder="Creep's Name"/>
+							placeholder="Peep's Name"/>
 						<div class="d-flex justify-content-end">
 							<b-button @click="sendMessage" variant="primary">Submit</b-button>
 						</div>
 					</b-form>
 
 					<h4>Current Nominees</h4>
-					<p>creep name</p>
-					<p>creep name</p>
-					<p>creep name</p>
-					<p>creep name</p>
+					<p>peep name</p>
+					<p>peep name</p>
+					<p>peep name</p>
+					<p>peep name</p>
 				</div>
 			</div>
           </template>
@@ -102,7 +102,7 @@ export default {
 };
 </script>
 <style lang="scss">
-.peepsTimer {
+.peepTimer {
 
     .timer {
         h1{

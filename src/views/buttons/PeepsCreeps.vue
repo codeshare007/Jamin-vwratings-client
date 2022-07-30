@@ -10,12 +10,12 @@
           <h2 class="mb-4">COMING SOON</h2>
         </div>
         <div class="sidey text-center">
-          <b-button :to="{}">Peeps</b-button>
+          <b-button :to="{name: 'ratings.peeptimer'}">Peeps</b-button>
           <br />
           Peeps = Decent players
         </div>
         <div class="sidey text-center">
-          <b-button :to="{name: 'ratings.peepstimer'}">Creeps</b-button>
+          <b-button :to="{name: 'ratings.creeptimer'}">Creeps</b-button>
           <br />
           Creeps = Not so decent
         </div>
