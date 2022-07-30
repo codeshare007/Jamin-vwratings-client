@@ -30,9 +30,13 @@
 					<b-form>
 						<b-form-input
 							class="mb-1 text-center"
-							placeholder="Creep's Name"/>
+							placeholder="Creep's Name"
+              v-model="$v.form.creep_name.$model"
+              :state="validateState('creep_name')"
+              type="text"/>
+            <span class="error-message text-center text-danger d-block text-center">{{ this.error }}</span>
 						<div class="d-flex justify-content-end">
-							<b-button @click="sendMessage" variant="primary">Submit</b-button>
+							<b-button @click="submitNomination" variant="primary">Submit</b-button>
 						</div>
 					</b-form>
 
@@ -50,6 +54,7 @@
   </transition>
 </template>
 <script>
+const {required, maxLength} = require('vuelidate/lib/validators')																 
 export default {
   data() {
     return {
@@ -61,9 +66,21 @@ export default {
       hours: 0,
       minutes: 0,
       seconds: 0,
+      form: {
+        creep_name: null,
+      },
+      error: null
     };
   },
 
+  validations: {
+    form: {
+      creep_name: {
+        required: required,
+        maxLength: maxLength(16)
+      },
+    }
+  },
   mounted() {
     this.loading = true;
     this.fetchTimer();
@@ -97,6 +114,30 @@ export default {
           }
         }, 1000);
       });
+    },
+
+    submitNomination(e) {
+      e.preventDefault();
+
+      this.$v.form.$touch();
+      if (this.$v.form.$anyError) {
+        this.errorRefreshed = false;
+        return;
+      }
+      
+      const payload = this.form;
+      this.$api.nominations.create(payload).then(response => {
+        if (response.status === 'success') {
+          console.log(response)
+        }
+      }).catch(error => {
+        this.error = error.response.data.message;
+      })
+    },
+
+    validateState(name) {
+      const {$dirty, $error} = this.$v.form[name];
+      return $dirty ? !$error : null;
     },
   },
 };

@@ -4,7 +4,8 @@ import Cookie from 'js-cookie';
 import apiAuth from './methods/auth';
 import apiProfile from './methods/profile';
 import apiAvis from './methods/avis';
-import apiParties from './methods/parties'
+import apiParties from './methods/parties';
+import apiNominations from './methods/nominations';												   
 
 export default {
   removeJWT() {
@@ -103,7 +104,8 @@ export default {
       auth: apiAuth(this.apiInstance),
       profile: apiProfile(this.apiInstance),
       avis: apiAvis(this.apiInstance),
-      parties: apiParties(this.apiInstance)
+      parties: apiParties(this.apiInstance),
+      nominations: apiNominations(this.apiInstance)
     };
 
     Vue.prototype.$api = repositories;

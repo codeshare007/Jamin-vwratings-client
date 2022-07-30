@@ -129,13 +129,13 @@ export default [
     name: 'ratings.creeptimer',
     path: 'creeptimer',
     component: () => import('@/views/buttons/CreepTimer'),
-    meta: {title: 'Creep Timer'}
+    meta: {title: 'Creep Timer', middleware: [Authenticated]}
   },
   {
     name: 'ratings.peeptimer',
     path: 'peeptimer',
     component: () => import('@/views/buttons/PeepTimer'),
-    meta: {title: 'Peep Timer'}
+    meta: {title: 'Peep Timer', middleware: [Authenticated]}
   },  
   {
     name: 'ratings.claim',
