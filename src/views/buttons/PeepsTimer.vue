@@ -5,28 +5,44 @@
         <div class="timer">
           <template>
             <div class="hour-counter">
-              <span class="hours">{{ hours }}</span><span class="normal">H</span>
-              <span class="minutes">{{ minutes }}</span><span class="normal">M</span>
-              <span class="seconds">{{ seconds }}</span><span class="normal">S</span>
+              <span class="hours">{{ hours }}</span><span class="normal">hrs</span>
+              <span class="minutes">{{ minutes }}</span><span class="normal">mins</span>
+              <span class="seconds">{{ seconds }}</span><span class="normal">secs</span>
             </div>
-            <h1 v-if="section_number">This is the next section.</h1>
-            <h3 v-else>Creep Nomination</h3>
-			<h4>Enter the exact name of the creep you would like to nominate this round, then come back to vote when the timer runs out.  Please note: Nominees must come from the bad list {link to bad list} </h4>
 			
-        <b-form>
-          <b-form-input
-              class="mb-1"
-              placeholder="Creep's Name"/>
-          <div class="d-flex justify-content-end">
-            <b-button @click="sendMessage" variant="primary">Submit</b-button>
-          </div>
-        </b-form>
+			
+            <div class="vote text-center" v-if="section_number">
+				<h4>Creep Vote</h4>
+				<p>Here are this weeks nominations for creeps. Click the one that you think is the worst.</p>
+				<h5>Current Nominees</h5>
+				<p>creep name</p>
+				<p>creep name</p>
+				<p>creep name</p>
+				<p>creep name</p>				
+			</div>
+			
+			
+            <div class="nominate" v-else>
+				<div class="nom text-center">	
+					<h4>Creep Nomination</h4>
+					<p>Enter the exact name of the creep you would like to nominate this round, then come back to vote when the timer runs out.  Please note: Nominees must come from the bad list {link to bad list} </p>
+					
+					<b-form>
+						<b-form-input
+							class="mb-1 text-center"
+							placeholder="Creep's Name"/>
+						<div class="d-flex justify-content-end">
+							<b-button @click="sendMessage" variant="primary">Submit</b-button>
+						</div>
+					</b-form>
 
-			<h3>Current Nominees</h3>
-			<h4>creep name</h4>
-			<h4>creep name</h4>
-			<h4>creep name</h4>
-			<h4>creep name</h4>			
+					<h4>Current Nominees</h4>
+					<p>creep name</p>
+					<p>creep name</p>
+					<p>creep name</p>
+					<p>creep name</p>
+				</div>
+			</div>
           </template>
         </div>
       </div>
@@ -85,3 +101,46 @@ export default {
   },
 };
 </script>
+<style lang="scss">
+.peepsTimer {
+
+    .timer {
+        h1{
+            margin: 20px;
+            text-align: center;
+        }
+        .hour-counter {
+            color: #fff;
+            font-size: 24px;
+            font-weight: 300;
+            position: relative;
+            text-align: center;
+            width: 50%;
+			margin-right: auto;
+			margin-left: auto;
+			margin-bottom: 25px;
+            letter-spacing: 2px;
+            word-spacing: 8px;
+            border: 1px solid #5b8750;
+
+            .normal {
+                font-size: 15px;
+                margin-right: 20px;
+            }
+        }
+    }
+	.blackContainer {
+		padding-top: 0;
+	}
+	form {
+		width: 40%;
+		margin: auto;
+	}
+	.btn {
+		margin: auto;
+		margin-bottom: 25px;
+		padding: 4px;
+	}
+}
+
+</style>
