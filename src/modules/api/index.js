@@ -5,7 +5,7 @@ import apiAuth from './methods/auth';
 import apiProfile from './methods/profile';
 import apiAvis from './methods/avis';
 import apiParties from './methods/parties';
-import apiNominations from './methods/nominations';												   
+import apiNominations from './methods/nominations';
 
 export default {
   removeJWT() {

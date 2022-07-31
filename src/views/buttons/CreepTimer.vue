@@ -1,6 +1,6 @@
 <template>
   <transition name="fade">
-    <div class="creepTimer" v-if="loading">
+    <div class="creepTimer">
       <div class="blackContainer">
         <div class="timer">
           <template>
@@ -12,41 +12,49 @@
 			
 			
             <div class="vote text-center" v-if="section_number">
-				<h4>Creep Vote</h4>
-				<p>Here are this weeks nominations for creeps. Click the one that you think is the worst.</p>
-				<h5>Current Nominees</h5>
-				<p>creep name</p>
-				<p>creep name</p>
-				<p>creep name</p>
-				<p>creep name</p>				
-			</div>
-			
-			
+              <h4>Creep Vote</h4>
+              <p>Here are this weeks nominations for creeps. Click the one that you think is the worst.</p>
+              <h5>Current Nominees</h5>
+              <b-row class="d-flex justify-content-center">            
+                <b-col cols="6">
+                  <p v-for="(item, i) in this.items" :key="i">{{item.avi_name}}</p>
+                </b-col>
+              </b-row>			
+            </div>
+   
+   
             <div class="nominate" v-else>
-				<div class="nom text-center">	
-					<h4>Creep Nomination</h4>
-					<p>Enter the exact name of the creep you would like to nominate this round, then come back to vote when the timer runs out.  Please note: Nominees must come from the bad list {link to bad list} </p>
-					
-					<b-form>
-						<b-form-input
-							class="mb-1 text-center"
-							placeholder="Creep's Name"
-              v-model="$v.form.creep_name.$model"
-              :state="validateState('creep_name')"
-              type="text"/>
-            <span class="error-message text-center text-danger d-block text-center">{{ this.error }}</span>
-						<div class="d-flex justify-content-end">
-							<b-button @click="submitNomination" variant="primary">Submit</b-button>
-						</div>
-					</b-form>
+              <div class="nom text-center">	
+                <h4>Creep Nomination</h4>
+                <p>Enter the exact name of the creep you would like to nominate this round, then come back to vote when the timer runs out.  Please note: Nominees must come from the bad list {link to bad list} </p>					
 
-					<h4>Current Nominees</h4>
-					<p>creep name</p>
-					<p>creep name</p>
-					<p>creep name</p>
-					<p>creep name</p>
-				</div>
-			</div>
+                <b-form v-if="this.form_possible">
+					<b-form-input
+                    class="mb-1 text-center"
+                    placeholder="Creep's Name"
+                    v-model="$v.form.creep_name.$model"
+                    :state="validateState('creep_name')"
+                    type="text"/>
+                  <span class="error-message text-center text-danger d-block text-center">{{ this.error }}</span>
+                  <div class="d-flex justify-content-end">
+                    <b-button @click="submitNomination" variant="primary">Submit</b-button>
+                  </div>
+                </b-form>
+
+                <h4>Current Nominees</h4>
+                <b-row class="d-flex justify-content-center">            
+                  <b-col cols="6">
+                    <p v-for="(item, i) in this.items" :key="i">{{item.avi_name}}</p>
+                  </b-col>
+                </b-row>
+                <div v-if="items.length === 0">
+                  <p class="text-center">There isn't any nominee.</p>
+                </div>
+                <div v-if="loading" class="d-flex justify-content-center mt-3 align-items-center" style="min-height: inherit;">
+                  <b-spinner/>
+                </div>
+              </div>
+            </div>
           </template>
         </div>
       </div>
@@ -54,11 +62,14 @@
   </transition>
 </template>
 <script>
-const {required, maxLength} = require('vuelidate/lib/validators')																 
+
+const {required, maxLength} = require('vuelidate/lib/validators')
 export default {
   data() {
     return {
+      items: [],
       loading: false,
+      form_possible: true,
       diff_seconds: null,
       distance: 0,
       timePeriodMinutes: 0,
@@ -84,6 +95,8 @@ export default {
   mounted() {
     this.loading = true;
     this.fetchTimer();
+    this.fetchItems();
+    this.getPossible();
   },
   methods: {
     fetchTimer() {
@@ -108,6 +121,7 @@ export default {
             this.seconds = Math.floor((this.distance % (1000 * 60)) / 1000);
             this.distance -= 1000;
             if (this.distance < 0) {
+              this.form_possible = true;
               this.distance = this.timePeriodMinutes;
               this.section_number = !(this.section_number);
             }
@@ -116,6 +130,19 @@ export default {
       });
     },
 
+    fetchItems() {
+      this.loading = true;
+      this.$api.nominations.fetch(this.currentPage, this.params).then(response => {
+        this.items = response.data.data;
+        this.loading = false;
+      })
+    },
+
+    getPossible() {
+      this.$api.nominations.getPossible().then((response) => {
+        this.form_possible = response.data.possible;
+      });
+    },
     submitNomination(e) {
       e.preventDefault();
 
@@ -127,8 +154,9 @@ export default {
       
       const payload = this.form;
       this.$api.nominations.create(payload).then(response => {
-        if (response.status === 'success') {
-          console.log(response)
+        if (response.data.status === 'success') {
+          this.form_possible = false;
+          window.location.href = '/promo?type=2';
         }
       }).catch(error => {
         this.error = error.response.data.message;

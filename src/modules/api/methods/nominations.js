@@ -7,4 +7,7 @@ export default axios => ({
     create(payload) {
       return axios.post('nominations', payload)
     },
+    getPossible() {
+      return axios.post('nominations/possible', {});
+    }
   });
