@@ -35,7 +35,7 @@
                     v-model="$v.form.creep_name.$model"
                     :state="validateState('creep_name')"
                     type="text"/>
-                  <span class="error-message text-center text-danger d-block text-center">{{ this.error }}<a href="/avis?type=bad_list">bad list</a></span>
+                  <span class="error-message text-center text-danger d-block text-center">{{ this.error }}<a href='/avis?type=bad_list' v-if="this.error">bad list</a></span>
                   <div class="d-flex justify-content-end">
                     <b-button @click="submitNomination" variant="primary">Submit</b-button>
                   </div>
@@ -44,8 +44,14 @@
                 <h4>Current Nominees</h4>
                 <b-row class="d-flex justify-content-center">            
                   <b-col cols="6">
-                    <p v-for="(item, i) in this.items" :key="i">{{item.avi_name}}</p>
-                  </b-col>
+                    <!-- <a href="/avis/" v-for="(item, i) in this.items" :key="i">{{item.avi_name}}</a> -->
+                    <router-link
+                      class="d-block"
+                      v-for="(item, i) in this.items" :key="i"
+                      :to="redirectToItem(item.id)"
+                      v-html="item.avi_name"
+                    />
+                  </b-col>                  
                 </b-row>
                 <div v-if="items.length === 0">
                   <p class="text-center">There isn't any nominee.</p>
@@ -136,6 +142,11 @@ export default {
         this.items = response.data.data;
         this.loading = false;
       })
+    },
+
+    redirectToItem(id) {
+      const routeName = 'ratings.avis.view';
+      return {name: routeName, params: {id: id}}
     },
 
     getPossible() {
