@@ -3,11 +3,11 @@
     <div class="peepsCreepsPage" v-if="loading">
       <div class="blackContainer">
         <div class="text-center">
+		<h4>Peeps & Creeps</h4>
           <p class="mb-4">
             Nominate and vote on your favorite players and the worst players you
             know.<br />Peeps will get treats.<br />Creeps are just creeps.
           </p>
-          <h2 class="mb-4">COMING SOON</h2>
         </div>
         <div class="sidey text-center">
           <b-button :to="{name: 'ratings.peeptimer'}">Peeps</b-button>

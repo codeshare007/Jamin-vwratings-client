@@ -26,7 +26,7 @@
             <div class="nominate" v-else>
               <div class="nom text-center">	
                 <h4>Creep Nomination</h4>
-                <p>Enter the exact name of the creep you would like to nominate this round, then come back to vote when the timer runs out.  Please note: Nominees must come from the bad list {link to bad list} </p>					
+                <p>Enter the exact name of the creep you would like to nominate this round, then come back to vote when the timer runs out.  Please note: Nominees must come from the <a href='/avis?type=bad_list'>Bad List</a> </p>					
 
                 <b-form v-if="this.form_possible">
 					<b-form-input
@@ -35,7 +35,7 @@
                     v-model="$v.form.creep_name.$model"
                     :state="validateState('creep_name')"
                     type="text"/>
-                  <span class="error-message text-center text-danger d-block text-center">{{ this.error }}<a href='/avis?type=bad_list' v-if="this.error">bad list</a></span>
+                  <span class="error-message text-center text-danger d-block text-center">{{ this.error }}</span>
                   <div class="d-flex justify-content-end">
                     <b-button @click="submitNomination" variant="primary">Submit</b-button>
                   </div>
@@ -48,7 +48,7 @@
                     <router-link
                       class="d-block"
                       v-for="(item, i) in this.items" :key="i"
-                      :to="redirectToItem(item.id)"
+                      :to="redirectToItem(item.avi_id)"
                       v-html="item.avi_name"
                     />
                   </b-col>                  
