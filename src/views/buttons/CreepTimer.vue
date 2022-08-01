@@ -35,7 +35,7 @@
                     v-model="$v.form.creep_name.$model"
                     :state="validateState('creep_name')"
                     type="text"/>
-                  <span class="error-message text-center text-danger d-block text-center">{{ this.error }}</span>
+                  <span class="error-message text-center text-danger d-block text-center">{{ this.error }}<a href="/avis?type=bad_list">bad list</a></span>
                   <div class="d-flex justify-content-end">
                     <b-button @click="submitNomination" variant="primary">Submit</b-button>
                   </div>
