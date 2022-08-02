@@ -54,7 +54,7 @@
                   </b-col>                  
                 </b-row>
                 <div v-if="items.length === 0">
-                  <p class="text-center">There isn't any nominee.</p>
+                  <p class="text-center">There aren't any nominees yet.</p>
                 </div>
                 <div v-if="loading" class="d-flex justify-content-center mt-3 align-items-center" style="min-height: inherit;">
                   <b-spinner/>

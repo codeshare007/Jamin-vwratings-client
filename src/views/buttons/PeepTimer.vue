@@ -1,6 +1,6 @@
 <template>
   <transition name="fade">
-    <div class="peepTimer" v-if="loading">
+    <div class="peepTimer">
       <div class="blackContainer">
         <div class="timer">
           <template>
@@ -15,34 +15,50 @@
 				<h4>Peep Vote</h4>
 				<p>Here are this weeks nominations for your favorite peeps. Click the one that you think is the best.</p>
 				<h5>Current Nominees</h5>
-				<p>peep name</p>
-				<p>peep name</p>
-				<p>peep name</p>
-				<p>peep name</p>				
-			</div>
+              <b-row class="d-flex justify-content-center">            
+                <b-col cols="6">
+                  <p v-for="(item, i) in this.items" :key="i">{{item.avi_name}}</p>
+                </b-col>
+              </b-row>			
+            </div>
 			
 			
             <div class="nominate" v-else>
 				<div class="nom text-center">	
 					<h4>Peep Nomination</h4>
-					<p>Enter the exact name of the peep you would like to nominate this round, then come back to vote when the timer runs out.  Please note: Nominees must come from the good list {link to good list} </p>
-					
-					<b-form>
-						<b-form-input
-							class="mb-1 text-center"
-							placeholder="Peep's Name"/>
-						<div class="d-flex justify-content-end">
-							<b-button @click="sendMessage" variant="primary">Submit</b-button>
-						</div>
-					</b-form>
+					<p>Enter the exact name of the peep you would like to nominate this round, then come back to vote when the timer runs out.  Please note: Nominees must come from the <a href='/avis?type=good_list'>Good List</a> </p>
+                <b-form v-if="this.form_possible">
+					<b-form-input
+                    class="mb-1 text-center"
+                    placeholder="Peep's Name"
+                    v-model="$v.form.peep_name.$model"
+                    :state="validateState('peep_name')"
+                    type="text"/>
+                  <span class="error-message text-center text-danger d-block text-center">{{ this.error }}</span>
+                  <div class="d-flex justify-content-end">
+                    <b-button @click="submitNomination" variant="primary">Submit</b-button>
+                  </div>
+                </b-form>
 
-					<h4>Current Nominees</h4>
-					<p>peep name</p>
-					<p>peep name</p>
-					<p>peep name</p>
-					<p>peep name</p>
-				</div>
-			</div>
+                <h4>Current Nominees</h4>
+                <b-row class="d-flex justify-content-center">            
+                  <b-col cols="6">
+                    <!-- <a href="/avis/" v-for="(item, i) in this.items" :key="i">{{item.avi_name}}</a> -->
+                    <router-link
+                      class="d-block"
+                      v-for="(item, i) in this.items" :key="i"
+                      :to="redirectToItem(item.avi_id)"
+                      v-html="item.avi_name"
+                    />
+                  </b-col>                  
+                </b-row>
+                <div v-if="items.length === 0">
+                  <p class="text-center">There aren't any nominees yet.</p>
+                </div>
+                <div v-if="loading" class="d-flex justify-content-center mt-3 align-items-center" style="min-height: inherit;">
+                  <b-spinner/>
+                </div>
+              </div>
           </template>
         </div>
       </div>
@@ -50,10 +66,14 @@
   </transition>
 </template>
 <script>
+
+const {required, maxLength} = require('vuelidate/lib/validators')	 
 export default {
   data() {
     return {
+      items: [],
       loading: false,
+      form_possible: true,
       diff_seconds: null,
       distance: 0,
       timePeriodMinutes: 0,
@@ -61,12 +81,26 @@ export default {
       hours: 0,
       minutes: 0,
       seconds: 0,
+      form: {
+        peep_name: null,
+      },
+      error: null
     };
   },
 
+  validations: {
+    form: {
+      peep_name: {
+        required: required,
+        maxLength: maxLength(16)
+      },
+    }
+  },
   mounted() {
     this.loading = true;
     this.fetchTimer();
+    this.fetchItems();
+    this.getPossible();   
   },
   methods: {
     fetchTimer() {
@@ -91,12 +125,56 @@ export default {
             this.seconds = Math.floor((this.distance % (1000 * 60)) / 1000);
             this.distance -= 1000;
             if (this.distance < 0) {
+              this.form_possible = true;
               this.distance = this.timePeriodMinutes;
               this.section_number = !(this.section_number);
             }
           }
         }, 1000);
       });
+    },
+
+    fetchItems() {
+      this.loading = true;
+      this.$api.nominations_peeps.fetch(this.currentPage, this.params).then(response => {
+        this.items = response.data.data;
+        this.loading = false;
+      })
+    },
+
+    redirectToItem(id) {
+      const routeName = 'ratings.avis.view';
+      return {name: routeName, params: {id: id}}
+    },
+
+    getPossible() {
+      this.$api.nominations_peeps.getPossible().then((response) => {
+        this.form_possible = response.data.possible;
+      });
+    },
+    submitNomination(e) {
+      e.preventDefault();
+
+      this.$v.form.$touch();
+      if (this.$v.form.$anyError) {
+        this.errorRefreshed = false;
+        return;
+      }
+      
+      const payload = this.form;
+      this.$api.nominations_peeps.create(payload).then(response => {
+        if (response.data.status === 'success') {
+          this.form_possible = false;
+          window.location.href = '/promo?type=2';
+        }
+      }).catch(error => {
+        this.error = error.response.data.message;
+      })
+    },
+
+    validateState(name) {
+      const {$dirty, $error} = this.$v.form[name];
+      return $dirty ? !$error : null;
     },
   },
 };
