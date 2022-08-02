@@ -219,6 +219,21 @@ export default {
 		margin-bottom: 25px;
 		padding: 4px;
 	}
+	.d-block {
+		font-size: larger;
+		color: #07ff5f;
+	}
+	.col-6 {
+		max-width: fit-content;
+	}
+	a {
+		color: #07ff5f;
+	}
+	.btn-primary {
+		color: #fff;
+		background-color: #149b4a;
+		border-color: #00ff5c;
+	}	
 }
 
 </style>
