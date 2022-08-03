@@ -9,17 +9,27 @@
               <span class="minutes">{{ minutes }}</span><span class="normal">mins</span>
               <span class="seconds">{{ seconds }}</span><span class="normal">secs</span>
             </div>
-			
-			
+            <b-modal ref="confirmModal" ok-title="Add" size="sg" ok-variant="dark" hide-footer
+              modal-class="confirm__modal" title="Are you sure?">
+
+              <b-form @reset="closeConfirmForm">
+                <div class="d-flex justify-content-end mt-5">
+                  <b-button variant="success" @click="vote">YES</b-button>
+                  <b-button variant="danger" type="reset" class="mr-2">Cancel</b-button>				  
+                </div>
+              </b-form>
+            </b-modal>
             <div class="vote text-center" v-if="section_number">
 				<h4>Peep Vote</h4>
 				<p>Here are this weeks nominations for your favorite peeps. Click the one that you think is the best.</p>
 				<h5>Current Nominees</h5>
-              <b-row class="d-flex justify-content-center">            
+              <b-row class="d-flex justify-content-center" v-if="is_voted">
                 <b-col cols="6">
-                  <p v-for="(item, i) in this.items" :key="i">{{item.avi_name}}</p>
+                   <a href="javascript:void(0);" class="d-block" v-for="(item, i) in this.items" :key="i"
+                    @click="showConfirmForm(item)">{{ item.avi_name }}</a>
                 </b-col>
               </b-row>			
+              <p v-if="!is_voted">You have already voted this round</p>
             </div>
 			
 			
@@ -28,13 +38,13 @@
 					<h4>Peep Nomination</h4>
 					<p>Enter the exact name of the peep you would like to nominate this round, then come back to vote when the timer runs out.  Please note: Nominees must come from the <a href='/avis?type=good_list'>Good List</a> </p>
                 <b-form v-if="this.form_possible">
-					<b-form-input
-					v-mask="mask"
-                    class="mb-1 text-center"
-                    placeholder="Peep's Name"
-                    v-model="$v.form.peep_name.$model"
-                    :state="validateState('peep_name')"
-                    type="text"/>
+
+                  <b-form-input v-mask="mask" class="mb-1 text-center" placeholder="Peep's Name"
+											
+											 
+													  
+                    v-model="$v.form.peep_name.$model" :state="validateState('peep_name')" type="text"
+                    v-on:keydown.enter.prevent/>
                   <span class="error-message text-center text-danger d-block text-center">{{ this.error }}</span>
                   <div class="d-flex justify-content-end">
                     <b-button @click="submitNomination" variant="primary">Submit</b-button>
@@ -45,21 +55,21 @@
                 <b-row class="d-flex justify-content-center">            
                   <b-col cols="6">
                     <!-- <a href="/avis/" v-for="(item, i) in this.items" :key="i">{{item.avi_name}}</a> -->
-                    <router-link
-                      class="d-block"
-                      v-for="(item, i) in this.items" :key="i"
-                      :to="redirectToItem(item.avi_id)"
-                      v-html="item.avi_name"
-                    />
+ 								
+									 
+                    <router-link class="d-block" v-for="(item, i) in this.items" :key="i"
+                      :to="redirectToItem(item.avi_id)" v-html="item.avi_name" />
                   </b-col>                  
                 </b-row>
                 <div v-if="items.length === 0">
                   <p class="text-center">There aren't any nominees yet.</p>
                 </div>
-                <div v-if="loading" class="d-flex justify-content-center mt-3 align-items-center" style="min-height: inherit;">
-                  <b-spinner/>
+                <div v-if="loading" class="d-flex justify-content-center mt-3 align-items-center"
+                  style="min-height: inherit;">
+                  <b-spinner />
                 </div>
               </div>
+            </div>
           </template>
         </div>
       </div>
@@ -85,11 +95,13 @@ export default {
       form: {
         peep_name: null,
       },
+      error: null,
+      vote_item: null,
+      is_voted: false,
 	mask: {
         mask: 'SSSSSSSSSSSSSSSS',
         tokens: {'S': {pattern: /[0-9a-zA-Z ]/}}
       },	  
-      error: null
     };
   },
 
@@ -106,6 +118,7 @@ export default {
     this.fetchTimer();
     this.fetchItems();
     this.getPossible();   
+    this.isVotingPossible();							
   },
   methods: {
     fetchTimer() {
@@ -116,7 +129,7 @@ export default {
         this.timePeriodMinutes = data[2] * 60 * 1000;
         this.diff_seconds = (now - startDateTime);
         this.distance = this.timePeriodMinutes - this.diff_seconds % this.timePeriodMinutes;
-        this.section_number = (Math.floor(this.diff_seconds / this.timePeriodMinutes) % 2 === 0)? false : true ;
+        this.section_number = (Math.floor(this.diff_seconds / this.timePeriodMinutes) % 2 === 0) ? false : true;
 
         setInterval(() => {
           if (this.distance < 0) {
@@ -149,12 +162,18 @@ export default {
 
     redirectToItem(id) {
       const routeName = 'ratings.avis.view';
-      return {name: routeName, params: {id: id}}
+      return {name: routeName, params: {id: id} }
     },
 
     getPossible() {
       this.$api.nominations_peeps.getPossible().then((response) => {
         this.form_possible = response.data.possible;
+      });
+    },
+
+    isVotingPossible() {
+      this.$api.votings.getPossible().then((res) => {
+        this.is_voted = res.data.possible;
       });
     },
     submitNomination(e) {
@@ -180,6 +199,25 @@ export default {
     validateState(name) {
       const {$dirty, $error} = this.$v.form[name];
       return $dirty ? !$error : null;
+    },
+
+    closeConfirmForm() {
+      this.$refs['confirmModal'].hide();
+    },
+
+    vote() {
+      if (this.vote_item) {
+        this.$api.votings.create(this.vote_item).then(response => {
+          if (response.data.status === 'success') {
+            window.location.href = '/promo?type=4';
+          }
+        })
+      }
+    },
+
+    showConfirmForm(item) {
+      this.vote_item = item;
+      this.$refs['confirmModal'].show();
     },
   },
 };
@@ -239,6 +277,12 @@ export default {
 		background-color: #149b4a;
 		border-color: #00ff5c;
 	}	
+.modal-body {
+    padding: 0;
+    background-color: #30cbdb;
+}
+.modal-header {
+    background-color: #30cbdb;				  
 }
 
 </style>

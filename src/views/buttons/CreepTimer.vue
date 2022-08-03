@@ -10,13 +10,12 @@
               <span class="seconds">{{ seconds }}</span><span class="normal">secs</span>
             </div>
             <b-modal ref="confirmModal" ok-title="Add" size="sg" ok-variant="dark" hide-footer
-              modal-class="confirm__modal" title="Vote">
+              modal-class="confirm__modal" title="Are you sure?">
 
               <b-form @reset="closeConfirmForm">
-                <span class="d-block mb-3 text-center">Are you sure?</span>
                 <div class="d-flex justify-content-end mt-5">
-                  <b-button variant="secondary" type="reset" class="mr-2">Cancel</b-button>
-                  <b-button variant="primary" @click="vote">Ok</b-button>
+                  <b-button variant="success" @click="vote">YES</b-button>
+                  <b-button variant="danger" type="reset" class="mr-2">Cancel</b-button>				  
                 </div>
               </b-form>
             </b-modal>
@@ -302,4 +301,12 @@ form {
   margin-bottom: 25px;
   padding: 4px;
 }
+.modal-body {
+    padding: 0;
+    background-color: #30cbdb;
+}
+.modal-header {
+    background-color: #30cbdb;
+}
+
 </style>

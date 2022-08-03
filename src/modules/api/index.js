@@ -8,6 +8,7 @@ import apiParties from './methods/parties';
 import apiNominations from './methods/nominations';
 import apiVotings from './methods/votings';
 import apiNominationsPeeps from './methods/nominations_peeps';
+import apiVotingsPeeps from './methods/votings';
 export default {
   removeJWT() {
     Cookie.remove('access_token');
@@ -108,7 +109,8 @@ export default {
       parties: apiParties(this.apiInstance),
       nominations: apiNominations(this.apiInstance),
       votings: apiVotings(this.apiInstance),
-      nominations_peeps: apiNominationsPeeps(this.apiInstance)	  
+      nominations_peeps: apiNominationsPeeps(this.apiInstance),
+      votings: apiVotingsPeeps(this.apiInstance),	  
     };
 
     Vue.prototype.$api = repositories;
