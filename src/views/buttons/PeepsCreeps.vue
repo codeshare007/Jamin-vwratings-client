@@ -9,7 +9,7 @@
             know.<br />Peeps will get treats.<br />Creeps are just creeps.
           </p>
         </div>
-		<b-row class="side mb-5">
+		<b-row class="side">
         <div class="sidey text-center">
           <b-button class="good" :to="{name: 'ratings.peeptimer'}">Peeps</b-button>
           <br />
