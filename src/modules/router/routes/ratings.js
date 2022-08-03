@@ -108,16 +108,16 @@ export default [
   },
   // Buttons
   {
-    name: 'ratings.special.one',
-    path: 'special-one',
-    component: () => import('@/views/buttons/SpecialOne'),
-    meta: {title: 'Special Page 1'}
+    name: 'ratings.creeps',
+    path: 'creeps',
+    component: () => import('@/views/buttons/Creeps'),
+    meta: {title: 'Creeps'}
   },
   {
-    name: 'ratings.special.two',
-    path: 'special-two',
-    component: () => import('@/views/buttons/SpecialTwo'),
-    meta: {title: 'Special Page 2'}
+    name: 'ratings.peeps',
+    path: 'peeps',
+    component: () => import('@/views/buttons/Peeps'),
+    meta: {title: 'Peeps'}
   },
   {
     name: 'ratings.peepscreeps',

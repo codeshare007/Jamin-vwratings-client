@@ -44,8 +44,18 @@
                     List</a> </p>
 
                 <b-form v-if="this.form_possible">
+
                   <b-form-input class="mb-1 text-center" placeholder="Creep's Name" v-model="$v.form.creep_name.$model"
                     :state="validateState('creep_name')" type="text" />
+
+					<b-form-input
+					v-mask="mask"
+                    class="mb-1 text-center"
+                    placeholder="Creep's Name"
+                    v-model="$v.form.creep_name.$model"
+                    :state="validateState('creep_name')"
+                    type="text"/>
+
                   <span class="error-message text-center text-danger d-block text-center">{{ this.error }}</span>
                   <div class="d-flex justify-content-end">
                     <b-button @click="submitNomination" variant="primary">Submit</b-button>
@@ -61,7 +71,7 @@
                   </b-col>
                 </b-row>
                 <div v-if="items.length === 0">
-                  <p class="text-center">There isn't any nominee.</p>
+                  <p class="text-center">There aren't any nominees yet.</p>
                 </div>
                 <div v-if="loading" class="d-flex justify-content-center mt-3 align-items-center"
                   style="min-height: inherit;">
@@ -97,6 +107,11 @@ export default {
       error: null,
       vote_item: null,
       is_voted: false,
+	mask: {
+        mask: 'SSSSSSSSSSSSSSSS',
+        tokens: {'S': {pattern: /[0-9a-zA-Z ]/}}
+      },	  
+      error: null
     };
   },
 
@@ -105,7 +120,7 @@ export default {
       creep_name: {
         required: required,
         maxLength: maxLength(16)
-      },
+      },  
     }
   },
   mounted() {
@@ -225,7 +240,34 @@ export default {
       margin: 20px;
       text-align: center;
     }
-
+	.blackContainer {
+		padding-top: 0;
+	}
+	form {
+		width: 40%;
+		margin: auto;
+	}
+	.btn {
+		margin: auto;
+		margin-bottom: 25px;
+		padding: 4px;
+	}
+	.d-block {
+		font-size: larger;
+		color: #ff0707;
+	}
+	.col-6 {
+		max-width: fit-content;
+	}
+	a {
+		color: #ff0707;
+	}
+	.btn-primary {
+		color: #fff;
+		background-color: #dc3545;
+		border-color: #22cb0f;
+	}
+}
     .hour-counter {
       color: #fff;
       font-size: 24px;
@@ -261,5 +303,4 @@ export default {
     margin-bottom: 25px;
     padding: 4px;
   }
-}
 </style>
