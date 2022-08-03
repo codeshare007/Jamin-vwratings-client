@@ -45,9 +45,6 @@
 
                 <b-form v-if="this.form_possible">
 
-                  <b-form-input class="mb-1 text-center" placeholder="Creep's Name" v-model="$v.form.creep_name.$model"
-                    :state="validateState('creep_name')" type="text" />
-
                   <b-form-input v-mask="mask" class="mb-1 text-center" placeholder="Creep's Name"
                     v-model="$v.form.creep_name.$model" :state="validateState('creep_name')" type="text" />
 
@@ -106,7 +103,6 @@ export default {
         mask: 'SSSSSSSSSSSSSSSS',
         tokens: { 'S': { pattern: /[0-9a-zA-Z ]/ } }
       },
-      error: null
     };
   },
 
