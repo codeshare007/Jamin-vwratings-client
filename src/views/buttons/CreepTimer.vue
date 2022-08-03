@@ -30,6 +30,7 @@
 
                 <b-form v-if="this.form_possible">
 					<b-form-input
+					v-mask="mask"
                     class="mb-1 text-center"
                     placeholder="Creep's Name"
                     v-model="$v.form.creep_name.$model"
@@ -86,6 +87,10 @@ export default {
       form: {
         creep_name: null,
       },
+	mask: {
+        mask: 'SSSSSSSSSSSSSSSS',
+        tokens: {'S': {pattern: /[0-9a-zA-Z ]/}}
+      },	  
       error: null
     };
   },
@@ -95,7 +100,7 @@ export default {
       creep_name: {
         required: required,
         maxLength: maxLength(16)
-      },
+      },  
     }
   },
   mounted() {

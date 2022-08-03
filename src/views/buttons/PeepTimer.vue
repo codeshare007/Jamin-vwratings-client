@@ -29,6 +29,7 @@
 					<p>Enter the exact name of the peep you would like to nominate this round, then come back to vote when the timer runs out.  Please note: Nominees must come from the <a href='/avis?type=good_list'>Good List</a> </p>
                 <b-form v-if="this.form_possible">
 					<b-form-input
+					v-mask="mask"
                     class="mb-1 text-center"
                     placeholder="Peep's Name"
                     v-model="$v.form.peep_name.$model"
@@ -84,6 +85,10 @@ export default {
       form: {
         peep_name: null,
       },
+	mask: {
+        mask: 'SSSSSSSSSSSSSSSS',
+        tokens: {'S': {pattern: /[0-9a-zA-Z ]/}}
+      },	  
       error: null
     };
   },
