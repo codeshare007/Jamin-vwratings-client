@@ -6,6 +6,7 @@ import apiProfile from './methods/profile';
 import apiAvis from './methods/avis';
 import apiParties from './methods/parties';
 import apiNominations from './methods/nominations';
+import apiVotings from './methods/votings';
 
 export default {
   removeJWT() {
@@ -105,7 +106,8 @@ export default {
       profile: apiProfile(this.apiInstance),
       avis: apiAvis(this.apiInstance),
       parties: apiParties(this.apiInstance),
-      nominations: apiNominations(this.apiInstance)
+      nominations: apiNominations(this.apiInstance),
+      votings: apiVotings(this.apiInstance),
     };
 
     Vue.prototype.$api = repositories;
