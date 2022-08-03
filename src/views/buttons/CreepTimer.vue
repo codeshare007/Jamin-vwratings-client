@@ -10,11 +10,10 @@
               <span class="seconds">{{ seconds }}</span><span class="normal">secs</span>
             </div>
             <b-modal ref="confirmModal" ok-title="Add" size="sg" ok-variant="dark" hide-footer
-              modal-class="entitiesList__modal" title="Vote">
+              modal-class="confirm__modal" title="Vote">
 
               <b-form @reset="closeConfirmForm">
                 <span class="d-block mb-3 text-center">Are you sure?</span>
-                <!-- <span class="d-block text-danger mb-3 text-center font-weight-bold" v-if="createError" v-html="createError"/> -->
                 <div class="d-flex justify-content-end mt-5">
                   <b-button variant="secondary" type="reset" class="mr-2">Cancel</b-button>
                   <b-button variant="primary" @click="vote">Ok</b-button>
@@ -46,7 +45,8 @@
                 <b-form v-if="this.form_possible">
 
                   <b-form-input v-mask="mask" class="mb-1 text-center" placeholder="Creep's Name"
-                    v-model="$v.form.creep_name.$model" :state="validateState('creep_name')" type="text" />
+                    v-model="$v.form.creep_name.$model" :state="validateState('creep_name')" type="text"
+                    v-on:keydown.enter.prevent/>
 
                   <span class="error-message text-center text-danger d-block text-center">{{ this.error }}</span>
                   <div class="d-flex justify-content-end">
@@ -174,7 +174,7 @@ export default {
 
     isVotingPossible() {
       this.$api.votings.getPossible().then((res) => {
-        this.isVoted = res.data.possible;
+        this.is_voted = res.data.possible;
       });
     },
     submitNomination(e) {
@@ -210,7 +210,7 @@ export default {
       if (this.vote_item) {
         this.$api.votings.create(this.vote_item).then(response => {
           if (response.data.status === 'success') {
-            window.location.href = '/promo?type=2';
+            window.location.href = '/promo?type=4';
           }
         })
       }
