@@ -41,8 +41,8 @@
 
                   <b-form-input v-mask="mask" class="mb-1 text-center" placeholder="Peep's Name"
 											
-											 
-													  
+
+
                     v-model="$v.form.peep_name.$model" :state="validateState('peep_name')" type="text"
                     v-on:keydown.enter.prevent/>
                   <span class="error-message text-center text-danger d-block text-center">{{ this.error }}</span>
@@ -55,8 +55,7 @@
                 <b-row class="d-flex justify-content-center">            
                   <b-col cols="6">
                     <!-- <a href="/avis/" v-for="(item, i) in this.items" :key="i">{{item.avi_name}}</a> -->
- 								
-									 
+
                     <router-link class="d-block" v-for="(item, i) in this.items" :key="i"
                       :to="redirectToItem(item.avi_id)" v-html="item.avi_name" />
                   </b-col>                  
@@ -284,5 +283,5 @@ export default {
 .modal-header {
     background-color: #30cbdb;				  
 }
-
+}
 </style>
