@@ -132,7 +132,7 @@ export default {
         this.section_number = (Math.floor(this.diff_seconds / this.timePeriodMinutes) % 2 === 0) ? false : true;
 
         setInterval(() => {
-          if (this.distance < 0) {
+          if (this.distance < 0) {            
             this.distance = this.timePeriodMinutes;
             //this.section_number = !(this.section_number);
           } else {
@@ -146,6 +146,8 @@ export default {
               this.form_possible = true;
               this.distance = this.timePeriodMinutes;
               this.section_number = !(this.section_number);
+              if (!this.section_number)
+                window.location.href = 'http://localhost:8000/promo?type=7';
             }
           }
         }, 1000);
