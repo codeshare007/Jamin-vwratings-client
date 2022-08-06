@@ -145,8 +145,8 @@ export default {
             if (this.distance < 0) {
               this.form_possible = true;
               this.distance = this.timePeriodMinutes;
-              this.section_number = !(this.section_number);
-              if (!this.section_number)
+              this.section_number = this.section_number ? this.section_number : !this.section_number;
+              if (this.section_number)
                 window.location.href = 'http://localhost:8000/promo?type=7';
             }
           }
