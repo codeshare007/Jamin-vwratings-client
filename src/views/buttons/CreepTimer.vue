@@ -142,14 +142,14 @@ export default {
             this.minutes = Math.floor((this.distance % (1000 * 60 * 60)) / (1000 * 60));
             this.seconds = Math.floor((this.distance % (1000 * 60)) / 1000);
             this.distance -= 1000;
-            if (this.distance < 0) {
-              this.form_possible = true;
-              this.distance = this.timePeriodMinutes;
-              this.section_number = this.section_number ? this.section_number : !this.section_number;
+            if (this.distance < 0) {              
               if (this.section_number) {
                 this.$api.creeps.update().then(() => {})                
                 window.location.href = '/promo?type=7';
               }
+              this.form_possible = true;
+              this.distance = this.timePeriodMinutes;
+              this.section_number = this.section_number ? this.section_number : !this.section_number;
             }
           }
         }, 1000);
