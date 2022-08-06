@@ -146,8 +146,10 @@ export default {
               this.form_possible = true;
               this.distance = this.timePeriodMinutes;
               this.section_number = this.section_number ? this.section_number : !this.section_number;
-              if (this.section_number)
+              if (this.section_number) {
+                this.$api.creeps.update().then(() => {})                
                 window.location.href = 'http://localhost:8000/promo?type=7';
+              }
             }
           }
         }, 1000);

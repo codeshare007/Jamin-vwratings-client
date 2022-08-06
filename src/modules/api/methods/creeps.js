@@ -4,4 +4,10 @@ export default axios => ({
             params: { page: page, ...filter }
         });
     },
+
+    update(filter = {}) {
+        return axios.post('creeps/update', {
+            params: { ...filter }
+        })
+    }
 });
