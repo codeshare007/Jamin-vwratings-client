@@ -102,6 +102,7 @@ export default {
         mask: 'SSSSSSSSSSSSSSSS',
         tokens: { 'S': { pattern: /[0-9a-zA-Z ]/ } }
       },
+      timer: null,
     };
   },
 
@@ -120,6 +121,11 @@ export default {
     this.getPossible();
     this.isVotingPossible();
   },
+  beforeDestroy() {
+    if (this.timer) {
+      clearInterval(this.timer);
+    }
+  },
   methods: {
     fetchTimer() {
       this.$api.profile.fetch_timer().then((response) => {
@@ -131,7 +137,7 @@ export default {
         this.distance = this.timePeriodMinutes - this.diff_seconds % this.timePeriodMinutes;
         this.section_number = (Math.floor(this.diff_seconds / this.timePeriodMinutes) % 2 === 0) ? false : true;
 
-        setInterval(() => {
+        this.timer = setInterval(() => {
           if (this.distance < 0) {            
             this.distance = this.timePeriodMinutes;
             //this.section_number = !(this.section_number);
