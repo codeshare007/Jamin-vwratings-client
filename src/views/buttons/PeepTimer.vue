@@ -119,6 +119,11 @@ export default {
     this.getPossible();   
     this.isVotingPossible();							
   },
+  beforeDestroy() {
+    if (this.timer) {
+      clearInterval(this.timer);
+    }
+  },
   methods: {
     fetchTimer() {
       this.$api.profile.fetch_timer().then((response) => {
@@ -130,8 +135,8 @@ export default {
         this.distance = this.timePeriodMinutes - this.diff_seconds % this.timePeriodMinutes;
         this.section_number = (Math.floor(this.diff_seconds / this.timePeriodMinutes) % 2 === 0) ? false : true;
 
-        setInterval(() => {
-          if (this.distance < 0) {
+        this.timer = setInterval(() => {
+          if (this.distance < 0) {            
             this.distance = this.timePeriodMinutes;
             //this.section_number = !(this.section_number);
           } else {
@@ -141,10 +146,14 @@ export default {
             this.minutes = Math.floor((this.distance % (1000 * 60 * 60)) / (1000 * 60));
             this.seconds = Math.floor((this.distance % (1000 * 60)) / 1000);
             this.distance -= 1000;
-            if (this.distance < 0) {
+            if (this.distance < 0) {              
+              if (this.section_number) {
+                this.$api.peeps.update().then(() => {})                
+                window.location.href = '/promo?type=7';
+              }
               this.form_possible = true;
               this.distance = this.timePeriodMinutes;
-              this.section_number = !(this.section_number);
+              this.section_number = this.section_number ? this.section_number : !this.section_number;
             }
           }
         }, 1000);
@@ -171,7 +180,7 @@ export default {
     },
 
     isVotingPossible() {
-      this.$api.votings.getPossible().then((res) => {
+      this.$api.votings_peeps.getPossible().then((res) => {
         this.is_voted = res.data.possible;
       });
     },
@@ -206,7 +215,7 @@ export default {
 
     vote() {
       if (this.vote_item) {
-        this.$api.votings.create(this.vote_item).then(response => {
+        this.$api.votings_peeps.create(this.vote_item).then(response => {
           if (response.data.status === 'success') {
             window.location.href = '/promo?type=6';
           }
