@@ -188,7 +188,7 @@ export default {
       this.$api.nominations_peeps.create(payload).then(response => {
         if (response.data.status === 'success') {
           this.form_possible = false;
-          window.location.href = '/promo?type=2';
+          window.location.href = '/promo?type=5';
         }
       }).catch(error => {
         this.error = error.response.data.message;
@@ -208,7 +208,7 @@ export default {
       if (this.vote_item) {
         this.$api.votings.create(this.vote_item).then(response => {
           if (response.data.status === 'success') {
-            window.location.href = '/promo?type=4';
+            window.location.href = '/promo?type=6';
           }
         })
       }
