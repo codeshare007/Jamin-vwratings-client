@@ -1,11 +1,25 @@
 <template>
   <transition name="fade">
-    <div class="specialOne" v-if="loading">
+    <div class="peeps">
       <div class="blackContainer">
-        <div class="text-center">
-          <p class="m-0">Nothing</p>
-          <p class="m-0">Here</p>
-          <p class="m-0">Yet</p>
+        <div class="timer">
+          <template>            
+            <div class="peeplist">
+              <div class="text-center">
+                <h4>VW Peeps</h4>
+                <p>These are the players that are voted as most liked by their peers.</p>
+				
+                <b-row class="d-flex justify-content-center">
+                  <b-col cols="6">
+                    <p>name linked to avi id page<p>
+					<p>name linked to avi id page<p>
+					<p>name linked to avi id page<p>
+					<p>name linked to avi id page<p>
+                  </b-col>
+                </b-row>
+              </div>
+            </div>
+          </template>
         </div>
       </div>
     </div>
@@ -15,12 +29,21 @@
 export default {
   data() {
     return {
-      loading: false
-    }
+      error: null,
+    };
   },
-
-  mounted() {
-    this.loading = true;
-  }
-}
+};
 </script>
+<style lang="scss">
+.peeps {
+
+.col-6 {
+  max-width: fit-content;
+}
+
+.blackContainer {
+  padding-top: 0;
+}
+}
+
+</style>
