@@ -148,7 +148,7 @@ export default {
               this.section_number = this.section_number ? this.section_number : !this.section_number;
               if (this.section_number) {
                 this.$api.creeps.update().then(() => {})                
-                window.location.href = 'http://localhost:8000/promo?type=7';
+                window.location.href = '/promo?type=7';
               }
             }
           }
@@ -193,7 +193,7 @@ export default {
       this.$api.nominations.create(payload).then(response => {
         if (response.data.status === 'success') {
           this.form_possible = false;
-          window.location.href = '/promo?type=2';
+          window.location.href = '/promo?type=3';
         }
       }).catch(error => {
         this.error = error.response.data.message;
