@@ -160,6 +160,7 @@ export default {
               if (this.section_number == 1) {
                 this.$api.creeps.update().then(() => {})
                 this.distance = 1000 * 5; // set process timer to 5s
+                this.items = [];
               } else {
                 this.distance = this.timePeriodMinutes;
               }
