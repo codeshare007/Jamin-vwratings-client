@@ -21,7 +21,7 @@
             </b-modal>
 
             <div class="process text-center" v-if="section_number == 2">
-              <p>Processing...</p>
+              <p>Processing the next round...</p>
               <div class="d-flex justify-content-center mt-3 align-items-center"
                 style="min-height: inherit;">
                 <b-spinner />
@@ -31,14 +31,13 @@
             <div class="vote text-center" v-if="section_number == 1">
               <h4>Creep Vote</h4>
               <p>Here are this weeks nominations for creeps. Click the one that you think is the worst.</p>
-              <h5>Current Nominees</h5>
               <b-row class="d-flex justify-content-center" v-if="is_voted">
                 <b-col cols="6">
                   <a href="javascript:void(0);" class="d-block" v-for="(item, i) in this.items" :key="i"
                     @click="showConfirmForm(item)">{{ item.avi_name }}</a>
                 </b-col>
               </b-row>
-              <p v-if="!is_voted">You have already voted this round</p>
+              <p v-if="!is_voted" style="color: red">You have already voted this round</p>
             </div>
 
 
@@ -61,7 +60,7 @@
                   </div>
                 </b-form>
 
-                <h4>Current Nominees</h4>
+                <h5>Nominated this round...</h5>
                 <b-row class="d-flex justify-content-center">
                   <b-col cols="6">
                     <!-- <a href="/avis/" v-for="(item, i) in this.items" :key="i">{{item.avi_name}}</a> -->
@@ -267,7 +266,7 @@ export default {
     }
 
     .d-block {
-      font-size: larger;
+      font-size: 24px;
       color: #ff0707;
     }
 

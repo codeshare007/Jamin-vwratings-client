@@ -19,21 +19,28 @@
                 </div>
               </b-form>
             </b-modal>
-            <div class="vote text-center" v-if="section_number">
+
+            <div class="process text-center" v-if="section_number == 2">
+              <p>Processing the next round...</p>
+              <div class="d-flex justify-content-center mt-3 align-items-center"
+                style="min-height: inherit;">
+                <b-spinner />
+              </div>
+            </div>
+            <div class="vote text-center" v-if="section_number  == 1">
 				<h4>Peep Vote</h4>
 				<p>Here are this weeks nominations for your favorite peeps. Click the one that you think is the best.</p>
-				<h5>Current Nominees</h5>
               <b-row class="d-flex justify-content-center" v-if="is_voted">
                 <b-col cols="6">
                    <a href="javascript:void(0);" class="d-block" v-for="(item, i) in this.items" :key="i"
                     @click="showConfirmForm(item)">{{ item.avi_name }}</a>
                 </b-col>
               </b-row>			
-              <p v-if="!is_voted">You have already voted this round</p>
+              <p v-if="!is_voted" style="color: red">You have already voted this round</p>
             </div>
 			
 			
-            <div class="nominate" v-else>
+            <div class="nominate" v-if="section_number == 0">
 				<div class="nom text-center">	
 					<h4>Peep Nomination</h4>
 					<p>Enter the exact name of the peep you would like to nominate this round, then come back to vote when the timer runs out.  Please note: Nominees must come from the <a href='/avis?type=good_list'>Good List</a> </p>
@@ -51,7 +58,7 @@
                   </div>
                 </b-form>
 
-                <h4>Current Nominees</h4>
+                <h5>Nominated this round...</h5>
                 <b-row class="d-flex justify-content-center">            
                   <b-col cols="6">
                     <!-- <a href="/avis/" v-for="(item, i) in this.items" :key="i">{{item.avi_name}}</a> -->
@@ -87,7 +94,7 @@ export default {
       diff_seconds: null,
       distance: 0,
       timePeriodMinutes: 0,
-      section_number: false,
+      section_number: 0,
       hours: 0,
       minutes: 0,
       seconds: 0,
@@ -101,6 +108,7 @@ export default {
         mask: 'SSSSSSSSSSSSSSSS',
         tokens: {'S': {pattern: /[0-9a-zA-Z ]/}}
       },	  
+      timer: null,
     };
   },
 
@@ -133,7 +141,7 @@ export default {
         this.timePeriodMinutes = data[2] * 60 * 1000;
         this.diff_seconds = (now - startDateTime);
         this.distance = this.timePeriodMinutes - this.diff_seconds % this.timePeriodMinutes;
-        this.section_number = (Math.floor(this.diff_seconds / this.timePeriodMinutes) % 2 === 0) ? false : true;
+        this.section_number = (Math.floor(this.diff_seconds / this.timePeriodMinutes)) % 2;
 
         this.timer = setInterval(() => {
           if (this.distance < 0) {            
@@ -147,13 +155,15 @@ export default {
             this.seconds = Math.floor((this.distance % (1000 * 60)) / 1000);
             this.distance -= 1000;
             if (this.distance < 0) {              
-              if (this.section_number) {
-                this.$api.peeps.update().then(() => {})                
-                window.location.href = '/promo?type=7';
+               if (this.section_number == 1) {
+                this.$api.peeps.update().then(() => {})
+                this.distance = 1000 * 5; // set process timer to 5s
+                this.items = [];
+              } else {
+                this.distance = this.timePeriodMinutes;
               }
-              this.form_possible = true;
-              this.distance = this.timePeriodMinutes;
-              this.section_number = this.section_number ? this.section_number : !this.section_number;
+              this.form_possible = true;              
+              this.section_number = (this.section_number + 1) % 3;
             }
           }
         }, 1000);
@@ -233,64 +243,88 @@ export default {
 <style lang="scss">
 .peepTimer {
 
-    .timer {
-        h1{
-            margin: 20px;
-            text-align: center;
-        }
-        .hour-counter {
-            color: #fff;
-            font-size: 24px;
-            font-weight: 300;
-            position: relative;
-            text-align: center;
-            width: 50%;
-			margin-right: auto;
-			margin-left: auto;
-			margin-bottom: 25px;
-            letter-spacing: 2px;
-            word-spacing: 8px;
-            border: 1px solid #5b8750;
-
-            .normal {
-                font-size: 15px;
-                margin-right: 20px;
-            }
-        }
+  .timer {
+    h1 {
+      margin: 20px;
+      text-align: center;
     }
-	.blackContainer {
-		padding-top: 0;
-	}
-	form {
-		width: 40%;
-		margin: auto;
-	}
-	.btn {
-		margin: auto;
-		margin-bottom: 25px;
-		padding: 4px;
-	}
-	.d-block {
-		font-size: larger;
-		color: #07ff5f;
-	}
-	.col-6 {
-		max-width: fit-content;
-	}
-	a {
-		color: #07ff5f;
-	}
-	.btn-primary {
-		color: #fff;
-		background-color: #149b4a;
-		border-color: #00ff5c;
-	}	
+
+    .blackContainer {
+      padding-top: 0;
+    }
+
+    form {
+      width: 40%;
+      margin: auto;
+    }
+
+    .btn {
+      margin: auto;
+      margin-bottom: 25px;
+      padding: 4px;
+    }
+
+    .d-block {
+      font-size: 24px;
+      color: #07ff5f;
+    }
+
+    .col-6 {
+      max-width: fit-content;
+    }
+
+    a {
+      color: #07ff5f;
+    }
+
+    .btn-primary {
+      color: #fff;
+      background-color: #149b4a;
+      border-color: #00ff5c;
+    }
+  }
+
+  .hour-counter {
+    color: #fff;
+    font-size: 24px;
+    font-weight: 300;
+    position: relative;
+    text-align: center;
+    width: 50%;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 25px;
+    letter-spacing: 2px;
+    word-spacing: 8px;
+    border: 1px solid #5b8750;
+
+    .normal {
+      font-size: 15px;
+      margin-right: 20px;
+    }
+  }
+}
+
+.blackContainer {
+  padding-top: 0;
+}
+
+form {
+  width: 40%;
+  margin: auto;
+}
+
+.btn {
+  margin: auto;
+  margin-bottom: 25px;
+  padding: 4px;
+}
 .modal-body {
     padding: 0;
     background-color: #30cbdb;
 }
 .modal-header {
-    background-color: #30cbdb;				  
+    background-color: #30cbdb;
 }
-}
+
 </style>

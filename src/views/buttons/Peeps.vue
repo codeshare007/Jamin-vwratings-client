@@ -70,6 +70,11 @@ export default {
   max-width: fit-content;
 }
 
+    .d-block {
+      font-size: 24px;
+      color: #07ff5f;
+    }
+
 .blackContainer {
   padding-top: 0;
 }
