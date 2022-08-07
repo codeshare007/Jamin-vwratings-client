@@ -20,7 +20,15 @@
               </b-form>
             </b-modal>
 
-            <div class="vote text-center" v-if="section_number">
+            <div class="process text-center" v-if="section_number == 2">
+              <p>Processing...</p>
+              <div class="d-flex justify-content-center mt-3 align-items-center"
+                style="min-height: inherit;">
+                <b-spinner />
+              </div>
+            </div>
+
+            <div class="vote text-center" v-if="section_number == 1">
               <h4>Creep Vote</h4>
               <p>Here are this weeks nominations for creeps. Click the one that you think is the worst.</p>
               <h5>Current Nominees</h5>
@@ -34,7 +42,7 @@
             </div>
 
 
-            <div class="nominate" v-else>
+            <div class="nominate" v-if="section_number == 0">
               <div class="nom text-center">
                 <h4>Creep Nomination</h4>
                 <p>Enter the exact name of the creep you would like to nominate this round, then come back to vote when
@@ -88,7 +96,7 @@ export default {
       diff_seconds: null,
       distance: 0,
       timePeriodMinutes: 0,
-      section_number: false,
+      section_number: 0,
       hours: 0,
       minutes: 0,
       seconds: 0,
@@ -135,7 +143,7 @@ export default {
         this.timePeriodMinutes = data[2] * 60 * 1000;
         this.diff_seconds = (now - startDateTime);
         this.distance = this.timePeriodMinutes - this.diff_seconds % this.timePeriodMinutes;
-        this.section_number = (Math.floor(this.diff_seconds / this.timePeriodMinutes) % 2 === 0) ? false : true;
+        this.section_number = (Math.floor(this.diff_seconds / this.timePeriodMinutes)) % 2;
 
         this.timer = setInterval(() => {
           if (this.distance < 0) {            
@@ -149,13 +157,14 @@ export default {
             this.seconds = Math.floor((this.distance % (1000 * 60)) / 1000);
             this.distance -= 1000;
             if (this.distance < 0) {              
-              if (this.section_number) {
-                this.$api.creeps.update().then(() => {})                
-                window.location.href = '/promo?type=7';
+              if (this.section_number == 1) {
+                this.$api.creeps.update().then(() => {})
+                this.distance = 1000 * 5; // set process timer to 5s
+              } else {
+                this.distance = this.timePeriodMinutes;
               }
-              this.form_possible = true;
-              this.distance = this.timePeriodMinutes;
-              this.section_number = this.section_number ? this.section_number : !this.section_number;
+              this.form_possible = true;              
+              this.section_number = (this.section_number + 1) % 3;
             }
           }
         }, 1000);
