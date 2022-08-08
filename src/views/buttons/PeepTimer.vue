@@ -32,7 +32,7 @@
 				<p>Here are this weeks nominations for your favorite peeps. Click the one that you think is the best.</p>
               <b-row class="d-flex justify-content-center" v-if="is_voted">
                 <b-col cols="6">
-                   <a href="javascript:void(0);" class="d-block" v-for="(item, i) in this.items" :key="i"
+                  <a href="javascript:void(0);" class="d-block" v-for="(item, i) in this.randomItems" :key="i"
                     @click="showConfirmForm(item)">{{ item.avi_name }}</a>
                 </b-col>
               </b-row>			
@@ -89,6 +89,7 @@ export default {
   data() {
     return {
       items: [],
+      randomItems: [],							 
       loading: false,
       form_possible: true,
       diff_seconds: null,
@@ -112,6 +113,15 @@ export default {
     };
   },
 
+  watch: {
+    items: {
+      handler(items) {
+        this.randomItems = [...items].sort((a, b) => (a.avi_id > b.avi_id ? 1 : (a.avi_id < b.avi_id ? -1 : 0))).slice(0, 2);
+      },
+      deep: true      
+    }
+  
+  },
   validations: {
     form: {
       peep_name: {
