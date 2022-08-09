@@ -39,7 +39,7 @@ export default {
       items: [],
       currentPage: 1,
       params: {
-        per_page: 20
+        per_page: 99999
       }
     };
   },

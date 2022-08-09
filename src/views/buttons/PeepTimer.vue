@@ -102,6 +102,10 @@ export default {
       form: {
         peep_name: null,
       },
+      currentPage: 1,
+      params: {
+        per_page: 99999
+      },	  
       error: null,
       vote_item: null,
       is_voted: false,
@@ -116,7 +120,7 @@ export default {
   watch: {
     items: {
       handler(items) {
-        this.randomItems = [...items].sort((a, b) => (a.avi_id > b.avi_id ? 1 : (a.avi_id < b.avi_id ? -1 : 0))).slice(0, 2);
+        this.randomItems = [...items].sort((a, b) => (a.avi_id > b.avi_id ? 1 : (a.avi_id < b.avi_id ? -1 : 0))).slice(0, 3);
       },
       deep: true      
     }
