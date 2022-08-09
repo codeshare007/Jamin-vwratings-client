@@ -8,15 +8,16 @@
             Nominate and vote on your favorite players and the worst players you
             know.<br />Peeps will get treats.<br />Creeps are just creeps.<br />Scroll to bottom for rules.
           </p>
+			<h3>System is build and will be updated very soon</h3>
         </div>
 		<b-row class="side">
         <div class="sidey text-center">
-          <b-button class="good" :to="{name: 'ratings.peeptimer'}">Peeps</b-button>
+          <b-button class="good" >Peeps</b-button>
           <br />
           Peeps = Decent players
         </div>
         <div class="sidey text-center">
-          <b-button class="bad" :to="{name: 'ratings.creeptimer'}">Creeps</b-button>
+          <b-button class="bad" >Creeps</b-button>
           <br />
           Creeps = Not so decent
         </div>
