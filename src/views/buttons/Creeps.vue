@@ -7,7 +7,7 @@
             <div class="creeplist">
               <div class="text-center">
                 <h4>VW Creeps</h4>
-                <p>These are the players that are voted as most disliked by their peers.</p>
+                <p>These are the players that are voted as most disliked by their peers.<br />Make sure to comment on their profile if you have encountered any pathetic behaviour.  Let the unsuspecting know what these creeps are really like.</p>
 
                 <b-row class="d-flex justify-content-center">
                   <b-col cols="6">

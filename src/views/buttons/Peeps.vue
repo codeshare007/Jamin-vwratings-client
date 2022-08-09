@@ -7,7 +7,7 @@
             <div class="peeplist">
               <div class="text-center">
                 <h4>VW Peeps</h4>
-                <p>These are the players that are voted as most liked by their peers.</p>
+                <p>These are the players that are voted as most liked by their peers.<br /> vwRatings is giving each new peep a little gift as a thanks for being a cool bean.<br /> Maybe you should send them a gift also :)</p>
 
                 <b-row class="d-flex justify-content-center">
                   <b-col cols="6">

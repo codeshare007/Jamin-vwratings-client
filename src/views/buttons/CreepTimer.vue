@@ -10,7 +10,7 @@
               <span class="seconds">{{ seconds }}</span><span class="normal">secs</span>
             </div>
             <b-modal ref="confirmModal" ok-title="Add" size="sg" ok-variant="dark" hide-footer
-              modal-class="confirm__modal" title="Are you sure?">
+              modal-class="confirm__modal" title="Are you sure you want to vote for this name?">
 
               <b-form @reset="closeConfirmForm">
                 <div class="d-flex justify-content-end mt-5">
@@ -44,9 +44,8 @@
             <div class="nominate" v-if="section_number == 0">
               <div class="nom text-center">
                 <h4>Creep Nomination</h4>
-                <p>Enter the exact name of the creep you would like to nominate this round, then come back to vote when
-                  the timer runs out. Please note: Nominees must come from the <a href='/avis?type=bad_list'>Bad
-                    List</a> </p>
+                <p>Enter the exact name of the name you would like to nominate for creep, then come back to vote when
+                  the timer runs out. The name must be on the <a href='/avis?type=bad_list'>Bad List</a> </p>
 
                 <b-form v-if="this.form_possible">
 
@@ -295,14 +294,15 @@ export default {
     font-weight: 300;
     position: relative;
     text-align: center;
-    width: 50%;
+    width: fit-content;
     margin-right: auto;
     margin-left: auto;
     margin-bottom: 25px;
     letter-spacing: 2px;
     word-spacing: 8px;
     border: 1px solid #5b8750;
-
+	padding-left: 20px;
+	
     .normal {
       font-size: 15px;
       margin-right: 20px;

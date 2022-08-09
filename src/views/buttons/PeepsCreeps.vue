@@ -6,7 +6,7 @@
 		<h4>Peeps & Creeps</h4>
           <p class="mb-4">
             Nominate and vote on your favorite players and the worst players you
-            know.<br />Peeps will get treats.<br />Creeps are just creeps.
+            know.<br />Peeps will get treats.<br />Creeps are just creeps.<br />Scroll to bottom for rules.
           </p>
         </div>
 		<b-row class="side">
@@ -27,8 +27,10 @@
           data-ad-slot="2013033941"
           data-ad-format="auto"
           data-full-width-responsive="true">
-        </Adsense>		
-		
+        </Adsense>
+		<div class="text-center mt-3">
+			<p>You need to be a member to enter the pages<br />Any member can nominate a name<br />Any member can vote on names<br />The nomination/voting cycle repeats itself, so keep coming back.<br />Only three random nominations will make it to voting</p>
+		</div>
       </div>
     </div>
   </transition>
