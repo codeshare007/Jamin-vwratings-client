@@ -8,7 +8,7 @@
             Nominate and vote on your favorite players and the worst players you
             know.<br />Peeps will get treats.<br />Creeps are just creeps.<br />Scroll to bottom for rules.
           </p>
-			<h3>System is build and will be updated very soon</h3>
+			<h3>System is built and will be updated very soon</h3>
         </div>
 		<b-row class="side">
         <div class="sidey text-center">
