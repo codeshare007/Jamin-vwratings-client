@@ -1,5 +1,6 @@
 <template>
   <transition name="fade">
+  <div v-if="adBlock">
     <div class="peepsCreepsPage" v-if="loading">
       <div class="blackContainer">
         <div class="text-center">
@@ -34,14 +35,31 @@
 		</div>
       </div>
     </div>
+  </div>
+  <div v-else>
+    <AdBlocker></AdBlocker>
+  </div>
   </transition>
 </template>
 <script>
+import {detectAnyAdblocker} from "vue-adblock-detector";
+import AdBlocker from '../../components/AdBlocker.vue';
+
 export default {
   data() {
     return {
       loading: false,
+      adBlock: true
     };
+  },
+
+  beforeMount() {
+    detectAnyAdblocker().then((detected) => {
+      console.log(detected);
+      if(detected){
+        this.adBlock = false;
+      }
+    });
   },
 
   mounted() {
@@ -49,6 +67,9 @@ export default {
   },
   methods: {
   },
+  components: {
+    AdBlocker
+  }
 };
 </script>
 <style lang="scss">
