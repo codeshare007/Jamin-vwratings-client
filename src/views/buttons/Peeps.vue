@@ -51,7 +51,16 @@ export default {
       }
     };
   },
-
+  watch: {
+    items: {
+      handler(items) {
+        console.log(items);
+        this.recentItems = [...items].sort((a, b) => (a.id > b.id ? -1 : (a.id < b.id ? 1 : 0)));
+      },
+      deep: true      
+    }
+  
+  },
   mounted() {
     this.fetchItems();
   },
@@ -60,7 +69,6 @@ export default {
     fetchItems() {
       this.$api.peeps.fetch(this.currentPage, this.params).then(response => {
         this.items = response.data.data;
-        this.recentItems = response.data.data;
         this.loading = false;
       })
     },

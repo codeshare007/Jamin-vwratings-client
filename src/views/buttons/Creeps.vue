@@ -55,7 +55,8 @@ export default {
   watch: {
     items: {
       handler(items) {
-        this.recentItems = [...items].sort((a, b) => (a.id > b.id ? 1 : (a.id < b.id ? -1 : 0)));
+        console.log(items);
+        this.recentItems = [...items].sort((a, b) => (a.id > b.id ? -1 : (a.id < b.id ? 1 : 0)));
       },
       deep: true      
     }
