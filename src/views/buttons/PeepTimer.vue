@@ -40,7 +40,14 @@
   <div v-else>
     <AdBlocker></AdBlocker>
   </div>
-              </b-row>			
+              </b-row>
+               <div v-if="items.length === 0">
+                  <p class="text-center" style="color: red">There weren't any nominees to vote on this round.</p>
+                </div>
+                <div v-if="loading" class="d-flex justify-content-center mt-3 align-items-center"
+                  style="min-height: inherit;">
+                  <b-spinner />
+                </div>			  
               <p v-if="!is_voted" style="color: red">You have already voted this round</p>
             </div>
 			
@@ -77,7 +84,7 @@
                   </b-col>                  
                 </b-row>
                 <div v-if="items.length === 0">
-                  <p class="text-center">There aren't any nominees yet.</p>
+                  <p class="text-center" style="color: red">There aren't any nominees yet.</p>
                 </div>
                 <div v-if="loading" class="d-flex justify-content-center mt-3 align-items-center"
                   style="min-height: inherit;">
