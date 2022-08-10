@@ -7,7 +7,14 @@
             <div class="peeplist">
               <div class="text-center">
                 <h4>VW Peeps</h4>
-                <p>These are the players that are voted as most liked by their peers.<br /> vwRatings is giving each new peep a little gift as a thanks for being a cool bean.<br /> Maybe you should send them a gift also :)</p>
+				
+				<b-row class="d-flex justify-content-center">
+                  <b-col cols="6">
+                    Last voted <router-link class="d-block recent" v-for="(item, i) in this.recentItems.slice(0, 1)" :key="i"
+                      :to="redirectToItem(item.avi_id)" v-html="item.avi_name" />
+                  </b-col>
+                </b-row>
+                <p>These are the players that are voted as most liked by their peers.<br /> vwRatings is giving each new peep a little gift as a thanks for being cool beans.<br /> Maybe you should send them a gift also :)</p>
 
                 <b-row class="d-flex justify-content-center">
                   <b-col cols="6">
@@ -37,6 +44,7 @@ export default {
       error: null,
       loading: true,
       items: [],
+      recentItems: [],
       currentPage: 1,
       params: {
         per_page: 99999
@@ -52,6 +60,7 @@ export default {
     fetchItems() {
       this.$api.peeps.fetch(this.currentPage, this.params).then(response => {
         this.items = response.data.data;
+        this.recentItems = response.data.data;
         this.loading = false;
       })
     },
