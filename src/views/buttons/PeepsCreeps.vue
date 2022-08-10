@@ -1,6 +1,5 @@
 <template>
   <transition name="fade">
-  <div v-if="adBlock">
     <div class="peepsCreepsPage" v-if="loading">
       <div class="blackContainer">
         <div class="text-center">
@@ -9,8 +8,8 @@
             Nominate and vote on your favorite players and the worst players you
             know.<br />Peeps will get treats.<br />Creeps are just creeps.<br />Scroll to bottom for rules.
           </p>
-			<h3>System is built and will be updated very soon</h3>
         </div>
+ <div v-if="adBlock">		
 		<b-row class="side">
         <div class="sidey text-center">
           <b-button class="good" >Peeps</b-button>
@@ -23,7 +22,10 @@
           Creeps = Not so decent
         </div>
 		</b-row>
-		
+</div>
+  <div v-else>
+    <AdBlocker></AdBlocker>
+  </div>		
         <Adsense
           data-ad-client="ca-pub-3655622089482340"
           data-ad-slot="2013033941"
@@ -32,13 +34,10 @@
         </Adsense>
 		<div class="text-center mt-3">
 			<p>You need to be a member to enter the pages<br />Any member can nominate a name<br />Any member can vote on names<br />The nomination/voting cycle repeats itself, so keep coming back.<br />Only three random nominations will make it to voting</p>
-		</div>
       </div>
     </div>
   </div>
-  <div v-else>
-    <AdBlocker></AdBlocker>
-  </div>
+
   </transition>
 </template>
 <script>

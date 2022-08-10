@@ -1,6 +1,11 @@
 <template>
   <div class="homePage">
     <div class="homePage__container">
+	<div v-if="adBlock">		
+	</div>
+  <div v-else>
+    <AdBlocker></AdBlocker>
+  </div>		
       <h1 class="text-center">Welcome to vwRatings!</h1>
       <h2 class="text-center">Behaviour ratings of vw players to highlight the awesome and expose the rotten.</h2>
 
@@ -128,6 +133,37 @@
     </div>
   </div>
 </template>
+<script>
+import {detectAnyAdblocker} from "vue-adblock-detector";
+import AdBlocker from '../components/AdBlocker.vue';
+
+export default {
+  data() {
+    return {
+      loading: false,
+      adBlock: true
+    };
+  },
+
+  beforeMount() {
+    detectAnyAdblocker().then((detected) => {
+      console.log(detected);
+      if(detected){
+        this.adBlock = false;
+      }
+    });
+  },
+
+  mounted() {
+    this.loading = true;
+  },
+  methods: {
+  },
+  components: {
+    AdBlocker
+  }
+};
+</script>
 <style lang="scss">
 .homePage {
 

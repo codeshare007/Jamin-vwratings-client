@@ -9,22 +9,40 @@
       </Adsense>
     </div>
     -->
+	<div v-if="adBlock">
     <EntitiesList entity="avi" method="avis"/>
+	</div>
+		<div v-else>
+    <AdBlocker></AdBlocker>
+		</div>	
   </div>
 </template>
 <script>
+import {detectAnyAdblocker} from "vue-adblock-detector";
+import AdBlocker from '../../components/AdBlocker.vue';
 import EntitiesList from "@/components/entities/EntitiesList";
 
 export default {
 
+    beforeMount() {
+    detectAnyAdblocker().then((detected) => {
+      console.log(detected);
+      if(detected){
+        this.adBlock = false;
+      }
+    });
+  },
   components: {
-    EntitiesList
+    EntitiesList,
+	AdBlocker
   },
 
   data() {
-    return {}
+    return {
+	adBlock: true,
+	}
   }
-}
+};
 </script>
 <style lang="scss">
 .avisList {
