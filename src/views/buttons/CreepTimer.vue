@@ -27,20 +27,22 @@
                 <b-spinner />
               </div>
             </div>
-
             <div class="vote text-center" v-if="section_number == 1">
-              <h4>Creep Vote</h4>
+              <h4>Creep Vote</h4>			  
               <p>Here are this weeks nominations for creeps. Click the one that you think is the worst.</p>
               <b-row class="d-flex justify-content-center" v-if="is_voted">
+				<div v-if="adBlock">
                 <b-col cols="6">
                   <a href="javascript:void(0);" class="d-block" v-for="(item, i) in this.randomItems" :key="i"
                     @click="showConfirmForm(item)">{{ item.avi_name }}</a>
                 </b-col>
+				</div>
+  <div v-else>
+    <AdBlocker></AdBlocker>
+  </div>				
               </b-row>
               <p v-if="!is_voted" style="color: red">You have already voted this round</p>
-            </div>
-
-
+		</div>	
             <div class="nominate" v-if="section_number == 0">
               <div class="nom text-center">
                 <h4>Creep Nomination</h4>
@@ -48,11 +50,14 @@
                   the timer runs out. The name must be on the <a href='/avis?type=bad_list'>Bad List</a> </p>
 
                 <b-form v-if="this.form_possible">
-
+ <div v-if="adBlock">
                   <b-form-input v-mask="mask" class="mb-1 text-center" placeholder="Creep's Name"
                     v-model="$v.form.creep_name.$model" :state="validateState('creep_name')" type="text"
                     v-on:keydown.enter.prevent/>
-
+</div>
+  <div v-else>
+    <AdBlocker></AdBlocker>
+  </div>	
                   <span class="error-message text-center text-danger d-block text-center">{{ this.error }}</span>
                   <div class="d-flex justify-content-end">
                     <b-button @click="submitNomination" variant="primary">Submit</b-button>
@@ -83,13 +88,16 @@
   </transition>
 </template>
 <script>
+import {detectAnyAdblocker} from "vue-adblock-detector";
+import AdBlocker from '../../components/AdBlocker.vue';
 
 const { required, maxLength } = require('vuelidate/lib/validators')
 export default {
   data() {
     return {
       items: [],
-      randomItems: [],					  
+      randomItems: [],
+		adBlock: true,
       loading: false,
       form_possible: true,
       diff_seconds: null,
@@ -115,7 +123,14 @@ export default {
       },
     };
   },
-
+  beforeMount() {
+    detectAnyAdblocker().then((detected) => {
+      console.log(detected);
+      if(detected){
+        this.adBlock = false;
+      }
+    });
+  },
   watch: {
     items: {
       handler(items) {
@@ -124,6 +139,9 @@ export default {
       deep: true      
     }
   
+  },
+    components: {
+    AdBlocker
   },
   validations: {
     form: {

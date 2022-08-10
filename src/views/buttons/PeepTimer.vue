@@ -31,10 +31,15 @@
 				<h4>Peep Vote</h4>
 				<p>Here are this weeks nominations for your favorite peeps. Click the one that you think is the best.</p>
               <b-row class="d-flex justify-content-center" v-if="is_voted">
+				<div v-if="adBlock">						
                 <b-col cols="6">
                   <a href="javascript:void(0);" class="d-block" v-for="(item, i) in this.randomItems" :key="i"
                     @click="showConfirmForm(item)">{{ item.avi_name }}</a>
                 </b-col>
+				</div>
+  <div v-else>
+    <AdBlocker></AdBlocker>
+  </div>
               </b-row>			
               <p v-if="!is_voted" style="color: red">You have already voted this round</p>
             </div>
@@ -45,13 +50,17 @@
 					<h4>Peep Nomination</h4>
 					<p>Enter the exact name of the peep you would like to nominate for peep, then come back to vote when the timer runs out.  Names must be on the <a href='/avis?type=good_list'>Good List</a> </p>
                 <b-form v-if="this.form_possible">
-
+ <div v-if="adBlock">
                   <b-form-input v-mask="mask" class="mb-1 text-center" placeholder="Peep's Name"
 											
 
 
                     v-model="$v.form.peep_name.$model" :state="validateState('peep_name')" type="text"
                     v-on:keydown.enter.prevent/>
+</div>
+  <div v-else>
+    <AdBlocker></AdBlocker>
+  </div>
                   <span class="error-message text-center text-danger d-block text-center">{{ this.error }}</span>
                   <div class="d-flex justify-content-end">
                     <b-button @click="submitNomination" variant="primary">Submit</b-button>
@@ -83,6 +92,8 @@
   </transition>
 </template>
 <script>
+import {detectAnyAdblocker} from "vue-adblock-detector";
+import AdBlocker from '../../components/AdBlocker.vue';   
 
 const {required, maxLength} = require('vuelidate/lib/validators')	 
 export default {
@@ -90,6 +101,7 @@ export default {
     return {
       items: [],
       randomItems: [],							 
+		adBlock: true,				
       loading: false,
       form_possible: true,
       diff_seconds: null,
@@ -117,6 +129,14 @@ export default {
     };
   },
 
+  beforeMount() {
+    detectAnyAdblocker().then((detected) => {
+      console.log(detected);
+      if(detected){
+        this.adBlock = false;
+      }
+    });
+  },
   watch: {
     items: {
       handler(items) {
@@ -125,6 +145,9 @@ export default {
       deep: true      
     }
   
+  },
+    components: {
+    AdBlocker
   },
   validations: {
     form: {

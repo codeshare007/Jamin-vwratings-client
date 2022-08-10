@@ -10,10 +10,17 @@
 				
 				<b-row class="d-flex justify-content-center">
                   <b-col cols="6">
-                    Last voted <router-link class="d-block recent" v-for="(item, i) in this.recentItems.slice(0, 1)" :key="i"
+                    Recently voted <router-link class="d-block recent" v-for="(item, i) in this.recentItems.slice(0, 3)" :key="i"
                       :to="redirectToItem(item.avi_id)" v-html="item.avi_name" />
                   </b-col>
                 </b-row>
+                <div v-if="items.length === 0">
+                  <p style="color: red;" class="text-center">There aren't any newly voted creeps yet.</p>
+                </div>
+                <div v-if="loading" class="d-flex justify-content-center mt-3 align-items-center"
+                  style="min-height: inherit;">
+                  <b-spinner />
+                </div>				
 				
                 <p>These are the players that are voted as most disliked by their peers.<br />Make sure to comment on their profile if you have encountered any pathetic behaviour.  Let the unsuspecting know what these creeps are really like.</p>
 
@@ -24,7 +31,7 @@
                   </b-col>
                 </b-row>
                 <div v-if="items.length === 0">
-                  <p class="text-center">There aren't any creeps yet.</p>
+                  <p style="color: red;" class="text-center">There aren't any creeps yet.</p>
                 </div>
                 <div v-if="loading" class="d-flex justify-content-center mt-3 align-items-center"
                   style="min-height: inherit;">
