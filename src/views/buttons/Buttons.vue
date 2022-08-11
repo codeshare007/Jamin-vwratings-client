@@ -11,8 +11,8 @@
 		<b-button class="btn-special" :to="{name: 'ratings.peepscreeps'}">Peeps & Creeps Voting</b-button>
 	</div>
 	<div class="buttonsPage__btnBlock">
-		<b-button class="btn-special" :to="{name: 'ratings.peeps'}">Peeps</b-button>
-		<b-button class="btn-special" :to="{name: 'ratings.creeps'}">Creeps</b-button>
+		<b-button class="btn-special" :to="{name: 'ratings.peeps'}">Peeps List</b-button>
+		<b-button class="btn-special" :to="{name: 'ratings.creeps'}">Creeps List</b-button>
 	</div>
 	<div class="buttonsPage__btnBlock">	
         <b-button class="btn-special" :to="{name: 'ratings.claim'}">Claim Name</b-button>

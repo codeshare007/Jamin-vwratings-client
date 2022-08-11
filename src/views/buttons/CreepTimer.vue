@@ -303,7 +303,7 @@ export default {
     }
 
     .col-6 {
-      max-width: fit-content;
+      max-width: 100%;
     }
 
     a {
