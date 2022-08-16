@@ -10,7 +10,7 @@
 				
 				<b-row class="d-flex justify-content-center">
                   <b-col cols="6">
-                    Recently voted <router-link class="d-block recent" v-for="(item, i) in this.recentItems.slice(0, 3)" :key="i"
+                    Recently voted not available yet<router-link class="d-block recent" v-for="(item, i) in this.recentItems.slice(0, 0)" :key="i"
                       :to="redirectToItem(item.avi_id)" v-html="item.avi_name" />
                   </b-col>
                 </b-row>
