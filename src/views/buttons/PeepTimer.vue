@@ -8,6 +8,7 @@
 		class="btn-back"
 		@click="$router.go(-1)"
 		v-html="`Back`"
+		/>	  		
             <div class="hour-counter">
               <span class="hours">{{ hours }}</span><span class="normal">hrs</span>
               <span class="minutes">{{ minutes }}</span><span class="normal">mins</span>
