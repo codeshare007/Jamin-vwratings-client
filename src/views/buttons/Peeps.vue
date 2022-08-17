@@ -2,6 +2,11 @@
   <transition name="fade">
     <div class="peeps">
       <div class="blackContainer">
+		<b-button
+		class="btn-back"
+		@click="$router.go(-1)"
+		v-html="`Back`"
+		/>
         <div class="timer">
           <template>            
             <div class="peeplist">
@@ -102,6 +107,11 @@ export default {
 .blackContainer {
   padding-top: 0;
 }
+  .btn-back {
+    background: #3c786b;
+    border: 1px solid #082b30;
+    font-size: 12px;
+  }  
 }
 
 </style>
