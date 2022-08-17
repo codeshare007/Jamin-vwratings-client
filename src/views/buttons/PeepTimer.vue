@@ -4,6 +4,10 @@
       <div class="blackContainer">
         <div class="timer">
           <template>
+		<b-button
+		class="btn-back"
+		@click="$router.go(-1)"
+		v-html="`Back`"
             <div class="hour-counter">
               <span class="hours">{{ hours }}</span><span class="normal">hrs</span>
               <span class="minutes">{{ minutes }}</span><span class="normal">mins</span>
@@ -378,5 +382,10 @@ form {
 .modal-header {
     background-color: #30cbdb;
 }
-
+  .btn-back {
+    background: #3c786b;
+    border: 1px solid #082b30;
+    font-size: 12px;
+	margin-bottom: 0px;
+  }  
 </style>
