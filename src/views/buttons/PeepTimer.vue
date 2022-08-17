@@ -9,6 +9,8 @@
               <span class="minutes">{{ minutes }}</span><span class="normal">mins</span>
               <span class="seconds">{{ seconds }}</span><span class="normal">secs</span>
             </div>
+			<div class="drd text-center" v-if="section_number == 1">Until voting ends and nominations restart.</div>
+			<div class="drd text-center" v-if="section_number == 0">Until nominating ends and voting begins.</div>
             <b-modal ref="confirmModal" ok-title="Add" size="sg" ok-variant="dark" hide-footer
               modal-class="confirm__modal" title="Are you sure you want to vote for this name?">
 
@@ -337,7 +339,7 @@ export default {
     width: fit-content;
     margin-right: auto;
     margin-left: auto;
-    margin-bottom: 25px;
+    margin-bottom: 0px;
     letter-spacing: 2px;
     word-spacing: 8px;
     border: 1px solid #5b8750;
@@ -359,6 +361,11 @@ form {
   margin: auto;
 }
 
+.drd {
+	color: #90bedf;
+	font-size: 13px;
+	margin-bottom: 15px;
+}
 .btn {
   margin: auto;
   margin-bottom: 25px;
