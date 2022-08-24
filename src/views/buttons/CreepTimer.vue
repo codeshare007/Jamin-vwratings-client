@@ -4,6 +4,7 @@
       <div class="blackContainer">
         <div class="timer">
           <template>
+	<div v-if="!isLimited">	  
 		<b-button
 		class="btn-back"
 		@click="$router.go(-1)"
@@ -95,6 +96,10 @@
                 </div>
               </div>
             </div>
+			</div>
+      <div v-if="isLimited === true">
+        <h2 class="text-danger text-center">You can't use the voting system because you are temporarily banned</h2><h4>Excessively posting useless comments, using comments to argue, attacking other comments, talking about real life and just being rude will get you a ban.</h4><h4>We will unban you when we feel like it or you can send us an apology with the "Message Us" form and you will get unbanned when we get it.</h4> 
+      </div>			
           </template>
         </div>
       </div>
@@ -172,6 +177,11 @@ export default {
     this.getPossible();
     this.isVotingPossible();
   },
+  computed: {
+    isLimited() {
+      return this.$store.getters['auth/isLimited']
+    }
+  },  
   methods: {
     fetchTimer() {
       this.$api.profile.fetch_timer().then((response) => {

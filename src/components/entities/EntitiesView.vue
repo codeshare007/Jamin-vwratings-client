@@ -26,7 +26,7 @@
       />
 
       <div v-if="isLimited === true">
-        <h4 class="text-danger text-center">You are temporarily banned</h4>
+        <h4 class="text-danger text-center">You can't rate or comment because you are temporarily banned</h4><h5 class="text-danger text-center">Excessively posting useless comments, using comments to argue, attacking other comments, talking about real life and just being rude will get you a ban.</h5><h5 class="text-danger text-center">We will unban you when we feel like it or you can send us an apology with the "Message Us" form and you will get unbanned when we get it.</h5> 
       </div>
 
       <div v-if="loggedIn === false">
